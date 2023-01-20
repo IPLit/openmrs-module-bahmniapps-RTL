@@ -1,4 +1,5 @@
 {
+    "DISCHARGE_SUMMARY_DIAGNOSIS_KEY": "تشخيص التخريج",
     "CONSULTATION_TAB_KEY": "الكشف الطبي",
     "CONSULTATION_SHORTCUT_KEY": "c",
     "NO_ACTIVE_PASSIVE_PROGRAMS_MESSAGE": "لا يوجد برامج مفعلة أو غير مفعلة لهذا المريض",
