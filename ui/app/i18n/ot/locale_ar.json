@@ -86,5 +86,6 @@
     "OT_THIS_WEEK_KEY": "هذا الاسبوع",
     "OT_MOVE_KEY": "نقل",
     "OT_EDIT_KEY": "تعديل",
-    "OT_ADD_ACTUAL_TIME_KEY": "أضف الوقت الفعلي"
+    "OT_ADD_ACTUAL_TIME_KEY": "أضف الوقت الفعلي",
+    "PATIENT_LISTING_QUEUE_SCHEDULED_LABEL_KEY": "المقرر"
 }
