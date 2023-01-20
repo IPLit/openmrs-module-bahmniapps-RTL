@@ -1,4 +1,7 @@
 {
+    "name":"اسم",
+    "identifier":"المعرف",
+    "extraIdentifier":"معرف إضافي",
     "userName": "اسم المستخدم",
     "password": "كلمة المرور",
     "location": "مقر العمل",
