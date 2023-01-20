@@ -62,8 +62,16 @@
     "ASSIGN_BED_LABEL": "خصص",
     "TRANSFER_BED_LABEL": "انقل",
     "EMPTY_WARD_MESSAGE": "لا يوجد مرضى بهذا الجناح",
-    
     "GENDER_MALE_KEY": "ذكر",
     "GENDER_FEMALE_KEY": "أنثى",
-    "GENDER_OTHER_KEY": "آخر"
+    "GENDER_OTHER_KEY": "آخر",
+    "BEDMANAGEMENT_DISPOSITION_ADMIT_PATIENT": "قبول المريض",
+    "BEDMANAGEMENT_DISPOSITION_DISCHARGE_PATIENT": "تخريج المريض",
+    "BEDMANAGEMENT_DISPOSITION_TRANSFER_PATIENT": "تحويل المريض",
+	"Male": "الذكر",
+    "Female": "أنثى",
+	"Admit": "قبول ",
+	"Cancel": "الغاء",
+	"Class": "صف دراسي",
+    "General": "عام"
 }
