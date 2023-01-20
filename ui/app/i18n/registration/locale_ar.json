@@ -38,7 +38,7 @@
     "REGISTRATION_LABEL_ESTIMATE": "تقريبي",
     "REGISTRATION_LABEL_BIRTH_TIME": "وقت الولادة",
     "REGISTRATION_LABEL_ADDRESS_INFO": "العنوان",
-    "REGISTRATION_LABEL_OTHER_INFO": "معلومات اخري",
+    "REGISTRATION_LABEL_OTHER_INFO": "معلومات أخرى",
     "REGISTRATION_LABEL_DEATH_INFO": "بيانات الوفاة",
     "REGISTRATION_LABEL_REASON_FOR_DEATH": "سبب الوفاة",
     "REGISTRATION_LABEL_CHOOSE_VALUE": "اختر قيمة",
@@ -149,8 +149,4 @@
     "Other": "آخر",
     "UPLOAD_PATIENTS_PHOTO": "تحميل صورة المريض",
     "Patient Identifier":"معرف المريض"
-	
-	
-	
-
 }
