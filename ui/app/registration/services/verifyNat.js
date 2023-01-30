@@ -36,14 +36,14 @@ angular.module('bahmni.registration')
                         var searchPromise = patientService.search(undefined, scope.natData.natId, undefined, undefined, undefined,
                                0, undefined, undefined, undefined, undefined,
                                undefined, true).then(function (data) {
-                                if (data.pageOfResults.length > 0) {
-                                    scope.patientExist = true;
-                                    scope.noPatient = false;
-                                } else {
-                                    scope.noPatient = true;
-                                    scope.patientExist = false;
-                                }
-                        });
+                                   if (data.pageOfResults.length > 0) {
+                                       scope.patientExist = true;
+                                       scope.noPatient = false;
+                                   } else {
+                                       scope.noPatient = true;
+                                       scope.patientExist = false;
+                                   }
+                               });
                         spinner.forPromise(searchPromise);
                     }
                 }
@@ -61,7 +61,6 @@ angular.module('bahmni.registration')
                 scope.patient.age.days = age.days;
                 scope.patient.extraIdentifiers[0].registrationNumber = scope.natData.natId;
                 scope.patient.extraIdentifiers[0].hasOldIdentifier = true;
-                
                 scope.close();
             };
 
@@ -72,5 +71,4 @@ angular.module('bahmni.registration')
             });
         };
         return confirmBox;
-
     }]);

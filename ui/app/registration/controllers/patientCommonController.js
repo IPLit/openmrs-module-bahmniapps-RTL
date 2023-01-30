@@ -421,6 +421,5 @@ angular.module('bahmni.registration')
                     className: "ngdialog-theme-default app-dialog-container"
                 });
             };
-
         }]);
 
