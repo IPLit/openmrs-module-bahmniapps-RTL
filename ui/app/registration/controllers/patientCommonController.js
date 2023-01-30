@@ -1,8 +1,10 @@
 'use strict';
 
 angular.module('bahmni.registration')
-    .controller('PatientCommonController', ['$scope', '$rootScope', '$http', 'patientAttributeService', 'appService', 'patientService', 'spinner', '$location', 'ngDialog', '$window', '$state', '$document', '$translate',
-        function ($scope, $rootScope, $http, patientAttributeService, appService, patientService, spinner, $location, ngDialog, $window, $state, $document, $translate) {
+    .controller('PatientCommonController', ['$scope', '$rootScope', '$http', 'patientAttributeService', 'appService',
+        'patientService', 'spinner', '$location', 'ngDialog', '$window', '$state', '$document', '$translate', 'natVerifyPopup',
+        function ($scope, $rootScope, $http, patientAttributeService, appService, patientService, spinner, $location,
+                ngDialog, $window, $state, $document, $translate, natVerifyPopup) {
             var autoCompleteFields = appService.getAppDescriptor().getConfigValue("autoCompleteFields", []);
             var showCasteSameAsLastNameCheckbox = appService.getAppDescriptor().getConfigValue("showCasteSameAsLastNameCheckbox");
             var personAttributes = [];
@@ -412,5 +414,13 @@ angular.module('bahmni.registration')
             $scope.disableIsDead = function () {
                 return ($scope.patient.causeOfDeath || $scope.patient.deathDate) && $scope.patient.dead;
             };
+
+            $scope.openNatVerifyPopup = function () {
+                natVerifyPopup({
+                    scope: $scope,
+                    className: "ngdialog-theme-default app-dialog-container"
+                });
+            };
+
         }]);
 

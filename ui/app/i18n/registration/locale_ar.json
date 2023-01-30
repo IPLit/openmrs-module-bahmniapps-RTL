@@ -148,5 +148,12 @@
     "Female": "أنثى",
     "Other": "آخر",
     "UPLOAD_PATIENTS_PHOTO": "تحميل صورة المريض",
-    "Patient Identifier":"معرف المريض"
+    "Patient Identifier":"معرف المريض",
+	"VERIFY_NAT_POPUP_MESSAGE": "تحقق من  نات",
+    "VERIFY_NAT_TEXT": "نص ممسوح ضوئيًا",
+    "MESSAGE_NAT_NOT_PRE_EXISTS": "لم يتم العثور على المريض!",
+    "MESSAGE_NAT_PRE_EXISTS": "وجد المريض مطابقًا لمعرف  هذا",
+    "VERIFY_KEY": "تحقق من معرف نات",
+    "CLOSE_POPUP_KEY": "يغلق",
+    "CREATE_PATIENT_WITH_NAT_ID_KEY": "أضف المريض?"
 }

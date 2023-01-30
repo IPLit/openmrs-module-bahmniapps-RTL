@@ -1,0 +1,31 @@
+
+<div class="confirm-box" style="text-align:center;">
+    <span class="ngdialog-close"></span>
+    <p class="message">{{::'VERIFY_NAT_POPUP_MESSAGE' | translate}}</p>
+    <br>
+    <p>
+        <b>{{::'VERIFY_NAT_TEXT' | translate}}:</b><sup class="asterick">*</sup>
+        <input type="text" ng-blur="getNatText(this);" ng-model="natTextTemp" required focus-me="true"/>
+    </p>
+    <br>
+	<p id="notExisting" class="message" ng-show="noPatient">{{::'MESSAGE_NAT_NOT_PRE_EXISTS' | translate}}</p>
+	<p id="preExisting" class="message" ng-show="patientExist">{{::'MESSAGE_NAT_PRE_EXISTS' | translate}}</p>
+    <br>
+    <p id="verifyBtns" class="app-check-in-btn" ng-hide="noPatient">
+        <button style="background: #8BC34A; color: #fff" ng-click="performVerifyNatText();">
+            {{::'VERIFY_KEY' | translate}}
+        </button>
+        <button ng-click="close();">
+            {{::'CLOSE_POPUP_KEY' | translate}}
+        </button>
+    </p>
+    <br>
+    <p id="createBtns" class="app-check-in-btn" ng-show="noPatient">
+        <button style="background: #8BC34A; color: #fff" ng-click="performAddPatientDetails();">
+            {{::'CREATE_PATIENT_WITH_NAT_ID_KEY' | translate}}
+        </button>
+        <button ng-click="close();">
+            {{::'CLOSE_POPUP_KEY' | translate}}
+        </button>
+    </p>
+</div>
