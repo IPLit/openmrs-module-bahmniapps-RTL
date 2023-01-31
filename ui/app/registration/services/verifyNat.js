@@ -20,9 +20,8 @@ angular.module('bahmni.registration')
             };
 
             var str2ab = function (str) {
-                var buf = new ArrayBuffer(str.length);
-                var bufView = new Uint8Array(buf);
-                for (var i = str.length; i > 0; i--) {
+                var bufView = new Uint8Array(str.length);
+                for (var i = str.length; i >= 0; i--) {
                     bufView[i] = str.charCodeAt(i);
                 }
                 return bufView;
@@ -71,14 +70,9 @@ angular.module('bahmni.registration')
                 scope.patient.age.years = age.years;
                 scope.patient.age.months = age.months;
                 scope.patient.age.days = age.days;
+                scope.patient.extraIdentifiers[0].identifier = scope.natData.natId;
                 scope.patient.extraIdentifiers[0].registrationNumber = scope.natData.natId;
                 scope.patient.extraIdentifiers[0].hasOldIdentifier = true;
-                var regNumber = angular.element(document).find("#registrationNumber");
-                regNumber.attr("disabled", true);
-                var oldId = angular.element(document).find("#hasOldIdentifier");
-                scope.$applyAsync(oldId.attr("ng-disabled", true));
-                var openNatPopup = angular.element(document).find("#openNatPopup");
-                openNatPopup.attr("focus", true);
                 scope.close();
             };
 
