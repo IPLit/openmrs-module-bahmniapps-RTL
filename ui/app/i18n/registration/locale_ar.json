@@ -156,5 +156,5 @@
     "VERIFY_KEY": "تحقق من معرف نات",
     "CLOSE_POPUP_KEY": "يغلق",
     "CREATE_PATIENT_WITH_NAT_ID_KEY": "أضف المريض?",
-	"INVALID_SCANNED_NAT_TEXT": "نص نات الممسوح ضوئيًا غير صالح"
+    "INVALID_SCANNED_NAT_TEXT": "نص نات الممسوح ضوئيًا غير صالح"
 }
