@@ -43,7 +43,9 @@ angular.module('bahmni.adt')
 
             var shouldTransfer = function (bed) {
                 if (bed.patientInfo) {
-                    return confirm("This bed is already occupied. Do you want to assign another patient to the same bed?");
+                    var msg= $translate.instant("BED_OCCUPIED_MESSAGE_KEY");
+                    return confirm(msg);
+                    //return confirm("This bed is already occupied. Do you want to assign another patient to the same bed?");
                 }
                 return true;
             };
