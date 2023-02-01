@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('bahmni.adt')
-    .controller('WardLayoutController', ['$scope', '$rootScope', '$window', 'spinner', 'wardService', 'bedManagementService', 'bedService', 'messagingService', 'appService', '$document', '$element',
-        function ($scope, $rootScope, $window, spinner, wardService, bedManagementService, bedService, messagingService, appService, $document, $element) {
+    .controller('WardLayoutController', ['$scope', '$rootScope', '$window', 'spinner', 'wardService', 'bedManagementService', 'bedService', 'messagingService', 'appService', '$document', '$element', '$translate',
+        function ($scope, $rootScope, $window, spinner, wardService, bedManagementService, bedService, messagingService, appService, $document, $element, $translate) {
             $scope.selectedBed = null;
             var maxPatientsConfig = appService.getAppDescriptor().getConfig("maxPatientsPerBed");
             var maxPatientsPerBed = maxPatientsConfig ? maxPatientsConfig.value : 3;
@@ -43,7 +43,9 @@ angular.module('bahmni.adt')
 
             var shouldTransfer = function (bed) {
                 if (bed.patientInfo) {
-                    return confirm("This bed is already occupied. Do you want to assign another patient to the same bed?");
+                    var msg= $translate.instant("BED_OCCUPIED_MESSAGE_KEY");
+                    return confirm(msg);
+                    
                 }
                 return true;
             };
