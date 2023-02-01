@@ -43,9 +43,8 @@ angular.module('bahmni.adt')
 
             var shouldTransfer = function (bed) {
                 if (bed.patientInfo) {
-                    var msg= $translate.instant("BED_OCCUPIED_MESSAGE_KEY");
+                    var msg = $translate.instant("BED_OCCUPIED_MESSAGE_KEY");
                     return confirm(msg);
-                    
                 }
                 return true;
             };
