@@ -8,6 +8,7 @@
         <input type="text" ng-blur="getNatText(this);" ng-model="natTextTemp" required focus-me="true"/>
     </p>
     <br>
+    <p id="notExisting" class="message" ng-show="scannedTextError">{{::'INVALID_SCANNED_NAT_TEXT' | translate}}</p>
 	<p id="notExisting" class="message" ng-show="noPatient">{{::'MESSAGE_NAT_NOT_PRE_EXISTS' | translate}}</p>
 	<p id="preExisting" class="message" ng-show="patientExist">{{::'MESSAGE_NAT_PRE_EXISTS' | translate}}</p>
     <br>

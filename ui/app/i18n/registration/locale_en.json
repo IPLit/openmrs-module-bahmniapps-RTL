@@ -124,5 +124,6 @@
   "MESSAGE_NAT_PRE_EXISTS": "Patient found matching this ID",
   "VERIFY_KEY": "Verify NAT ID",
   "CLOSE_POPUP_KEY": "Close",
-  "CREATE_PATIENT_WITH_NAT_ID_KEY": "Add a patient?"
+  "CREATE_PATIENT_WITH_NAT_ID_KEY": "Add a patient?",
+  "INVALID_SCANNED_NAT_TEXT": "Invalid scanned NAT text"
 }

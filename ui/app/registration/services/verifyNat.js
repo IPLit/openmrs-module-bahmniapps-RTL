@@ -10,6 +10,7 @@ angular.module('bahmni.registration')
             scope.natText = '';
             scope.patientExist = false;
             scope.noPatient = false;
+            scope.scannedTextError = false;
 
             scope.close = function () {
                 ngDialog.close(dialog.id);
@@ -28,6 +29,10 @@ angular.module('bahmni.registration')
             };
 
             scope.performVerifyNatText = function () {
+                if (!scope.natText || scope.natText.length === 0) {
+                    scope.scannedTextError = true;
+                    return;
+                }
                 const decoder = new TextDecoder("windows-1256");
                 scope.natText = str2ab(scope.natText);
                 scope.natText = scope.natText && decoder.decode(scope.natText);
@@ -44,6 +49,7 @@ angular.module('bahmni.registration')
                         scope.natData.natId = splitted.length > 5 && splitted[5].trim();
                     }
                     if (scope.natData.natId) {
+                        scope.scannedTextError = false;
                         var searchPromise = patientService.search(undefined, scope.natData.natId, undefined, undefined, undefined,
                                0, undefined, undefined, undefined, undefined,
                                undefined, true).then(function (data) {
@@ -56,6 +62,8 @@ angular.module('bahmni.registration')
                                    }
                                });
                         spinner.forPromise(searchPromise);
+                    } else {
+                        scope.scannedTextError = true;
                     }
                 }
             };
