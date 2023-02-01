@@ -68,10 +68,11 @@
     "BEDMANAGEMENT_DISPOSITION_ADMIT_PATIENT": "قبول المريض",
     "BEDMANAGEMENT_DISPOSITION_DISCHARGE_PATIENT": "تخريج المريض",
     "BEDMANAGEMENT_DISPOSITION_TRANSFER_PATIENT": "تحويل المريض",
-	"Male": "الذكر",
+    "Male": "الذكر",
     "Female": "أنثى",
-	"Admit": "قبول ",
-	"Cancel": "الغاء",
-	"Class": "صف دراسي",
-    "General": "عام"
+    "Admit": "قبول ",
+    "Cancel": "الغاء",
+    "Class": "صف دراسي",
+    "General": "عام",
+    "BED_OCCUPIED_MESSAGE_KEY": "هذا السرير مشغول بالفعل. هل تريد تخصيص مريض آخر لنفس السرير؟"
 }
