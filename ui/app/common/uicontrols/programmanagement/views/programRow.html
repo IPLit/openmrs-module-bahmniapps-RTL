@@ -8,7 +8,7 @@
         </div>
 
         <div class="programName">
-            {{::patientProgram.display}}
+            {{::patientProgram.display | translate}}
         </div>
 
         <div class="ProgramEnrollInfo clearfix">
@@ -42,12 +42,12 @@
                         </label>
                     </div>
                     <div class="field-value" ng-show="!patientProgram.editing">
-                        <span>{{getCurrentStateDisplayName(patientProgram)}}</span>
+                        <span>{{getCurrentStateDisplayName(patientProgram) | translate}}</span>
                     </div>
 
                     <div class="field-value" ng-show="patientProgram.editing">
                         <select ng-model="patientProgram.selectedState"
-                                ng-options="state.concept.display for state in ::getStates(patientProgram.program) track by state.uuid">
+                                ng-options="state.concept.display | translate for state in ::getStates(patientProgram.program) track by state.uuid">
                             <option value="">{{::'PROGRAM_MANAGEMENT_CHOOSE_STATE_KEY' | translate}}</option>
                         </select>
                     </div>
@@ -60,7 +60,7 @@
                 </div>
                 <div class="field-value">
                     <select ng-model="patientProgram.outcomeData"
-                            ng-options="outcomeSelected.display for outcomeSelected in ::patientProgram.program.outcomesConcept.setMembers">
+                            ng-options="outcomeSelected.display | translate for outcomeSelected in ::patientProgram.program.outcomesConcept.setMembers">
                         <option value="">{{::'PROGRAM_MANAGEMENT_LABEL_CHOOSE_OUTCOME' | translate}}</option>
                     </select>
                 </div>
@@ -77,7 +77,7 @@
             <tbody>
             <tr ng-repeat="state in patientProgram.states| orderBy:'auditInfo.dateCreated':true"
                 ng-if="state.voided != true">
-                <td>{{state.state.concept.display}}</td>
+                <td>{{state.state.concept.display | translate}}</td>
                 <td ng-if="state.endDate">{{state.startDate | bahmniDate}} {{::'PROGRAM_MANAGEMENT_TO_KEY' | translate}}
                     {{state.endDate | bahmniDate}}
                 </td>
@@ -103,7 +103,7 @@
                                dateEnrolled: patientProgram.fromDate,
                                dateCompleted: patientProgram.toDate})">
         <span class="proggram-dashboard-text">
-            <span class="patient-name">{{::patientProgram.display}} Dashboard</span>
+            <span class="patient-name">{{::patientProgram.display | translate}} {{ 'Dashboard' | translate}}</span>
         </span>
     </a>
 </div>
