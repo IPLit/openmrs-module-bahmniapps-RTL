@@ -426,6 +426,20 @@
     "DISPOSITION_TRANSFER_PATIENT":"نقل المريض",
     "DISPOSITION_ADMIT_PATIENT":"أقبل المريض في المشفى",
     "DISPOSITION_DISCHARGE_PATIENT":"تخريج المريض",
-    "DISPOSITION_UNDO_DISCHARGE":"التراجع عن تخريج المريض"
+     "DISPOSITION_UNDO_DISCHARGE":"التراجع عن تخريج المريض",	
+    "Clinical Stage 1":"المرحلة السريرية 1",	
+    "Clinical Stage 3":"المرحلة السريرية 3",	
+    "Clinical Stage 2":"المرحلة السريرية 2",	
+    "Asymptomatic":"بدون أعراض ظاهرة",	
+    "Acute Retroviral Infection":"عدوى الفيروسات القهقرية الحادة",	
+    "HIV Program":"برنامج فيروس نقص المناعة البشرية",	
+    "TB Program":"برنامج السل",	
+    "Initial Treatment Phase":"مرحلة المعالجة الأولية",	
+    "Sputum Positive":"اللعاب إيجابي",	
+    "Continued Treatment Phase":"مرحلة العلاج المستمر",	
+    "Treatment Discontinued":"توقف العلاج",	
+    "Cured of HIV":"شفي من فيروس نقص المناعة البشرية",	
+    "Dead":"متوفي",	
+    "Dashboard":"لوحة معلومات المريض"
   
 }
