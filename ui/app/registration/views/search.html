@@ -21,10 +21,10 @@
                     <label for="name"><strong>{{ ::'REGISTRATION_LABEL_NAME' | translate}}</strong></label>
                     <input tabindex="4" type="text" id="name" ng-model="searchParameters.name" placeholder="{{ ::'REGISTRATION_LABEL_ENTER_NAME' | translate}}">
                 </article>
-                <article class="fl" ng-if="::customAttributesSearchConfig.show">
+           <!-- <article class="fl" ng-if="::customAttributesSearchConfig.show">
                     <label for="name"><strong>{{::customAttributesSearchConfig.label | translate}}</strong></label>
                     <input tabindex="5" type="text" id="customAttribute" ng-model="searchParameters.customAttribute" placeholder="{{::customAttributesSearchConfig.placeholder | translate}}">
-                </article>
+                </article> -->
                 <article class="fl" ng-if="::addressSearchConfig.show">
                     <label for="name"><strong>{{::addressSearchConfig.label | translate}}</strong></label>
                     <input tabindex="6" type="text" id="addressFieldValue" ng-model="searchParameters.addressFieldValue" placeholder="{{::addressSearchConfig.placeholder | translate}}">
@@ -60,7 +60,7 @@
                 <th><strong>{{ ::'REGISTRATION_LABEL_ID' | translate}}</strong></th>
                 <th ng-repeat = "type in ::extraIdentifierTypes track by $index"><strong>{{type.name | translate}}</strong></th>
                 <th><strong>{{ ::'REGISTRATION_LABEL_NAME' | translate}}</strong></th>
-                <th ng-repeat = "field in ::personSearchResultsConfig.fields track by $index"><strong>{{::convertToTableHeader(field)}}</strong></th>
+           <!-- <th ng-repeat = "field in ::personSearchResultsConfig.fields track by $index"><strong>{{::convertToTableHeader(field)}}</strong></th> -->
                 <th><strong>{{ ::'REGISTRATION_LABEL_GENDER' | translate}}</strong></th>
                 <th><strong>{{ ::'REGISTRATION_LABEL_AGE' | translate}}</strong></th>
                 <th ng-repeat = "field in ::addressSearchResultsConfig.fields"><strong>{{::convertToTableHeader(getAddressColumnName(field))}}</strong></th>
