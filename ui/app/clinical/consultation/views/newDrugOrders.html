@@ -15,7 +15,7 @@
                        ng-model="bulkDurationData.bulkDuration" required ng-pattern="/^[0-9]+$/"/>
                 <button type="button" ng-click="updateDuration(+1)" class="stepper__btn stepper__plus">+</button>
                 <select class="form-field bulk-duration-unit" ng-model="bulkDurationData.bulkDurationUnit"
-                        ng-options="item.name as item.name for item in treatmentConfig.durationUnits" required>
+                        ng-options="item.name as item.name | translate for item in treatmentConfig.durationUnits" required>
                 </select>
                 <button type="submit" class="bulk-update-btn secondary-button">{{ ::'CLINICAL_UPDATE' | translate }}</button>
                 <button type="button" ng-click="bulkChangeDuration()" class="bulk-cancel-btn">{{ ::'CANCEL' | translate }}</button>
