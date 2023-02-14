@@ -125,5 +125,8 @@
   "VERIFY_KEY": "Verify NAT ID",
   "CLOSE_POPUP_KEY": "Close",
   "CREATE_PATIENT_WITH_NAT_ID_KEY": "Add a patient?",
-  "INVALID_SCANNED_NAT_TEXT": "Invalid scanned NAT text"
+  "INVALID_SCANNED_NAT_TEXT": "Invalid scanned NAT text",
+  "REGISTRATION_LABEL_PATIENT_MOTHER_NAME": "Mother's Name",
+  "REGISTRATION_LABEL_PATIENT_ENTER_MOTHER_NAME": "Enter patient's mother name",
+  "MOTHERS_NAME": "Mother's Name"
 }

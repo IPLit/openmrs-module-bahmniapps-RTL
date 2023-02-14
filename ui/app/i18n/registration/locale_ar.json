@@ -164,6 +164,9 @@
     "ابدأ زيارة من نوع LAB VISIT": "بدء زيارة لمخبر المشفى",
     "ابدأ زيارة من نوع IPD": "بدء زيارة لقسم العيادات الداخلية",
     "ابدأ زيارة من نوع Special OPD": "بدء زيارة لقسم العيادات الخارجية الخاصة",
-    "SELECT_FILE": "حدد ملف"
+    "SELECT_FILE": "حدد ملف",
+	"REGISTRATION_LABEL_PATIENT_MOTHER_NAME": "اسم الأم",
+    "REGISTRATION_LABEL_PATIENT_ENTER_MOTHER_NAME": "اسم الأم للمريض",
+    "MOTHERS_NAME": "اسم الأم"
     
 }
