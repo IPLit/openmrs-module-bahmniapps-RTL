@@ -120,6 +120,10 @@
     "ACTUAL_TIME_ADDED_TO_KEY":"الزمن الفعلي المضاف إلى",
     "OT_SURGICAL_BLOCK_ACROSS_MULTIPLE_DAYS_CONFIRMATION_MESSAGE": "هل أنت متأكد أنك تريد إنشاء كتلة جراحية تمتد لأيام؟",
     "MOVING_KEY": "نقل",
-    "FROM_KEY": "من"
+    "FROM_KEY": "من",
+    "hr": " عة  ",
+    "mins": " دقائق  ",
+    "Surgical_Appointment_moved_to_the_block":"انتقل الموعد الجراحي إلى الكتلة",
+    "Successfully":"بنجاح"
     
 }
