@@ -33,7 +33,7 @@ angular.module('bahmni.common.conceptSet')
                 newObs.scrollToElement = true;
                 var index = parentObservation.groupMembers.indexOf(observation);
                 parentObservation.groupMembers.splice(index + 1, 0, newObs);
-                messagingService.showMessage("info", $translate.instant("NEW_KEY") + " " + observation.label + " " + $translate.instant("SECTION_ADDED_KEY"));
+                messagingService.showMessage("info", $translate.instant("NEW_KEY") + " " + $translate.instant(observation.label) + " " + $translate.instant("SECTION_ADDED_KEY"));
                 scope.$root.$broadcast("event:addMore", newObs);
             };
         };
