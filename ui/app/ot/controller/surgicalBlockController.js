@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('bahmni.ot')
-    .controller('surgicalBlockController', ['$scope', '$q', '$state', '$stateParams', 'spinner', 'surgicalAppointmentService', 'locationService', 'appService', 'messagingService', 'surgicalAppointmentHelper', 'surgicalBlockHelper', 'ngDialog',
-        function ($scope, $q, $state, $stateParams, spinner, surgicalAppointmentService, locationService, appService, messagingService, surgicalAppointmentHelper, surgicalBlockHelper, ngDialog) {
+    .controller('surgicalBlockController', ['$scope', '$q', '$state', '$stateParams', 'spinner', 'surgicalAppointmentService', 'locationService', 'appService', 'messagingService', 'surgicalAppointmentHelper', 'surgicalBlockHelper', 'ngDialog', '$translate',
+        function ($scope, $q, $state, $stateParams, spinner, surgicalAppointmentService, locationService, appService, messagingService, surgicalAppointmentHelper, surgicalBlockHelper, ngDialog, $translate) {
             var init = function () {
                 $scope.surgicalForm = {
                     surgicalAppointments: []
@@ -150,7 +150,7 @@ angular.module('bahmni.ot')
 
             var getAvailableBlockDurationInHoursAndMinutesFormat = function () {
                 var availableBlockDuration = getAvailableBlockDuration();
-                $scope.availableBlockDuration = Math.floor(availableBlockDuration / 60) + " hr " + availableBlockDuration % 60 + " mins";
+                $scope.availableBlockDuration = Math.floor(availableBlockDuration / 60) + $translate.instant("hr") + availableBlockDuration % 60 + $translate.instant("mins");
             };
 
             $scope.addSurgicalAppointment = function (surgicalAppointment) {
