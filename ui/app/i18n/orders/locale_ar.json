@@ -29,5 +29,11 @@
     "EDIT_LABEL": "تفديل",
     "NO_ORDERS_PRESENT": "لا يوجد طلب من نوع {{orderType}} لهذا المريض",
     "DEFAULT_SERVER_ERROR_MESSAGE": "حدث خطأ علي جهاز الخادم. لم يتم تسجيل البيانات",
-    "VISIT_CLOSED_CREATE_NEW_ERROR_MESSAGE": "انتهت الزيارة بالفعل. ابدأ زيارة جديدة لتلبية هذا الطلب"
+    "VISIT_CLOSED_CREATE_NEW_ERROR_MESSAGE": "انتهت الزيارة بالفعل. ابدأ زيارة جديدة لتلبية هذا الطلب",
+    "Summary":"ملخص",
+    "NEW_KEY":"جديد",
+    "SAVE_KEY":"يحفظ",
+    "CLINICAL_ADD_NOTES":"أضف ملاحظات",
+    "SECTION_ADDED_KEY":"تمت إضافة قسم",
+    "Images":"الصور"
 }
