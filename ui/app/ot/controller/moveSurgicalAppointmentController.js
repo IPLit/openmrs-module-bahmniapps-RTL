@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('bahmni.ot').controller('moveSurgicalAppointmentController', ['$rootScope', '$scope', '$state', '$q', 'ngDialog', 'surgicalAppointmentService', 'surgicalAppointmentHelper', 'surgicalBlockHelper', 'messagingService',
-    function ($rootScope, $scope, $state, $q, ngDialog, surgicalAppointmentService, surgicalAppointmentHelper, surgicalBlockHelper, messagingService) {
+angular.module('bahmni.ot').controller('moveSurgicalAppointmentController', ['$rootScope', '$scope', '$state', '$q', 'ngDialog', 'surgicalAppointmentService', 'surgicalAppointmentHelper', 'surgicalBlockHelper', 'messagingService', '$translate',
+    function ($rootScope, $scope, $state, $q, ngDialog, surgicalAppointmentService, surgicalAppointmentHelper, surgicalBlockHelper, messagingService, $translate) {
         var init = function () {
             $scope.surgicalAppointment = $scope.ngDialogData.surgicalAppointment;
             $scope.sourceSurgicalBlock = $scope.ngDialogData.surgicalBlock;
@@ -77,7 +77,7 @@ angular.module('bahmni.ot').controller('moveSurgicalAppointmentController', ['$r
             };
             surgicalAppointmentService.updateSurgicalAppointment(surgicalAppointment).then(function () {
                 updateSortWeightOfSurgicalAppointments().then(function () {
-                    messagingService.showMessage('info', "Surgical Appointment moved to the block " + $scope.destinationBlock.displayName + " Successfully");
+                    messagingService.showMessage('info', $translate.instant("Surgical_Appointment_moved_to_the_block") + $scope.destinationBlock.displayName + $translate.instant("Successfully"));
                     ngDialog.close();
                     $state.go("otScheduling", {viewDate: $scope.dateForMovingSurgery}, {reload: true});
                 });
