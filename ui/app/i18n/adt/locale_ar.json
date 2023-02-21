@@ -74,5 +74,12 @@
     "Cancel": "الغاء",
     "Class": "صف دراسي",
     "General": "عام",
-    "BED_OCCUPIED_MESSAGE_KEY": "هذا السرير مشغول بالفعل. هل تريد تخصيص مريض آخر لنفس السرير؟"
+    "BED_OCCUPIED_MESSAGE_KEY": "هذا السرير مشغول بالفعل. هل تريد تخصيص مريض آخر لنفس السرير؟",
+    "CLINICAL_DIAGNOSIS_ORDER_PRIMARY": "أساسي",
+    "CLINICAL_DIAGNOSIS_ORDER_SECONDARY": "ثانوي",
+    "CLINICAL_DIAGNOSIS_CERTAINTY_CONFIRMED": "مؤكد",
+    "CLINICAL_DIAGNOSIS_CERTAINTY_PRESUMED": "مفترض",
+    "DISPOSITION_DISCHARGE_PATIENT":"تخريج المريض",
+    "Discharge":"تسريح",
+    "Save":"يحفظ"
 }
