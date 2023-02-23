@@ -440,6 +440,9 @@
     "Treatment Discontinued":"توقف العلاج",	
     "Cured of HIV":"شفي من فيروس نقص المناعة البشرية",	
     "Dead":"متوفي",	
-    "Dashboard":"لوحة معلومات المريض"
+    "Dashboard":"لوحة معلومات المريض",
+    "Treatment Outcome, Cured":"نتيجة العلاج: تم الشفاء",  
+    "Absconded"::"مخفي",
+    "MDR - TB Detected":"تم تشخيص السل متعدد المقاومة للأدوية"
   
 }
