@@ -301,5 +301,10 @@ Bahmni.Common.Util.DateUtil = {
     },
     getWeekEndDate: function (weekStartDate) {
         return moment(weekStartDate).add(6, 'days').toDate();
+    },
+    getDateWithoutTimeInReport: function (datetime) {
+        var locMoment = moment(datetime);
+        locMoment.locale("en");
+        return datetime ? locMoment.format("YYYY-MM-DD") : null;
     }
 };
