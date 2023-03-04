@@ -51,8 +51,10 @@ angular.module('bahmni.reports')
         };
 
         var generateReport = function (report) {
+            var languageUser = window.localStorage["NG_TRANSLATE_LANG_KEY"] || "en";
             var url = Bahmni.Common.Constants.reportsUrl + "/report";
-            url = (url + "?name={0}&startDate={1}&endDate={2}&responseType={3}&paperSize={4}&appName={5}").format(report.name, report.startDate, report.stopDate, report.responseType, paperSize, appName);
+            // url = (url + "?name={0}&startDate={1}&endDate={2}&responseType={3}&paperSize={4}&appName={5}").format(report.name, report.startDate, report.stopDate, report.responseType, paperSize, appName);
+            url = (url + "?name={0}&startDate={1}&endDate={2}&responseType={3}&paperSize={4}&appName={5}&languageTag={6}").format(report.name, report.startDate,    report.stopDate, report.responseType, paperSize, appName, languageUser);
             if (report.reportTemplateLocation && report.responseType == 'application/vnd.ms-excel-custom') {
                 url = (url + "&macroTemplateLocation=" + report.reportTemplateLocation);
             }
