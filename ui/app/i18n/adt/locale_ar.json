@@ -81,5 +81,6 @@
     "CLINICAL_DIAGNOSIS_CERTAINTY_PRESUMED": "مفترض",
     "DISPOSITION_DISCHARGE_PATIENT":"تخريج المريض",
     "Discharge":"تسريح",
-    "Save":"يحفظ"
+    "Save":"يحفظ",
+    "Undo Discharge":"التراجع عن تخريج المريض"
 }
