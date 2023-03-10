@@ -124,6 +124,7 @@
     "hr": " عة  ",
     "mins": " دقائق  ",
     "Surgical_Appointment_moved_to_the_block":"انتقل الموعد الجراحي إلى الكتلة",
-    "Successfully":"بنجاح"
+    "Successfully":"بنجاح",
+     "min(s)":"دقائق"
     
 }
