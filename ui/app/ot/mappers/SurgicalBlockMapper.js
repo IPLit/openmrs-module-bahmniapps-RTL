@@ -1,6 +1,8 @@
 'use strict';
 
 Bahmni.OT.SurgicalBlockMapper = function () {
+    var stringCompressionUtil = Bahmni.Common.Util.stringCompressionUtil;
+
     var mapSelectedOtherSurgeon = function (otherSurgeonAttribute, surgeonList) {
         var selectedOtherSurgeon = _.filter(surgeonList, function (surgeon) {
             return surgeon.id === parseInt(otherSurgeonAttribute.value);
@@ -25,6 +27,14 @@ Bahmni.OT.SurgicalBlockMapper = function () {
         var otherSurgeonnAttribute = mappedAttributes['otherSurgeon'];
         if (otherSurgeonnAttribute) {
             mapSelectedOtherSurgeon(otherSurgeonnAttribute, surgeonsList);
+        }
+        var notesAttribute = mappedAttributes['notes'];
+        if (notesAttribute) {
+            notesAttribute.value = stringCompressionUtil.decodeDecompress(notesAttribute.value);
+        }
+        var procedureAttribute = mappedAttributes['procedure'];
+        if (procedureAttribute) {
+            procedureAttribute.value = stringCompressionUtil.decodeDecompress(procedureAttribute.value);
         }
         return mappedAttributes;
     };
@@ -67,6 +77,14 @@ Bahmni.OT.SurgicalBlockMapper = function () {
         var attributes = _.cloneDeep(appointmentAttributes);
         var otherSurgeon = attributes['otherSurgeon'];
         otherSurgeon.value = otherSurgeon.value && otherSurgeon.value.id;
+        var notesAttribute = attributes['notes'];
+        if (notesAttribute) {
+            notesAttribute.value = stringCompressionUtil.encodeCompress(notesAttribute.value);
+        }
+        var procedureAttribute = attributes['procedure'];
+        if (procedureAttribute) {
+            procedureAttribute.value = stringCompressionUtil.encodeCompress(procedureAttribute.value);
+        }
         return _.values(attributes).filter(function (attribute) {
             return !_.isUndefined(attribute.value);
         }).map(function (attribute) {
