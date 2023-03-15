@@ -8,7 +8,7 @@
         <thead>
             <tr>
                 <th ng-repeat="heading in tableHeadings" ng-class="{'bed-detail-column' : $index == 0}" ng-click="sortTableDataBy(heading)">
-                    {{heading}}
+                    {{heading | translate}}
                     <span ng-if="sortColumn == heading">
                         <i class="fa fa-caret-up" ng-show="reverseSort"></i>
                         <i class="fa fa-caret-down" ng-show="!reverseSort"></i>
