@@ -5,7 +5,7 @@ Bahmni.Common.Util.stringCompressionUtil = {
 // https://pieroxy.net/blog/pages/lz-string/index.html
 // https://github.com/pieroxy/lz-string/
 
-	encodeCompress: function (inputStr) {
+    encodeCompress: function (inputStr) {
         if (!inputStr) return "";
         if (inputStr == "") return "";
         var compressed = LZString.compressToEncodedURIComponent(inputStr);

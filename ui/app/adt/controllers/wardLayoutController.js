@@ -57,7 +57,7 @@ angular.module('bahmni.adt')
                 spinner.forPromise(bedService.assignBed(bed.bed.bedId, $scope.patientUuid, encUuid).success(function () {
                     $rootScope.bed = bed.bed;
                     bedService.setBedDetailsForPatientOnRootScope($scope.patientUuid);
-                    messagingService.showMessage('info', $translate.instant("Bed") +" "+ bed.bed.bedNumber +" "+ $translate.instant("is_assigned_successfully"));
+                    messagingService.showMessage('info', $translate.instant("Bed") + " " + bed.bed.bedNumber + " " + $translate.instant("is_assigned_successfully"));
                     $element.find('.bed-info').hide();
                 }));
             };
