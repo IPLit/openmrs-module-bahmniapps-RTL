@@ -2,6 +2,8 @@
 
 angular.module('bahmni.ot')
     .service('surgicalAppointmentHelper', [function () {
+        var stringCompressionUtil = Bahmni.Common.Util.stringCompressionUtil;
+
         this.filterProvidersByName = function (providerNames, providers) {
             var validProviderNames = _.filter(providerNames, function (providerName) {
                 return _.find(providers, function (provider) {
@@ -100,9 +102,34 @@ angular.module('bahmni.ot')
         };
 
         this.getSurgicalAttributes = function (surgicalAppointment) {
-            return _.reduce(surgicalAppointment.surgicalAppointmentAttributes, function (attributes, attribute) {
+            var attributes = _.reduce(surgicalAppointment.surgicalAppointmentAttributes, function (attributes, attribute) {
                 attributes[attribute.surgicalAppointmentAttributeType.name] = attribute.value;
                 return attributes;
             }, {});
+            var notesAttribute = attributes['notes'];
+            if (notesAttribute) {
+                attributes.notes = stringCompressionUtil.decodeDecompress(notesAttribute);
+            }
+            var procedureAttribute = attributes['procedure'];
+            if (procedureAttribute) {
+                attributes.procedure = stringCompressionUtil.decodeDecompress(procedureAttribute);
+            }
+            var surgicalAssistantAttribute = attributes['surgicalAssistant'];
+            if (surgicalAssistantAttribute) {
+                attributes.surgicalAssistant = stringCompressionUtil.decodeDecompress(surgicalAssistantAttribute);
+            }
+            var anaesthetistAttribute = attributes['anaesthetist'];
+            if (anaesthetistAttribute) {
+                attributes.anaesthetist = stringCompressionUtil.decodeDecompress(anaesthetistAttribute);
+            }
+            var scrubNurseAttribute = attributes['scrubNurse'];
+            if (scrubNurseAttribute) {
+                attributes.scrubNurse = stringCompressionUtil.decodeDecompress(scrubNurseAttribute);
+            }
+            var circulatingNurseAttribute = attributes['circulatingNurse'];
+            if (circulatingNurseAttribute) {
+                attributes.circulatingNurse = stringCompressionUtil.decodeDecompress(circulatingNurseAttribute);
+            }
+            return attributes;
         };
     }]);
