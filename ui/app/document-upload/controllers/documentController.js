@@ -127,7 +127,7 @@ angular.module('opd.documentupload')
                             var languageUser = window.localStorage["NG_TRANSLATE_LANG_KEY"] || "en";
                             if (languageUser == 'ar') {
                                 if (concept.names && concept.names.length > 0) {
-                                    for (let x in concept.names) {
+                                    for (var x in concept.names) {
                                         if ((concept.names[x].display).match(/^[a-zA-Z]/) == null) {
                                             label = concept.names[x].display;
                                             break;
@@ -138,8 +138,8 @@ angular.module('opd.documentupload')
                             var conceptToAdd = {
                                 'concept': {
                                     uuid: concept.uuid,
-                                    name: label, // concept.name.name,
-                                    editableName: label // concept.name.name
+                                    name: label,
+                                    editableName: label
                                 }
                             };
                             $scope.fileTypeConcepts.push(conceptToAdd);
