@@ -36,6 +36,22 @@ Bahmni.OT.SurgicalBlockMapper = function () {
         if (procedureAttribute) {
             procedureAttribute.value = stringCompressionUtil.decodeDecompress(procedureAttribute.value);
         }
+        var surgicalAssistantAttribute = mappedAttributes['surgicalAssistant'];
+        if (surgicalAssistantAttribute) {
+            surgicalAssistantAttribute.value = stringCompressionUtil.decodeDecompress(surgicalAssistantAttribute.value);
+        }
+        var anaesthetistAttribute = mappedAttributes['anaesthetist'];
+        if (anaesthetistAttribute) {
+            anaesthetistAttribute.value = stringCompressionUtil.decodeDecompress(anaesthetistAttribute.value);
+        }
+        var scrubNurseAttribute = mappedAttributes['scrubNurse'];
+        if (scrubNurseAttribute) {
+            scrubNurseAttribute.value = stringCompressionUtil.decodeDecompress(scrubNurseAttribute.value);
+        }
+        var circulatingNurseAttribute = mappedAttributes['circulatingNurse'];
+        if (circulatingNurseAttribute) {
+            circulatingNurseAttribute.value = stringCompressionUtil.decodeDecompress(circulatingNurseAttribute.value);
+        }
         return mappedAttributes;
     };
 
@@ -84,6 +100,22 @@ Bahmni.OT.SurgicalBlockMapper = function () {
         var procedureAttribute = attributes['procedure'];
         if (procedureAttribute) {
             procedureAttribute.value = stringCompressionUtil.encodeCompress(procedureAttribute.value);
+        }
+        var surgicalAssistantAttribute = attributes['surgicalAssistant'];
+        if (surgicalAssistantAttribute) {
+            surgicalAssistantAttribute.value = stringCompressionUtil.encodeCompress(surgicalAssistantAttribute.value);
+        }
+        var anaesthetistAttribute = attributes['anaesthetist'];
+        if (anaesthetistAttribute) {
+            anaesthetistAttribute.value = stringCompressionUtil.encodeCompress(anaesthetistAttribute.value);
+        }
+        var scrubNurseAttribute = attributes['scrubNurse'];
+        if (scrubNurseAttribute) {
+            scrubNurseAttribute.value = stringCompressionUtil.encodeCompress(scrubNurseAttribute.value);
+        }
+        var circulatingNurseAttribute = attributes['circulatingNurse'];
+        if (circulatingNurseAttribute) {
+            circulatingNurseAttribute.value = stringCompressionUtil.encodeCompress(circulatingNurseAttribute.value);
         }
         return _.values(attributes).filter(function (attribute) {
             return !_.isUndefined(attribute.value);
