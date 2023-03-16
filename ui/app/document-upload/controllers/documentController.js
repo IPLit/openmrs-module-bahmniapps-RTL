@@ -127,8 +127,8 @@ angular.module('opd.documentupload')
                             let languageUser = window.localStorage["NG_TRANSLATE_LANG_KEY"] || "en";
                             if (languageUser == 'ar') {
                                 if (concept.names && concept.names.length > 0) {
-                                    for(let x in concept.names) {
-                                        if((concept.names[x].display).match(/^[a-zA-Z]/) == null) {
+                                    for (let x in concept.names){
+                                        if ((concept.names[x].display).match(/^[a-zA-Z]/) == null){
                                             label = concept.names[x].display;
                                             break;
                                         }
