@@ -124,7 +124,7 @@ angular.module('opd.documentupload')
                     if (response.data.results[0].setMembers && response.data.results[0].setMembers.length > 0) {
                         response.data.results[0].setMembers.forEach(function (concept) {
                             var label = concept.name.name;
-                            let languageUser = window.localStorage["NG_TRANSLATE_LANG_KEY"] || "en";
+                            var languageUser = window.localStorage["NG_TRANSLATE_LANG_KEY"] || "en";
                             if (languageUser == 'ar') {
                                 if (concept.names && concept.names.length > 0) {
                                     for (let x in concept.names) {
