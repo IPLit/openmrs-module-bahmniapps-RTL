@@ -134,7 +134,7 @@ angular.module('opd.documentupload')
                                         }
                                     }
                                 }
-                            } 
+                            }
                             var conceptToAdd = {
                                 'concept': {
                                     uuid: concept.uuid,
