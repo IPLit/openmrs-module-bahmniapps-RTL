@@ -115,16 +115,31 @@ angular.module('opd.documentupload')
                 return $http.get(Bahmni.Common.Constants.conceptSearchByFullNameUrl, {
                     params: {
                         name: $rootScope.appConfig.topLevelConcept,
-                        v: "custom:(uuid,setMembers:(uuid,name:(name)))"
+                        // v: "custom:(uuid,setMembers:(uuid,name:(name)))"
+                        v: "full",
+                        locale: "ar"
+
                     }
                 }).then(function (response) {
                     if (response.data.results[0].setMembers && response.data.results[0].setMembers.length > 0) {
                         response.data.results[0].setMembers.forEach(function (concept) {
+                            var label = concept.name.name;
+                            let languageUser = window.localStorage["NG_TRANSLATE_LANG_KEY"] || "en";
+                            if (languageUser == 'ar') {
+                                if (concept.names && concept.names.length > 0) {
+                                    for(let x in concept.names) {
+                                        if((concept.names[x].display).match(/^[a-zA-Z]/) == null) {
+                                            label = concept.names[x].display;
+                                            break;
+                                        }
+                                    }
+                                }
+                            } 
                             var conceptToAdd = {
                                 'concept': {
                                     uuid: concept.uuid,
-                                    name: concept.name.name,
-                                    editableName: concept.name.name
+                                    name: label, // concept.name.name,
+                                    editableName: label // concept.name.name
                                 }
                             };
                             $scope.fileTypeConcepts.push(conceptToAdd);
