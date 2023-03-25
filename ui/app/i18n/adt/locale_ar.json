@@ -95,6 +95,9 @@
     "Village": "القرية",
     "Admission By": "القبول بواسطة",
     "Admission Time": "وقت القبول",
-    "Disposition By": "التغيير بواسطة"
+    "Disposition By": "التغيير بواسطة",
+    "Admit Patient": "قبول المريض",
+    "Discharge Patient": "تخريج المريض",
+    "Transfer Patient": "تحويل المريض"
     
 }
