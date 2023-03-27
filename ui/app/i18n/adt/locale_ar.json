@@ -97,7 +97,7 @@
     "Admission Time": "وقت القبول",
     "Disposition By": "التغيير بواسطة",
     "Admit Patient": "قبول المريض",
-    "Discharge Patient": "تخريج المريض",
-    "Transfer Patient": "تحويل المريض"
-    
+    "Discharge Patient": " تخريج المريض",
+    "Transfer Patient": " تحويل المريض",
+    "GO_TO_CLINICAL_DASHBOARD":"الإنتقال الى لوحة تحكم الخدمات السريرية"
 }
