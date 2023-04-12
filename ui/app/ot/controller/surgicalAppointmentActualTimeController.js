@@ -18,6 +18,10 @@ angular.module('bahmni.ot').controller('surgicalAppointmentActualTimeController'
             return appointmentEndTime;
         };
 
+        var decode = function (inputs) {
+            return Bahmni.Common.Util.stringCompressionUtil.decodeDecompress(inputs);
+        };
+
         var init = function () {
             var calculatedAppointmentEndTime = calculateActualEndTime();
             var appointmentDuration = surgicalAppointmentHelper.getEstimatedDurationForAppointment(surgicalAppointment);
@@ -25,7 +29,7 @@ angular.module('bahmni.ot').controller('surgicalAppointmentActualTimeController'
                 Bahmni.Common.Util.DateUtil.subtractSeconds(calculatedAppointmentEndTime, appointmentDuration * 60);
             $scope.actualEndTime = (surgicalAppointment.actualEndDatetime && moment(surgicalAppointment.actualEndDatetime).toDate())
                 || calculatedAppointmentEndTime;
-            $scope.notes = surgicalAppointment.notes;
+            $scope.notes = decode(surgicalAppointment.notes);
             $scope.patientDisplayLabel = surgicalAppointmentHelper.getPatientDisplayLabel(surgicalAppointment.patient.display);
         };
 
@@ -68,10 +72,6 @@ angular.module('bahmni.ot').controller('surgicalAppointmentActualTimeController'
 
         $scope.close = function () {
             ngDialog.close();
-        };
-
-        $scope.decode = function (inputs) {
-            return Bahmni.Common.Util.stringCompressionUtil.decodeDecompress(inputs);
         };
 
         init();
