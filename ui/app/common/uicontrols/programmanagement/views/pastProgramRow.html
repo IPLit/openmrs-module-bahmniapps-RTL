@@ -5,7 +5,7 @@
     <div class="programName cursor-pointer" toggle="patientProgram.isOpen">
         <i class="fa fa-caret-right" ng-hide="patientProgram.isOpen"></i>
         <i class="fa fa-caret-down" ng-show="patientProgram.isOpen"></i>
-        {{::patientProgram.display}}
+        {{::patientProgram.display | translate}}
     </div>
     <div class="form">
         <div class="form-field">
@@ -14,7 +14,7 @@
             </div>
             <div class="field-value">
                 <span>
-                    {{::patientProgram.outcome.display}}
+                    {{::patientProgram.outcome.display | translate}}
                 </span>
             </div>
         </div>
