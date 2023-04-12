@@ -69,5 +69,10 @@ angular.module('bahmni.ot').controller('surgicalAppointmentActualTimeController'
         $scope.close = function () {
             ngDialog.close();
         };
+
+        $scope.decode = function (inputs) {
+            return Bahmni.Common.Util.stringCompressionUtil.decodeDecompress(inputs);
+        };
+
         init();
     }]);

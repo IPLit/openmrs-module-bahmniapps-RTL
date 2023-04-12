@@ -11,6 +11,7 @@ angular.module('bahmni.ot')
         };
 
         this.saveSurgicalBlock = function (data) {
+            data.notes = Bahmni.Common.Util.stringCompressionUtil.encodeCompress(data.notes);
             return $http.post(Bahmni.OT.Constants.addSurgicalBlockUrl, data, {
                 params: {v: "full"},
                 withCredentials: true,
@@ -19,6 +20,7 @@ angular.module('bahmni.ot')
         };
 
         this.updateSurgicalBlock = function (data) {
+            data.notes = Bahmni.Common.Util.stringCompressionUtil.encodeCompress(data.notes);
             return $http.post(Bahmni.OT.Constants.addSurgicalBlockUrl + '/' + data.uuid, data, {
                 params: {v: "full"},
                 withCredentials: true,
@@ -27,6 +29,7 @@ angular.module('bahmni.ot')
         };
 
         this.updateSurgicalAppointment = function (data) {
+            data.notes = Bahmni.Common.Util.stringCompressionUtil.encodeCompress(data.notes);
             return $http.post(Bahmni.OT.Constants.updateSurgicalAppointmentUrl + "/" + data.uuid, data, {
                 params: {v: "full"},
                 withCredentials: true,

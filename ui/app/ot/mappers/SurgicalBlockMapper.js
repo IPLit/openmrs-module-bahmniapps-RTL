@@ -65,7 +65,7 @@ Bahmni.OT.SurgicalBlockMapper = function () {
             sortWeight: openMrsSurgicalAppointment.sortWeight,
             actualStartDatetime: Bahmni.Common.Util.DateUtil.parseServerDateToDate(openMrsSurgicalAppointment.actualStartDatetime),
             actualEndDatetime: Bahmni.Common.Util.DateUtil.parseServerDateToDate(openMrsSurgicalAppointment.actualEndDatetime),
-            notes: openMrsSurgicalAppointment.notes,
+            notes: stringCompressionUtil.decodeDecompress(openMrsSurgicalAppointment.notes),
             status: openMrsSurgicalAppointment.status,
             bedLocation: (openMrsSurgicalAppointment.bedLocation || ""),
             bedNumber: (openMrsSurgicalAppointment.bedNumber || ""),

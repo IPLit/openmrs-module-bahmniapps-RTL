@@ -6,14 +6,14 @@ Bahmni.Common.Util.stringCompressionUtil = {
 // https://github.com/pieroxy/lz-string/
 
     encodeCompress: function (inputStr) {
-        if (!inputStr) return "";
+        if (!inputStr) return inputStr;
         if (inputStr == "") return "";
         var compressed = LZString.compressToEncodedURIComponent(inputStr);
         return compressed;
     },
 
     decodeDecompress: function (inputStr) {
-        if (!inputStr) return "";
+        if (!inputStr) return inputStr;
         if (inputStr == "") return "";
         try {
             var decompressed = LZString.decompressFromEncodedURIComponent(inputStr);
