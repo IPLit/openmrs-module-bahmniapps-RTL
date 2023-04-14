@@ -28,6 +28,7 @@
     "REGISTRATION_LABEL_AGE": "العمر",
     "OBS_UNKNOWN_TRANSLATE_KEY": "غير معرف",
     "REGISTRATION_LABEL_CITY": "المدينة",
+	"City": "المدينة",
     "REGISTRATION_LABEL_YEARS": "السنوات",
     "REGISTRATION_LABEL_NUMERIC_YEARS": "السنوات يجب أن تكون رقما",
     "REGISTRATION_LABEL_MONTHS": "الشهور",
