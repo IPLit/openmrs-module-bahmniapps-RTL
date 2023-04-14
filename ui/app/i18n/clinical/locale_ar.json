@@ -450,6 +450,8 @@
     "Emergency":"إسعاف",
     "Pharmacy Visit":"يارة للصيدلية",
     "Lab Visit":"زيارة للمخبر",
-    "TITLE_OPD": "العيادات الخارجية"
+    "TITLE_OPD": "العيادات الخارجية",
+    "NEW_KEY": "",
+    "SECTION_ADDED_KEY": ": تم إضافة حقل جديد"
   
 }
