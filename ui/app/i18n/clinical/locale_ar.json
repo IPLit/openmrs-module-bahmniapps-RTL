@@ -452,6 +452,10 @@
     "Lab Visit":"زيارة للمخبر",
     "TITLE_OPD": "العيادات الخارجية",
     "NEW_KEY": "",
-    "SECTION_ADDED_KEY": ": تم إضافة حقل جديد"
+    "SECTION_ADDED_KEY": ": تم إضافة حقل جديد",
+    "PHARMACY VISIT": "يارة للصيدلية",
+    "EMERGENCY":"إسعاف",
+    "SPECIAL OPD":" قسم العيادات الخارجية الخاصة",
+    "LAB VISIT":"زيارة للمخبر"
   
 }
