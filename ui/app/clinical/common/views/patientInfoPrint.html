@@ -9,9 +9,9 @@
             <td>{{ 'Visit_Registration_No'|translate }} : <span class="value">{{patient.identifier}}</span></td>
         </tr>
         <tr>
-            <td>{{ 'Village/Town'|translate }} : <span class="value">{{patient.address.cityVillage}}</span></td>
-            <td>{{ 'P.O'|translate }} : <span class="value">{{patient.address.address2}}</span></td>
-            <td>{{ 'Visit_District'|translate }} : <span class="value">{{patient.address.countyDistrict}}</span></td>
+            <td>{{ 'City'|translate }} : <span class="value">{{patient.address.cityVillage}}</span></td>
+            <td>{{ 'House No.,Street'|translate }} : <span class="value">{{patient.address.address1}}</span></td>
+            <td>{{ 'Governorate'|translate }} : <span class="value">{{patient.address.stateProvince}}</span></td>
         </tr>
         <tr>
             <td colspan="3">{{ 'Visit_Date'|translate }}  : <span class="value">{{(visitDate | bahmniDate) || (visitSummary.startDateTime | bahmniDate)}}</span></td>
