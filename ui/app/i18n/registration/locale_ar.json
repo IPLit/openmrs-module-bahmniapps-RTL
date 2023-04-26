@@ -12,6 +12,7 @@
     "REGISTRATION_LABEL_PATIENT_IDENTIFIER": "الرقم التعريفي للمريض",
     "REGISTRATION_LABEL_ENTER_ID": "ادخل الرقم التعريفي",
     "REGISTRATION_LABEL_NO_PRINT_LAYOUT": "لا يوجد تصميم للطباعة",
+    "REGISTRATION_LABEL_EMERGENCY":"مريض الطوارئ",
     "REGISTRATION_LABEL_FEATURE_NOT_IMPLEMENTED": "الخاصية التي تبحث عنها غير مدعمة حاليا",
     "REGISTRATION_LABEL_PATIENT_NAME": "اسم المريض",
     "REGISTRATION_LABEL_PATIENT_FIRSTNAME": "الاسم الأول",
@@ -166,8 +167,13 @@
     "ابدأ زيارة من نوع IPD": "قسم العيادات الداخلية",
     "ابدأ زيارة من نوع Special OPD": "قسم العيادات الخارجية الخاصة",
     "SELECT_FILE": "حدد ملف",
-	"REGISTRATION_LABEL_PATIENT_MOTHER_NAME": "اسم الأم",
+    "REGISTRATION_LABEL_PATIENT_MOTHER_NAME": "اسم الأم",
     "REGISTRATION_LABEL_PATIENT_ENTER_MOTHER_NAME": "اسم الأم للمريض",
-    "MOTHERS_NAME": "اسم الأم"
+    "MOTHERS_NAME": "اسم الأم",
+    "Governorate":"زيارة للصيدلية",
+    "EMERGENCY_DUMMY_TEXT": "غبي",
+    "EMERGENCY_MIDDLE_DUMMY_TEXT": "غبي",
+    "EMERGENCY_LAST_DUMMY_TEXT": "غبي",
+    "EMERGENCY_MOTHER_DUMMY_TEXT":"غبي"
     
 }
