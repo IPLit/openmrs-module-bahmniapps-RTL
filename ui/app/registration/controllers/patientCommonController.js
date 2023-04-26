@@ -421,5 +421,28 @@ angular.module('bahmni.registration')
                     className: "ngdialog-theme-default app-dialog-container"
                 });
             };
+            
+            $scope.onIsEmergency = function () {
+                if ($scope.patient.isEmergency) {
+                    $scope.patient.givenName = $translate.instant(Bahmni.Registration.Constants.emergencyGivenDummyText);
+                    $scope.patient.middleName = $translate.instant(Bahmni.Registration.Constants.emergencyMiddleDummyText);
+                    $scope.patient.familyName = $translate.instant(Bahmni.Registration.Constants.emergencyLastDummyText);
+                    $scope.patient.primaryRelative = $translate.instant(Bahmni.Registration.Constants.emergencyMotherDummyText);
+                    $scope.patient.address.cityVillage = 'دمشق';
+                    $scope.patient.address.stateProvince = 'دمشق';
+                    $scope.patient.birthdate = moment('01-01-1999').toDate();
+                    $scope.patient.calculateAge();
+                    
+                } else {                
+                    $scope.patient.givenName = '';
+                    $scope.patient.middleName = '';
+                    $scope.patient.familyName = '';
+                    $scope.patient.primaryRelative = '';
+                    $scope.patient.address.cityVillage = '';
+                    $scope.patient.address.stateProvince = '';
+                    $scope.patient.birthdate = new Date();
+                    $scope.patient.calculateAge();                    
+                }
+            };
         }]);
 
