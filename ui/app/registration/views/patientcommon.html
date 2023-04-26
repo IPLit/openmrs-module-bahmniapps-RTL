@@ -1,6 +1,17 @@
 <div ng-controller="PatientCommonController">
     <div class="box-container box-container-patient-info patient-common-info-container">
         <section>
+            <article class="form-field patient-name-wrapper">
+            <div class="fl clearfix">
+                <div class="field-attribute hasOldIdentifier-field-attribute">
+                    <label for="hasOldIdentifier" class="control-label">{{::'REGISTRATION_LABEL_EMERGENCY' | translate}}</label>
+                </div>
+                <div class="field-value">
+                        <input class="input-label-inline"  type="checkbox" ng-model="patient.isEmergency"
+                               ng-click="onIsEmergency()" ng-disabled="patient.uuid"/>
+                </div>
+            </div>
+            </article>
             <article class="form-field patient-name-wrapper" ng-if="::patientConfiguration.local()['showNameField']">
                 <div class="field-attribute">
                     <label for="patientName">{{::getTranslatedPatientControls(patientConfiguration.local()['labelForNameField'])}}</label>
