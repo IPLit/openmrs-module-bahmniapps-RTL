@@ -12,6 +12,7 @@
   "REGISTRATION_LABEL_NEW_PATIENT" : "NEW PATIENT",
   "REGISTRATION_LABEL_PATIENT_IDENTIFIER" : "Patient Identifier",
   "REGISTRATION_LABEL_ENTER_ID":"Enter ID",
+  "REGISTRATION_LABEL_EMERGENCY":"Emergency Patient",
   "REGISTRATION_LABEL_NO_PRINT_LAYOUT" : "No print layout found",
   "REGISTRATION_LABEL_FEATURE_NOT_IMPLEMENTED" : "The feature you are asking for is not yet implemented.",
   "REGISTRATION_LABEL_PATIENT_NAME":"Patient Name",
@@ -128,5 +129,9 @@
   "INVALID_SCANNED_NAT_TEXT": "Invalid scanned NAT text",
   "REGISTRATION_LABEL_PATIENT_MOTHER_NAME": "Mother's Name",
   "REGISTRATION_LABEL_PATIENT_ENTER_MOTHER_NAME": "Enter patient's mother name",
-  "MOTHERS_NAME": "Mother's Name"
+  "MOTHERS_NAME": "Mother's Name",
+  "EMERGENCY_DUMMY_TEXT": "Dummy",
+  "EMERGENCY_MIDDLE_DUMMY_TEXT": "Dummy",
+  "EMERGENCY_LAST_DUMMY_TEXT": "Dummy",
+  "EMERGENCY_MOTHER_DUMMY_TEXT":"Dummy"
 }
