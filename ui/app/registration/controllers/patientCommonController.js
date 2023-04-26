@@ -432,8 +432,8 @@ angular.module('bahmni.registration')
                     $scope.patient.address.stateProvince = 'دمشق';
                     $scope.patient.birthdate = moment('01-01-1999').toDate();
                     $scope.patient.calculateAge();
-                    
-                } else {                
+                } 
+                else {                
                     $scope.patient.givenName = '';
                     $scope.patient.middleName = '';
                     $scope.patient.familyName = '';
