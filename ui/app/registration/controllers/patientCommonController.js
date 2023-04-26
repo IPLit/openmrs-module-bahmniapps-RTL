@@ -430,7 +430,8 @@ angular.module('bahmni.registration')
                     $scope.patient.address.cityVillage = 'دمشق';
                     $scope.patient.address.stateProvince = 'دمشق';
                     $scope.patient.birthdate = moment('01-01-1999').toDate();
-                    $scope.patient.calculateAge();                } 
+                    $scope.patient.calculateAge();                
+                } 
                 else {                
                     $scope.patient.givenName = '';
                     $scope.patient.middleName = '';
