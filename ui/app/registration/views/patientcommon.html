@@ -1,6 +1,7 @@
 <div ng-controller="PatientCommonController">
     <div class="box-container box-container-patient-info patient-common-info-container">
         <section>
+
             <article class="form-field patient-name-wrapper">
             <div class="fl clearfix">
                 <div class="field-attribute hasOldIdentifier-field-attribute">
@@ -12,6 +13,7 @@
                 </div>
             </div>
             </article>
+
             <article class="form-field patient-name-wrapper" ng-if="::patientConfiguration.local()['showNameField']">
                 <div class="field-attribute">
                     <label for="patientName">{{::getTranslatedPatientControls(patientConfiguration.local()['labelForNameField'])}}</label>
