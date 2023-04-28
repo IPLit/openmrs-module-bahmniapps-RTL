@@ -208,7 +208,7 @@ angular.module('bahmni.common.uicontrols.programmanagment')
 
             $scope.confirmDeletion = function (patientProgram) {
                 var scope = {};
-                scope.message = 'Are you sure, you want to delete ' + patientProgram.display + '?';
+                scope.message = $translate.instant('Are_you_sure_you_want_to_delete') + $translate.instant(patientProgram.display) + '?';
                 scope.cancel = _.partial(unVoidPatientProgram, patientProgram, _);
                 scope.delete = _.partial(voidPatientProgram, patientProgram, _);
                 confirmBox({
