@@ -2,9 +2,9 @@
 
 angular.module('bahmni.common.uicontrols.programmanagment')
     .controller('ManageProgramController', ['$scope', 'retrospectiveEntryService', '$window', 'programService',
-        'spinner', 'messagingService', '$stateParams', '$q', 'confirmBox',
+        'spinner', 'messagingService', '$stateParams', '$q', 'confirmBox', '$translate',
         function ($scope, retrospectiveEntryService, $window, programService,
-                  spinner, messagingService, $stateParams, $q, confirmBox) {
+                  spinner, messagingService, $stateParams, $q, confirmBox, $translate) {
             var DateUtil = Bahmni.Common.Util.DateUtil;
             $scope.programSelected = {};
             $scope.workflowStateSelected = {};
