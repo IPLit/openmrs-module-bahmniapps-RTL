@@ -456,6 +456,10 @@
     "PHARMACY VISIT": "يارة للصيدلية",
     "EMERGENCY":"إسعاف",
     "SPECIAL OPD":" قسم العيادات الخارجية الخاصة",
-    "LAB VISIT":"زيارة للمخبر"
+    "LAB VISIT":"زيارة للمخبر",
+    "delete": "مسح",
+    "cancel": "إلغاء" ,
+    "Treatment":"العلاج",
+    "Are_you_sure_you_want_to_delete": "هل أنت متأك ، تريد حذف",
   
 }
