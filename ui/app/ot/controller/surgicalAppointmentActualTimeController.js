@@ -63,6 +63,13 @@ angular.module('bahmni.ot').controller('surgicalAppointmentActualTimeController'
                 var message = $translate.instant('ACTUAL_TIME_ADDED_TO_KEY') + surgicalAppointmentHelper.getPatientDisplayLabel($scope.ngDialogData.surgicalAppointment.patient.display) + ' - ' + $scope.ngDialogData.surgicalBlock.location.name;
                 messagingService.showMessage('info', message);
                 ngDialog.close();
+            }, function (error) {
+                if (error.data.error.message === "[Surgical Appointment has conflicting actual time with existing appointments in this OT]") {
+                     var message = $translate.instant("CONFLICTING_TIME");
+                     messagingService.clearAll();
+                     error.data.error.message = message;
+                     messagingService.showMessage('error', message);
+                }
             });
         };
 
