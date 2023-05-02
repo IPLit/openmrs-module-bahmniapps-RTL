@@ -282,7 +282,7 @@
                  ng-repeat="attributeRow in ::patientConfiguration.customAttributeRows()">
             <article class="form-field" ng-repeat="attribute in ::attributeRow"
                      ng-if="attribute.name !=='primaryRelative' && attribute.name !=='isEmergency'"
-                     ng-class="::{'right-form-field' : $index%2 != 0}">
+                     ng-class="::{'left-form-field' : $index%2 != 0}">
 <!--                      ng-style="{'float': (attribute.name ==='secondRelative') ? 'right' : 'left'}"> -->
                 <attribute-types target-model="patient" attribute="::attribute" field-validation="::fieldValidation"
                                  is-auto-complete="isAutoComplete" get-auto-complete-list="getAutoCompleteList"
