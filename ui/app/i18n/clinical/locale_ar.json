@@ -460,6 +460,7 @@
     "delete": "مسح",
     "cancel": "إلغاء" ,
     "Treatment":"العلاج",
-    "Are_you_sure_you_want_to_delete": "هل أنت متأك ، تريد حذف"
+    "you_want_to_delete_program": "تريد حذف برنامج ",
+    "Are_you_sure?":" ، هل أنت متأكد؟"
   
 }
