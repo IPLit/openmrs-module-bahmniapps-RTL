@@ -86,7 +86,7 @@ Bahmni.Common = Bahmni.Common || {};
         bahmniDrugOrderUrl: BAHMNI_CORE + "/drugOrders",
         bahmniDispositionByVisitUrl: BAHMNI_CORE + "/disposition/visitWithLocale",
         bahmniDispositionByPatientUrl: BAHMNI_CORE + "/disposition/patientWithLocale",
-        bahmniSearchUrl: BAHMNI_CORE + "/search",
+        bahmniSearchUrl: BAHMNI_COMMONS + "/search",
         bahmniCommonsSearchUrl: BAHMNI_COMMONS + "/search",
         bahmniLabOrderResultsUrl: BAHMNI_CORE + "/labOrderResults",
         bahmniEncounterUrl: BAHMNI_CORE + "/bahmniencounter",
