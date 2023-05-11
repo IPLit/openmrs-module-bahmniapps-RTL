@@ -29,7 +29,14 @@
                 <div class="form">
                     <input type="checkbox" ng-show="showBulkChangeToggle" ng-model="newTreatment.durationUpdateFlag"
                            class="treatmentChkBox"/>
-                    <strong class="drug-name">{{newTreatment.getDisplayName()}}</strong>&nbsp;{{newTreatment.getDescriptionWithQuantity()}}
+                    <strong class="drug-name">{{newTreatment.getDisplayName()}}</strong>
+                    <span ng-if="newTreatment.frequencyType === 'uniform'">
+                       {{::newTreatment.uniformDosingType.dose}} {{::newTreatment.uniformDosingType.doseUnits | translate}}, {{::newTreatment.uniformDosingType.frequency | translate}}, {{::newTreatment.route | translate }} -  {{newTreatment.duration}} {{::newTreatment.durationUnit | translate}}
+                    </span>
+                    <span ng-if="newTreatment.frequencyType !== 'uniform'">
+                        {{::newTreatment.variableDosage()}} {{::newTreatment.doseUnits | translate}}, {{::newTreatment.uniformDosingType.frequency | translate}}, {{::newTreatment.route | translate }} -  {{newTreatment.duration}} {{::newTreatment.durationUnit | translate}}
+                    </span>
+                    ({{newTreatment.quantity}} {{newTreatment.quantityUnit | translate}})
                 </div>
             </div>
             <div class="button-group-wrapper">

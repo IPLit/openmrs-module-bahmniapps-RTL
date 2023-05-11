@@ -22,7 +22,13 @@
 							<li id="ordered-drug-orders" ng-repeat="drugOrder in drugOrderGroup.drugOrders" ng-class="{'active-drug' : drugOrder.isActive(), 'highlight' : drugOrder.isBeingEdited, 'scheduled-drug': drugOrder.isScheduled()}">
                                 <div class="drug-details" ng-class="{'strike-through': drugOrder.isDiscontinuedOrStopped()}">
                                     <strong class="drug-name">{{drugOrder.getDisplayName()}}</strong>
-                                    {{drugOrder.getDescriptionWithQuantity()}}
+                                    <span ng-if="drugOrder.frequencyType === 'uniform'">
+                                            {{::drugOrder.uniformDosingType.dose}} {{::drugOrder.uniformDosingType.doseUnits | translate}}, {{::drugOrder.uniformDosingType.frequency | translate}}, {{::drugOrder.route | translate }} -  {{drugOrder.duration}} {{::drugOrder.durationUnit | translate}}
+                                    </span>
+                                    <span ng-if="drugOrder.frequencyType !== 'uniform'">
+                                            {{drugOrder.variableDosage()}} {{::drugOrder.doseUnits | translate}}, {{::drugOrder.route | translate }} -  {{drugOrder.duration}} {{::drugOrder.durationUnit | translate}}
+                                    </span>
+                                    ({{::drugOrder.quantity}} {{drugOrder.quantityUnit | translate}})
                                 </div>
 								<div class="button-group-wrapper">
                                     <div class="button-group">

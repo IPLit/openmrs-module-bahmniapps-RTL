@@ -42,8 +42,8 @@
                         {{::drugOrder.orderReasonConcept.display || drugOrder.orderReasonConcept.name}}
                         <span ng-if="drugOrder.orderReasonText"> - {{::drugOrder.orderReasonText}}</span>
                     </span>
-                        <span ng-if="columnName === 'instructions'">{{::drugOrder.instructions}}</span>
-                        <span ng-if="columnName === 'quantity'">{{::drugOrder.getQuantityWithUnit()}}</span>
+                        <span ng-if="columnName === 'instructions'">{{::drugOrder.instructions | translate}}</span>
+                        <span ng-if="columnName === 'quantity'">{{::drugOrder.getQuantityWithUnit() | translate}}</span>
                     </td>
                     <td class="buttonColumn"  ng-class="{'noActionColumn' :!config.actions ,
                             'noActionColumnAddNote' : !config.actions && drugOrder.showAdditionalInstructions ,

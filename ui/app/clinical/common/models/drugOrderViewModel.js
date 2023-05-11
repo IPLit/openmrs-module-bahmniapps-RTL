@@ -181,6 +181,13 @@ Bahmni.Clinical.DrugOrderViewModel = function (config, proto, encounterDate) {
             addDelimiter(blankIfFalsy(uniformDosingType.frequency), ", ");
     };
 
+    var variableDosage = function () {
+        var variableDosingType = self.variableDosingType;
+        return addDelimiter(morphToMixedFraction(variableDosingType.morningDose || 0) + "-" +
+            morphToMixedFraction(variableDosingType.afternoonDose || 0) +
+            "-" + morphToMixedFraction(variableDosingType.eveningDose || 0), " ");
+    };
+
     var numberBasedDoseAndFrequency = function () {
         var variableDosingType = self.variableDosingType;
         var variableDosingString = addDelimiter(morphToMixedFraction(variableDosingType.morningDose || 0) + "-" +
