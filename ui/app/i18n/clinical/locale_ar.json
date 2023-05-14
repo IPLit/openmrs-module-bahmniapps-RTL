@@ -461,6 +461,9 @@
     "cancel": "إلغاء" ,
     "Treatment":"العلاج",
     "you_want_to_delete_program": "تريد حذف برنامج ",
-    "Are_you_sure?":" ، هل أنت متأكد؟"
+    "Are_you_sure?":" ، هل أنت متأكد؟",
+    "City": "المدينة",
+    "House No.,Street": "الشارع",
+    "Governorate": " المحافظة"
   
 }
