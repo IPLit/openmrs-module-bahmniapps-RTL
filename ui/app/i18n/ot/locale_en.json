@@ -115,5 +115,8 @@
     "OT_SURGICAL_BLOCK_ACROSS_MULTIPLE_DAYS_CONFIRMATION_MESSAGE": "Are you sure you want to create a surgical block across days?",
     "MOVING_KEY": "Moving",
     "FROM_KEY": "from",
-    "CONFLICTING_TIME": "[Surgical Appointment has conflicting actual time with existing appointments in this OT]"
+    "CONFLICTING_TIME": "[Surgical Appointment has conflicting actual time with existing appointments in this OT]",
+    "CONFLICTING_TIME_SURGEON": "[Surgical Block has conflicting time with existing block(s) for this surgeon]",
+    "CONFLICTING_TIME_OT": "Surgical Block has conflicting time with existing block(s) for this OT"
+
 }

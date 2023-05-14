@@ -97,12 +97,15 @@ angular.module('bahmni.ot')
                         messagingService.showMessage('info', "{{'OT_SAVE_SUCCESS_MESSAGE_KEY' | translate}}");
                         $state.go('editSurgicalAppointment', {surgicalBlockUuid: response.data.uuid});
                     }, function (error) {
+                        var message = '';
                         if (error.data.error.message === "[Surgical Block has conflicting time with existing block(s) for this surgeon]") {
-                            var message = $translate.instant("CONFLICTING_TIME");
-                            messagingService.clearAll();
-                            error.data.error.message = message;
-                            messagingService.showMessage('error', message);
+                            message = $translate.instant("CONFLICTING_TIME_SURGEON");
+                        } else if (error.data.error.message === "[Surgical Block has conflicting time with existing block(s) for this OT]") {
+                            message = $translate.instant("CONFLICTING_TIME_OT");
                         }
+                        messagingService.clearAll();
+                        error.data.error.message = message;
+                        messagingService.showMessage('error', message);
                     });
                     $scope.saveAnywaysFlag = false;
                 } else {
