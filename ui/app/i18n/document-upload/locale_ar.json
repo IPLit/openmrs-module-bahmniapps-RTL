@@ -32,5 +32,11 @@
     "VISIT_LABEL": "يزور",
     "VISIT_FROM_LABEL": "من:",
     "VISIT_TO_LABEL": "إلى:",
-    "FILE_TYPE_NOT_SUPPORTED_MESSAGE": "نوع الملف غير مدعوم"
+    "FILE_TYPE_NOT_SUPPORTED_MESSAGE": "نوع الملف غير مدعوم",
+    "IPD": " قسم العيادات الداخلية",
+    "OPD":"قسم العيادات الخارجية",
+    "Special OPD":" قسم العيادات الخارجية الخاصة",
+    "EMERGENCY":"إسعاف",
+    "PHARMACY VISIT":"يارة للصيدلية",
+    "LAB VISIT":"زيارة للمخبر"
 }
