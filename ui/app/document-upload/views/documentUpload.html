@@ -35,7 +35,7 @@
                             </label>
                         </div>
                         <div class="field-value">
-                            <select ng-model="newVisit.visitType" ng-options="vt.display | translate for vt in visitTypes"
+                            <select ng-model="newVisit.visitType" ng-options="vt.display for vt in visitTypes"
                                     ng-required="newVisit.hasFiles()">
                                 <option value=""></option>
                             </select>
