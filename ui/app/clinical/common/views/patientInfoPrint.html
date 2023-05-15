@@ -4,7 +4,7 @@
             <td>{{ 'CLINICAL_VISIT_NAME'|translate }}: <span class="value">{{patient.name}}</span></td>
             <td>{{ 'Visit_Age'|translate }} : <span class="value">
                 {{patient.birthdate | dateToAge:visit.dateStarted}}
-                ({{patient.genderText.substring(6, patient.genderText.length - 7)}})
+                ({{patient.genderText.substring(6, patient.genderText.length - 7) | translate}})
             </span></td>
             <td>{{ 'Visit_Registration_No'|translate }} : <span class="value">{{patient.identifier}}</span></td>
         </tr>
