@@ -171,9 +171,9 @@
     "REGISTRATION_LABEL_PATIENT_ENTER_MOTHER_NAME": "اسم الأم للمريض",
     "MOTHERS_NAME": "اسم الأم",
     "Governorate":"المحافظة",
-    "EMERGENCY_DUMMY_TEXT": "غبي",
-    "EMERGENCY_MIDDLE_DUMMY_TEXT": "غبي",
-    "EMERGENCY_LAST_DUMMY_TEXT": "غبي",
+    "EMERGENCY_DUMMY_TEXT": "مجهول",
+    "EMERGENCY_MIDDLE_DUMMY_TEXT": "مجهول",
+    "EMERGENCY_LAST_DUMMY_TEXT": "مجهول",
     "EMERGENCY_MOTHER_DUMMY_TEXT":"غبي"
     
 }
