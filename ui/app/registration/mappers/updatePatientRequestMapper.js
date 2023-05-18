@@ -28,7 +28,7 @@ Bahmni.Registration.UpdatePatientRequestMapper = (function () {
                     gender: patient.gender,
                     attributes: this.getMrsAttributes(openMRSPatient, patient, patientAttributeTypes),
                     dead: patient.dead,
-                    deathDate:  patient.deathDate ? moment(patient.deathDate).format("YYYY-MM-DD") : null,
+                    deathDate: patient.deathDate ? moment(patient.deathDate).format("YYYY-MM-DD") : null,
                     causeOfDeath: patient.causeOfDeath ? patient.causeOfDeath.uuid : ''
                 }
             }
