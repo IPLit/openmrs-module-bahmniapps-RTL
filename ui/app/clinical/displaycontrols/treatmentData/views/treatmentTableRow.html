@@ -6,9 +6,22 @@
         </span>
     </td>
     <td class="dosage" >
-        <span ng-if="::(params.showRoute == true)" ng-class="::{'strike-text':drugOrder.isDiscontinuedOrStopped()}">{{::drugOrder.getDescriptionWithoutDuration()}}</span>
-        <span ng-if="::!(params.showRoute == true)" ng-class="::{'strike-text':drugOrder.isDiscontinuedOrStopped()}">{{::drugOrder.getDescriptionWithoutRouteAndDuration()}}</span>
-        <span>{{::drugOrder.getSpanDetails()}}</span>
+        <span ng-if="::(params.showRoute == true)" ng-class="::{'strike-text':drugOrder.isDiscontinuedOrStopped()}">
+             <span ng-if="drugOrder.frequencyType === 'uniform'">
+                 {{::drugOrder.uniformDosingType.dose}} {{::drugOrder.uniformDosingType.doseUnits | translate}}, {{::drugOrder.uniformDosingType.frequency | translate}}, {{::drugOrder.route | translate }} -  {{drugOrder.duration}} {{::drugOrder.durationUnit | translate}}
+             </span>
+            <span ng-if="drugOrder.frequencyType !== 'uniform'">
+                {{drugOrder.variableDosage()}} {{::drugOrder.doseUnits | translate}}, {{::drugOrder.route | translate }} -  {{drugOrder.duration}} {{::drugOrder.durationUnit | translate}}
+            </span>
+        </span>
+        <span ng-if="::!(params.showRoute == true)" ng-class="::{'strike-text':drugOrder.isDiscontinuedOrStopped()}">
+             <span ng-if="drugOrder.frequencyType === 'uniform'">
+                 {{::drugOrder.uniformDosingType.dose}} {{::drugOrder.uniformDosingType.doseUnits | translate}}, {{::drugOrder.uniformDosingType.frequency | translate}}
+             </span>
+            <span ng-if="drugOrder.frequencyType !== 'uniform'">
+                {{drugOrder.variableDosage()}} {{::drugOrder.doseUnits | translate}}
+            </span>
+        </span>
         <span ng-if="::drugOrder.isDiscontinuedOrStopped()" ng-class="::{'discontinued-text':drugOrder.isDiscontinuedOrStopped()}">{{'MEDICATION_STOPPED_ON'|translate}} {{::drugOrder.effectiveStopDate | bahmniDate}}</span>
     </td>
     <td class="days" ng-if="::(!params.hideVisitDate)">
