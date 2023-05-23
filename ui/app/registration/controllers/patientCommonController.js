@@ -422,6 +422,10 @@ angular.module('bahmni.registration')
                 });
             };
 
+            $scope.getToday = function () {
+                return new Date().toISOString().split('T')[0];
+            };
+
             $scope.onIsEmergency = function () {
                 if ($scope.patient.isEmergency) {
                     $scope.patient.givenName = $translate.instant(Bahmni.Registration.Constants.emergencyGivenDummyText);
