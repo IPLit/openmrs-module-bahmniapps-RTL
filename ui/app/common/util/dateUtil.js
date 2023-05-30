@@ -114,7 +114,7 @@ Bahmni.Common.Util.DateUtil = {
         locMoment.locale(window.localStorage["NG_TRANSLATE_LANG_KEY"] || "en");
         return dateRepresentation ? locMoment.format("DD MMM YY") : null;
     },
-    
+
     formatDatewithDay: function (date) {
         if (!moment(date).isValid()) {
             return date;
