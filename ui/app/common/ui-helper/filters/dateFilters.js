@@ -13,6 +13,14 @@ angular.module('bahmni.common.uiHelper')
         return function (date) {
             return Bahmni.Common.Util.DateUtil.formatDateWithoutTime(date);
         };
+    }).filter('bahmniDateDay', function () {
+        return function (date) {
+            return Bahmni.Common.Util.DateUtil.formatDatewithDay(date);
+        };
+    }).filter('weekStartDate', function () {
+        return function (date) {
+            return Bahmni.Common.Util.DateUtil.formatweekstartdate(date);
+        };
     }).filter('bahmniTime', function () {
         return function (date) {
             return Bahmni.Common.Util.DateUtil.formatTime(date);
