@@ -72,11 +72,11 @@
     </p>
 
     <p class="calendar-current-day" ng-if="weekOrDay === 'day'">
-        {{viewDate | date : 'dd MMM yyyy, EEE'}}
+        {{viewDate | bahmniDateDay}}
     </p>
 
     <p class="calendar-current-day" ng-if="weekOrDay === 'week'">
-        {{weekStartDate | date : 'dd MMM yyyy, EEE'}} to {{weekEndDate | date : 'dd MMM yyyy, EEE'}}
+        {{weekStartDate | bahmniDateDay}} {{ 'to' | translate}} {{weekEndDate | bahmniDateDay}}
     </p>
 
 
