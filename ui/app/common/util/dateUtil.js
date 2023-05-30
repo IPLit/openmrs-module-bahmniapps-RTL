@@ -114,6 +114,24 @@ Bahmni.Common.Util.DateUtil = {
         locMoment.locale(window.localStorage["NG_TRANSLATE_LANG_KEY"] || "en");
         return dateRepresentation ? locMoment.format("DD MMM YY") : null;
     },
+    
+    formatDatewithDay: function (date) {
+        if (!moment(date).isValid()) {
+            return date;
+        }
+        var locMoment = moment(date);
+        locMoment.locale(window.localStorage["NG_TRANSLATE_LANG_KEY"] || "en");
+        return date ? locMoment.format("MMM YYYY, ddd D") : null;
+    },
+
+    formatweekstartdate: function (date) {
+        if (!moment(date).isValid()) {
+            return date;
+        }
+        var locMoment = moment(date);
+        locMoment.locale(window.localStorage["NG_TRANSLATE_LANG_KEY"] || "en");
+        return date ? locMoment.format("Do MMM, ddd") : null;
+    },
 
     formatDateInStrictMode: function (date) {
         var dateRepresentation = isNaN(Number(date)) ? date : Number(date);
