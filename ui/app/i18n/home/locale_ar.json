@@ -54,5 +54,6 @@
     "NO_FULFILMENT_MESSAGE": "لم يتم استكمال الفحوصات لهذا الطلب",
     "NO_NAVIGATION_LINKS_AVAILABLE_MESSAGE": "روابط الانتقال غير متاحة",
     "ACCEPT": "اقبل",
-    "SELECT_VALUE_FROM_AUTOCOMPLETE_DEFAULT_MESSAGE": "من فضلك، اختر قيمة من قائمة الاستكمال التلقائية"
+    "SELECT_VALUE_FROM_AUTOCOMPLETE_DEFAULT_MESSAGE": "من فضلك، اختر قيمة من قائمة الاستكمال التلقائية",
+    "Error: INVALID_CHARACTER": "يجب أن تحتوي كلمة المرور على محارف من اللغة الإنغليزية فقط"
 }

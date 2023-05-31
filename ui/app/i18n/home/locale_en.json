@@ -54,5 +54,6 @@
     "NO_FULFILMENT_MESSAGE": "No observations captured for this order.",
     "NO_NAVIGATION_LINKS_AVAILABLE_MESSAGE": "No navigation links available.",
     "ACCEPT":"Accept",
-    "SELECT_VALUE_FROM_AUTOCOMPLETE_DEFAULT_MESSAGE": "Please select a value from auto complete"
+    "SELECT_VALUE_FROM_AUTOCOMPLETE_DEFAULT_MESSAGE": "Please select a value from auto complete",
+    "Error: INVALID_CHARACTER": "Failed to execute 'bota'. The string to be encoded contains characters outside the Latin range"
 }

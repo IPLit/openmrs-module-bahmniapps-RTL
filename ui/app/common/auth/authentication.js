@@ -31,10 +31,16 @@ angular.module('authentication')
 
         var getAuthFromServer = function (username, password, otp) {
             var btoa = otp ? username + ':' + password + ':' + otp : username + ':' + password;
-            return $http.get(sessionResourcePath, {
-                headers: {'Authorization': 'Basic ' + window.btoa(btoa)},
-                cache: false
-            });
+            var windowBota = '';
+            try {
+                windowBota = window.btoa(btoa);
+                return $http.get(sessionResourcePath, {
+                    headers: {'Authorization': 'Basic ' + windowBota },
+                    cache: false
+                });
+            } catch (err) {
+                throw new Error("INVALID_CHARACTER");
+            }
         };
 
         this.resendOTP = function (username, password) {
