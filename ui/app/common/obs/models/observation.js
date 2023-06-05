@@ -111,10 +111,9 @@ Bahmni.Common.Obs.Observation = (function () {
 
         getDurationDisplayValue: function () {
             var durationForDisplay = Bahmni.Common.Util.DateUtil.convertToUnits(this.duration);
-            return "since " + durationForDisplay["value"] + " " + durationForDisplay["unitName"];
+            return this.translate.instant("since") + " " + durationForDisplay["value"] + " " + this.translate.instant(durationForDisplay["unitName"]);
         }
     };
 
     return Observation;
 })();
-
