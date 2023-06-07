@@ -6,10 +6,10 @@
             <div class="hidden-mobile">
                 <bm-back-links></bm-back-links>
                 <recent-patients ng-if="enablePatientSearch()" triggred-by-button></recent-patients>
-                <a show-if-privilege="{{adtNavigationConfig.privilege}}" ng-click= "displayConfirmationDialog($event)" class="back-btn" ng-href="{{adtNavigationURL(consultation.uuid)}}"
+               <!-- <a show-if-privilege="{{adtNavigationConfig.privilege}}" ng-click= "displayConfirmationDialog($event)" class="back-btn" ng-href="{{adtNavigationURL(consultation.uuid)}}"
                 title="{{adtNavigationConfig.title}}">
                     <i class="fa fa-bed fa-white"></i>
-                </a>
+                </a>-->
                 <a class="back-btn-link" id="dashboard-link" accesskey="d" ng-click="gotoPatientDashboard()" title="Back to {{patient.name}} Dashboard">
                     <img class="patient-image" ng-src="{{::patient.image}}" fallback-src="../images/blank-user.gif">
                 <span class="patient-info">
@@ -48,10 +48,10 @@
         <div class="opd-header-bottom tabs hidden-mobile">
             <bm-back-links></bm-back-links>
             <recent-patients triggered-by-button></recent-patients>
-            <a show-if-privilege="{{adtNavigationConfig.privilege}}" ng-click= "displayConfirmationDialog($event)" class="back-btn" ng-href="{{adtNavigationURL(visitHistory.activeVisit.uuid)}}"
+            <!--<a show-if-privilege="{{adtNavigationConfig.privilege}}" ng-click= "displayConfirmationDialog($event)" class="back-btn" ng-href="{{adtNavigationURL(visitHistory.activeVisit.uuid)}}"
                title="{{adtNavigationConfig.title}}">
                 <i class="fa fa-bed fa-white"></i>
-            </a>
+            </a>-->
             <div class="desktop-menu fl">
                 <ul class="header-tabs" ng-if="clinicalDashboardConfig.showTabs()">
                     <li class="tab-item dashboard" ng-repeat="dashboard in clinicalDashboardConfig.visibleTabs"
