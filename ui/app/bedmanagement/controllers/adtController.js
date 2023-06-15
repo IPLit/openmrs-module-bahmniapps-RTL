@@ -268,7 +268,7 @@ angular.module('bahmni.ipd')
                 return false;
             };
             $scope.disableDischargeButton = function () {
-                return (!($rootScope.patient && $rootScope.bedDetails && isCurrentPatientPresentOnSelectedBed())) || $scope.buttonClicked;
+                return !$location.search().patientToDischarge || (!($rootScope.patient && $rootScope.bedDetails && isCurrentPatientPresentOnSelectedBed())) || $scope.buttonClicked;
             };
 
             $scope.transfer = function () {
