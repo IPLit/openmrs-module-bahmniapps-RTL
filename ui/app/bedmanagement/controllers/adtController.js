@@ -254,7 +254,7 @@ angular.module('bahmni.ipd')
             spinner.forPromise(init());
 
             $scope.disableAdmitButton = function () {
-                return (!($rootScope.patient && !$rootScope.bedDetails)) || $scope.buttonClicked;
+                return ($scope.visitSummary && $scope.visitSummary.isDischarged()) || (!($rootScope.patient && !$rootScope.bedDetails)) || $scope.buttonClicked;
             };
 
             $scope.disableTransfer = function () {
