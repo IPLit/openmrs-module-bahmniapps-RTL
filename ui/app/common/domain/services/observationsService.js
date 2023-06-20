@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('bahmni.common.domain')
-    .service('observationsService', ['$http', function ($http) {
+    .service('observationsService', ['$http', '$bahmniCookieStore', 'appService', function ($http, $bahmniCookieStore, appService) {
         this.fetch = function (patientUuid, conceptNames, scope, numberOfVisits, visitUuid, obsIgnoreList, filterObsWithOrders, patientProgramUuid) {
             var params = {concept: conceptNames};
             if (obsIgnoreList) {
@@ -20,7 +20,15 @@ angular.module('bahmni.common.domain')
                 params.scope = scope;
                 params.patientProgramUuid = patientProgramUuid;
             }
-            return $http.get(Bahmni.Common.Constants.observationsUrl, {
+            var observationsUrl = Bahmni.Common.Constants.observationsUrl;
+            var userInSession = $bahmniCookieStore.get(Bahmni.Common.Constants.currentUser);
+            if (userInSession) {
+                var restrictLocationToUser = (appService.getAppDescriptor() && appService.getAppDescriptor().getConfigValue('restrictLocationToUser')) || false;
+                if (restrictLocationToUser) {
+                    observationsUrl = Bahmni.Common.Constants.bahmniDistroObservationsUrl;
+                }
+            }
+            return $http.get(observationsUrl, {
                 params: params,
                 withCredentials: true
             });

@@ -29,12 +29,16 @@ angular.module('authentication')
     }]).service('sessionService', ['$rootScope', '$http', '$q', '$bahmniCookieStore', 'userService', function ($rootScope, $http, $q, $bahmniCookieStore, userService) {
         var sessionResourcePath = Bahmni.Common.Constants.RESTWS_V1 + '/session?v=custom:(uuid)';
 
-        var getAuthFromServer = function (username, password, otp) {
+        var getAuthFromServer = function (username, password, otp, restrictLoginLocationToUser, location) {
+            var authenticateUserDistroUrl = sessionResourcePath;
+            if (restrictLoginLocationToUser) {
+                authenticateUserDistroUrl = Bahmni.Common.Constants.distroAuthenticateUserUrl + '?loginLocationUuid=' + location.uuid;
+            }
             var btoa = otp ? username + ':' + password + ':' + otp : username + ':' + password;
             var windowBota = '';
             try {
                 windowBota = window.btoa(btoa);
-                return $http.get(sessionResourcePath, {
+                return $http.get(authenticateUserDistroUrl, {
                     headers: {'Authorization': 'Basic ' + windowBota },
                     cache: false
                 });
@@ -51,10 +55,10 @@ angular.module('authentication')
             });
         };
 
-        var createSession = function (username, password, otp) {
+        var createSession = function (username, password, otp, restrictLoginLocationToUser, location) {
             var deferrable = $q.defer();
 
-            getAuthFromServer(username, password, otp).then(function (response) {
+            getAuthFromServer(username, password, otp, restrictLoginLocationToUser, location).then(function (response) {
                 if (response.status == 204) {
                     deferrable.resolve({"firstFactAuthorization": true});
                 }
@@ -97,13 +101,16 @@ angular.module('authentication')
             destroySessionFromServer().then(function () {
                 sessionCleanup();
                 deferrable.resolve();
+            }, function () {
+                sessionCleanup();
+                deferrable.reject();
             });
             return deferrable.promise;
         };
 
-        this.loginUser = function (username, password, location, otp) {
+        this.loginUser = function (username, password, location, otp, restrictLoginLocationToUser) {
             var deferrable = $q.defer();
-            createSession(username, password, otp).then(function (data) {
+            createSession(username, password, otp, restrictLoginLocationToUser, location).then(function (data) {
                 if (data.authenticated) {
                     $bahmniCookieStore.put(Bahmni.Common.Constants.currentUser, username, {path: '/', expires: 7});
                     if (location != undefined) {
@@ -130,10 +137,13 @@ angular.module('authentication')
             var deferrable = $q.defer();
             var currentUser = $bahmniCookieStore.get(Bahmni.Common.Constants.currentUser);
             if (!currentUser) {
-                this.destroy().finally(function () {
-                    $rootScope.$broadcast('event:auth-loginRequired');
-                    deferrable.reject("No User in session. Please login again.");
-                });
+                // this.destroy().finally(function () {
+                    // $rootScope.$broadcast('event:auth-loginRequired');
+                    // deferrable.reject("No User in session. Please login again.");
+                // });
+                sessionCleanup();
+                $rootScope.$broadcast('event:auth-loginRequired');
+                deferrable.reject("No User in session. Please login again.");
                 return deferrable.promise;
             }
             userService.getUser(currentUser).then(function (data) {

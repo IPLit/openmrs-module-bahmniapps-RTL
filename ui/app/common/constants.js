@@ -278,7 +278,15 @@ Bahmni.Common = Bahmni.Common || {};
         defaultImageUploadSize: 500000, // Default patient profile photo size
         maxImageUploadSize: 9000000, // to ensure, extreme max size and prevent choking up server capacity (max size is 9MB)
         adhocTeleconsultationLinkServiceUrl: RESTWS_V1 + "/adhocTeleconsultation/generateAdhocTeleconsultationLink",
-        otpServiceUrl: "/otp-service"
+        otpServiceUrl: "/otp-service",
+        distroAuthenticateUserUrl: BAHMNI_CORE + "/distro/filters/authenticateUser",
+        distroLoginUserLocationsUrl: BAHMNI_CORE + "/distro/filters/loginUserLocations",
+        distroLocVisitUrl: BAHMNI_CORE + "/distro/filters/visit/searchByLocation",
+        bahmniDistroDrugOrderUrl: BAHMNI_CORE + "/distro/filters/drugOrders",
+        bahmniDistroOrderUrl: BAHMNI_CORE + "/distro/filters/orders",
+        bahmniDistroLabOrderResultsUrl: BAHMNI_CORE + "/distro/filters/labOrderResults",
+        bahmniDistroDiagnosisUrl: BAHMNI_CORE + "/distro/filters/diagnosis/search",
+        bahmniDistroObservationsUrl: BAHMNI_CORE + "/distro/filters/observations"
     };
 })();
 

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('bahmni.clinical')
-    .factory('treatmentService', ['$http', '$q', 'appService', '$rootScope', function ($http, $q, appService, $rootScope) {
+    .factory('treatmentService', ['$http', '$q', 'appService', '$rootScope', '$bahmniCookieStore', function ($http, $q, appService, $rootScope, $bahmniCookieStore) {
         var createDrugOrder = function (drugOrder) {
             return Bahmni.Clinical.DrugOrder.create(drugOrder);
         };
@@ -17,7 +17,15 @@ angular.module('bahmni.clinical')
         };
 
         var getPrescribedAndActiveDrugOrders = function (patientUuid, numberOfVisits, getOtherActive, visitUuids, startDate, endDate, getEffectiveOrdersOnly) {
-            return $http.get(Bahmni.Common.Constants.bahmniDrugOrderUrl + "/prescribedAndActive", {
+            var drugOrderUrl = Bahmni.Common.Constants.bahmniDrugOrderUrl + "/prescribedAndActive";
+            var userInSession = $bahmniCookieStore.get(Bahmni.Common.Constants.currentUser);
+            if (userInSession) {
+                var restrictLocationToUser = (appService.getAppDescriptor() && appService.getAppDescriptor().getConfigValue('restrictLocationToUser')) || false;
+                if (restrictLocationToUser) {
+                    drugOrderUrl = Bahmni.Common.Constants.bahmniDistroDrugOrderUrl + "/prescribedAndActive";
+                }
+            }
+            return $http.get(drugOrderUrl, {
                 params: {
                     patientUuid: patientUuid,
                     numberOfVisits: numberOfVisits,

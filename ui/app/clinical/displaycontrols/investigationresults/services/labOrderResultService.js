@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('bahmni.clinical')
-    .factory('labOrderResultService', ['$http', '$q', 'configurationService', function ($http, $q, configurationService) {
+    .factory('labOrderResultService', ['$http', '$q', 'configurationService', 'appService', '$bahmniCookieStore', function ($http, $q, configurationService, appService, $bahmniCookieStore) {
         var allTestsAndPanelsConcept = {};
         configurationService.getConfigurations(['allTestsAndPanelsConcept']).then(function (configurations) {
             allTestsAndPanelsConcept = configurations.allTestsAndPanelsConcept.results[0];
@@ -96,8 +96,15 @@ angular.module('bahmni.clinical')
                     paramsToBeSent.numberOfVisits = params.numberOfVisits;
                 }
             }
-
-            $http.get(Bahmni.Common.Constants.bahmniLabOrderResultsUrl, {
+            var labResultsUrl = Bahmni.Common.Constants.bahmniLabOrderResultsUrl;
+            var userInSession = $bahmniCookieStore.get(Bahmni.Common.Constants.currentUser);
+            if (userInSession) {
+                var restrictLocationToUser = (appService.getAppDescriptor() && appService.getAppDescriptor().getConfigValue('restrictLocationToUser')) || false;
+                if (restrictLocationToUser) {
+                    labResultsUrl = Bahmni.Common.Constants.bahmniDistroLabOrderResultsUrl;
+                }
+            }
+            $http.get(labResultsUrl, {
                 method: "GET",
                 params: paramsToBeSent,
                 withCredentials: true

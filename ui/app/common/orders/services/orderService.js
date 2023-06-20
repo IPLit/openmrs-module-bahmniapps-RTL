@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('bahmni.common.orders')
-    .factory('orderService', ['$http', function ($http) {
+    .factory('orderService', ['$http', '$bahmniCookieStore', 'appService', function ($http, $bahmniCookieStore, appService) {
         var getOrders = function (data) {
             var params = {
                 concept: data.conceptNames,
@@ -26,7 +26,15 @@ angular.module('bahmni.common.orders')
                 params.numberOfVisits = 0;
                 params.locationUuids = data.locationUuids;
             }
-            return $http.get(Bahmni.Common.Constants.bahmniOrderUrl, {
+            var orderUrl = Bahmni.Common.Constants.bahmniOrderUrl;
+            var userInSession = $bahmniCookieStore.get(Bahmni.Common.Constants.currentUser);
+            if (userInSession) {
+                var restrictLocationToUser = (appService.getAppDescriptor() && appService.getAppDescriptor().getConfigValue('restrictLocationToUser')) || false;
+                if (restrictLocationToUser) {
+                    orderUrl = Bahmni.Common.Constants.bahmniDistroOrderUrl;
+                }
+            }
+            return $http.get(orderUrl, {
                 params: params,
                 withCredentials: true
             });

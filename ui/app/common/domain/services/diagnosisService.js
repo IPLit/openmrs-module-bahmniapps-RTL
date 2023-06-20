@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('bahmni.common.domain')
-    .service('diagnosisService', ['$http', '$rootScope', function ($http, $rootScope) {
+    .service('diagnosisService', ['$http', '$rootScope', '$bahmniCookieStore', 'appService', function ($http, $rootScope, $bahmniCookieStore, appService) {
         var self = this;
         this.getAllFor = function (searchTerm, locale) {
             var url = Bahmni.Common.Constants.emrapiConceptUrl;
@@ -16,6 +16,13 @@ angular.module('bahmni.common.domain')
 
         this.getDiagnoses = function (patientUuid, visitUuid) {
             var url = Bahmni.Common.Constants.bahmniDiagnosisUrl;
+            var userInSession = $bahmniCookieStore.get(Bahmni.Common.Constants.currentUser);
+            if (userInSession) {
+                var restrictLocationToUser = (appService.getAppDescriptor() && appService.getAppDescriptor().getConfigValue('restrictLocationToUser')) || false;
+                if (restrictLocationToUser) {
+                    url = Bahmni.Common.Constants.bahmniDistroDiagnosisUrl;
+                }
+            }
             return $http.get(url, {
                 params: { patientUuid: patientUuid, visitUuid: visitUuid}
             });
