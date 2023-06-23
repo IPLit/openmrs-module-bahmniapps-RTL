@@ -55,6 +55,18 @@ angular.module('admin')
                 data: {
                     backLinks: [{label: "Home", state: "admin.dashboard", icon: "fa-home"}]
                 }
+            }).state('admin.deptInfo', {
+                url: '/deptInfo',
+                templateUrl: 'views/deptInfo.html',
+				data: {
+                    backLinks: [{label: "Home", state: "admin.dashboard", icon: "fa-home"}]
+                }
+            }).state('admin.doctorInfo', {
+                url: '/doctorInfo',
+                templateUrl: 'views/DoctorInfo.html',
+                data: {
+                    backLinks: [{label: "Home", state: "admin.dashboard", icon: "fa-home"}]
+                }
             });
             $httpProvider.defaults.headers.common['Disable-WWW-Authenticate'] = true;
             $bahmniTranslateProvider.init({app: 'admin', shouldMerge: true});
