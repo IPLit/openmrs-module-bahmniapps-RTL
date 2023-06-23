@@ -10,13 +10,7 @@
     <tr ng-click="toggle(drugOrder)" class="row-click">
         <td class="drug-name" bo-text="drugOrder.getDisplayName()"></td>
         <td class="dosage-form has-toggle-btn">
-                <span bo-show="drugOrder.getDescription()">
-                    <span ng-if="drugOrder.frequencyType === 'uniform'">
-                        {{::drugOrder.uniformDosingType.dose | translate}} {{::drugOrder.uniformDosingType.doseUnits | translate}}, {{::drugOrder.uniformDosingType.frequency | translate}}, {{::drugOrder.route | translate }} -  {{drugOrder.duration}} {{::drugOrder.durationUnit | translate}}
-                    </span>
-                    <span ng-if="drugOrder.frequencyType !== 'uniform'">
-                        {{drugOrder.variableDosage()}} {{::drugOrder.doseUnits | translate}}, {{::drugOrder.route | translate }} -  {{drugOrder.duration}} {{::drugOrder.durationUnit | translate}}
-                    </span>
+                <span bo-show="drugOrder.getDescription()" bo-text="getDescription(drugOrder)">
                 </span>
             <span bo-show="!drugOrder.getDescription()" bo-text="' - '"></span>
             <span ng-if="drugOrder.isDiscontinuedOrStopped()" class="fr">{{'MEDICATION_STOPPED_ON'|translate}} {{drugOrder.effectiveStopDate | bahmniDate}}</span>

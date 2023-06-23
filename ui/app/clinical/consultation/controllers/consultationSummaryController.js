@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('bahmni.clinical')
-    .controller('ConsultationSummaryController', ['$scope', 'conceptSetUiConfigService', function ($scope, conceptSetUiConfigService) {
+    .controller('ConsultationSummaryController', ['$scope', 'conceptSetUiConfigService', '$translate', function ($scope, conceptSetUiConfigService, $translate) {
         var geEditedDiagnosesFromPastEncounters = function () {
             var editedDiagnosesFromPastEncounters = [];
             $scope.consultation.pastDiagnoses.forEach(function (pastDiagnosis) {
@@ -47,6 +47,15 @@ angular.module('bahmni.clinical')
                 return true;
             }
             return false;
+        };
+
+        $scope.getDescription = function (drugOrder) {
+            var description = '';
+            if (drugOrder.frequencyType === 'uniform') {
+                return drugOrder.uniformDosingType.dose + $translate.instant(drugOrder.uniformDosingType.doseUnits) + " , " + $translate.instant(drugOrder.uniformDosingType.frequency) + " , " + $translate.instant(drugOrder.route) + " - " + drugOrder.duration + $translate.instant(drugOrder.durationUnit);
+            } else {
+                return drugOrder.variableDosage() + $translate.instant(drugOrder.doseUnits) + " , " + $translate.instant(drugOrder.route) + " - " + drugOrder.duration + $translate.instant(drugOrder.durationUnit);
+            }
         };
     }]);
 
