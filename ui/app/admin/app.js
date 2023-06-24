@@ -73,6 +73,12 @@ angular.module('admin')
         }
     ]).run(['$rootScope', '$templateCache', '$window', function ($rootScope, $templateCache, $window) {
         moment.locale($window.localStorage["NG_TRANSLATE_LANG_KEY"] || "en");
+        $rootScope.languageUser = $window.localStorage["NG_TRANSLATE_LANG_KEY"] || "en";
+        $rootScope.userLanguageDirRtl = false;
+        if ($window.localStorage["NG_TRANSLATE_LANG_KEY"] === 'ar') {
+            $rootScope.languageUser = "ar";
+            $rootScope.userLanguageDirRtl = true;
+        }
         // Disable caching view template partials
         $rootScope.$on('$viewContentLoaded', $templateCache.removeAll);
     }]);
