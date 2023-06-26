@@ -11,6 +11,8 @@
 
         <!-- build:css admin.min.css -->
         <link rel="stylesheet" href="../styles/home.css"/>
+        <link rel="stylesheet" href="../styles/clinical.css" ng-if="!userLanguageDirRtl"/>
+        <link rel="stylesheet" href="../styles/clinical-rtl.css" ng-if="userLanguageDirRtl"/>
         <!-- endbuild -->
     </head>
     <body ng-app="admin" class="admin-app">
