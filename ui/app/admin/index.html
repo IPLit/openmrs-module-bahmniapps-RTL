@@ -8,10 +8,10 @@
         <link rel="shortcut icon" type="image/x-icon" href="../favicon.ico">
         <link rel="stylesheet" href="../lib/jquery/jquery-ui-1.10.4.custom.min.css">
 
-        <!-- build:css admin.min.css -->
+        <link rel="stylesheet" href="../styles/home.css" ng-if="!userLanguageDirRtl"/>
+        <link rel="stylesheet" href="../styles/home-rtl.css" ng-if="userLanguageDirRtl"/>
         <link rel="stylesheet" href="../styles/clinical.css" ng-if="!userLanguageDirRtl"/>
         <link rel="stylesheet" href="../styles/clinical-rtl.css" ng-if="userLanguageDirRtl"/>
-        <!-- endbuild -->
     </head>
     <body ng-app="admin" class="admin-app">
         <div ng-include src="'../common/ui-helper/header.html'"></div>
