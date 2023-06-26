@@ -63,7 +63,7 @@ angular.module('admin')
                 }
             }).state('admin.doctorInfo', {
                 url: '/doctorInfo',
-                templateUrl: 'views/DoctorInfo.html',
+                templateUrl: 'views/doctorInfo.html',
                 data: {
                     backLinks: [{label: "Home", state: "admin.dashboard", icon: "fa-home"}]
                 }
