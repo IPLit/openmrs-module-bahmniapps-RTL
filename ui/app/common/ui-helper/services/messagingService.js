@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('bahmni.common.uiHelper')
-    .service('messagingService', ['$rootScope', '$timeout', function ($rootScope, $timeout) {
+    .service('messagingService', ['$rootScope', '$timeout', '$translate', function ($rootScope, $timeout, $translate) {
         this.messages = {error: [], info: []};
         var self = this;
 
@@ -11,7 +11,7 @@ angular.module('bahmni.common.uiHelper')
 
         this.showMessage = function (level, message, errorEvent) {
             var messageObject = {'value': '', 'isServerError': false};
-            messageObject.value = message;
+            messageObject.value = $translate.instant(message);
             if (errorEvent) {
                 messageObject.isServerError = true;
             } else if (level == 'info') {
