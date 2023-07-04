@@ -466,6 +466,6 @@
     "House No.,Street": "الشارع",
     "Governorate": " المحافظة",
     "CLINICAL_DIAGNOSIS_ORDER_PRIMARY": "أساسي",
-    "DISPOSITION_ADMIT_PATIENT":"اعترف بالمريض",
+    "DISPOSITION_ADMIT_PATIENT":"قبول المريض في المستشفى",
     "since":"  منذ "
 }
