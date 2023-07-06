@@ -30,18 +30,28 @@ angular.module('authentication')
         var sessionResourcePath = Bahmni.Common.Constants.RESTWS_V1 + '/session?v=custom:(uuid)';
 
         var getAuthFromServer = function (username, password, otp, restrictLoginLocationToUser, location) {
-            var authenticateUserDistroUrl = sessionResourcePath;
-            if (restrictLoginLocationToUser) {
-                authenticateUserDistroUrl = Bahmni.Common.Constants.distroAuthenticateUserUrl + '?loginLocationUuid=' + location.uuid;
-            }
             var btoa = otp ? username + ':' + password + ':' + otp : username + ':' + password;
-            var windowBota = '';
             try {
-                windowBota = window.btoa(btoa);
-                return $http.get(authenticateUserDistroUrl, {
-                    headers: {'Authorization': 'Basic ' + windowBota },
-                    cache: false
-                });
+                var windowBtoa = window.btoa(btoa);
+                if (restrictLoginLocationToUser) {
+                    return $http.get(Bahmni.Common.Constants.bahmniDistroUserLocationValidUrl + "?loginLocationUuid=" + location.uuid, {
+                        headers: {'Authorization': 'Basic ' + windowBtoa},
+                        cache: false
+                    }).then(function (response) {
+                        if (response.status == 200) {
+                            return $http.get(sessionResourcePath, {
+                                headers: {'Authorization': 'Basic ' + windowBtoa},
+                                cache: false
+                            });
+                        }
+                        return response;
+                    });
+                } else {
+                    return $http.get(sessionResourcePath, {
+                        headers: {'Authorization': 'Basic ' + windowBtoa},
+                        cache: false
+                    });
+                }
             } catch (err) {
                 throw new Error("INVALID_CHARACTER");
             }
