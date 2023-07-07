@@ -2,9 +2,9 @@
 
 angular.module('bahmni.common.uicontrols.programmanagment')
     .controller('ManageProgramController', ['$scope', 'retrospectiveEntryService', '$window', 'programService',
-        'spinner', 'messagingService', '$stateParams', '$q', 'confirmBox', '$translate',
+        'spinner', 'messagingService', '$stateParams', '$q', 'confirmBox', '$translate', '$http', 'ngDialog',
         function ($scope, retrospectiveEntryService, $window, programService,
-                  spinner, messagingService, $stateParams, $q, confirmBox, $translate) {
+                  spinner, messagingService, $stateParams, $q, confirmBox, $translate, $http, ngDialog) {
             var DateUtil = Bahmni.Common.Util.DateUtil;
             $scope.programSelected = {};
             $scope.workflowStateSelected = {};
@@ -274,6 +274,20 @@ angular.module('bahmni.common.uicontrols.programmanagment')
             $scope.getCurrentStateDisplayName = function (program) {
                 var currentState = getActivePatientProgramState(program.states);
                 return _.get(currentState, 'state.concept.display');
+            };
+
+            $scope.openProgramStateInfo = function (program) {
+                var currentState = getActivePatientProgramState(program.states);
+                name = _.get(currentState, 'state.concept.display');
+                $http.get(Bahmni.Common.Constants.conceptSearchByFullNameUrl, {
+                        params: {name: name, v: "custom:(uuid,name,description)"}
+                }).then(function(response) {
+                   if (response.data.results.length > 0 && response.data.results[0].description && response.data.results[0].description.display.includes(".html")) {
+                       ngDialog.open({
+                            template: response.data.results[0].description.display
+                       });
+                   }
+                });
             };
 
             $scope.getMaxAllowedDate = function (states) {
