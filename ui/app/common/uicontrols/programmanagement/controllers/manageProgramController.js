@@ -278,15 +278,15 @@ angular.module('bahmni.common.uicontrols.programmanagment')
 
             $scope.openProgramStateInfo = function (program) {
                 var currentState = getActivePatientProgramState(program.states);
-                name = _.get(currentState, 'state.concept.display');
+                var name = _.get(currentState, 'state.concept.display');
                 $http.get(Bahmni.Common.Constants.conceptSearchByFullNameUrl, {
-                        params: {name: name, v: "custom:(uuid,name,description)"}
-                }).then(function(response) {
-                   if (response.data.results.length > 0 && response.data.results[0].description && response.data.results[0].description.display.includes(".html")) {
-                       ngDialog.open({
+                    params: {name: name, v: "custom:(uuid,name,description)"}
+                }).then(function (response) {
+                    if (response.data.results.length > 0 && response.data.results[0].description && response.data.results[0].description.display.includes(".html")) {
+                        ngDialog.open({
                             template: response.data.results[0].description.display
-                       });
-                   }
+                        });
+                    }
                 });
             };
 
