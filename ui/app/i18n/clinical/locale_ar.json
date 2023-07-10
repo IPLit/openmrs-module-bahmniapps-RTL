@@ -467,5 +467,7 @@
     "Governorate": " المحافظة",
     "CLINICAL_DIAGNOSIS_ORDER_PRIMARY": "أساسي",
     "DISPOSITION_ADMIT_PATIENT":"قبول المريض في المستشفى",
-    "since":"  منذ "
+    "since":"  منذ ",
+    "obstime": "وقت المشاهدة",
+    "Other Active DrugOrders": "طلبات الأدوية النشطة الأخرى" 
 }
