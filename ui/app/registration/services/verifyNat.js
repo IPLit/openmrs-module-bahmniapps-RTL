@@ -2,7 +2,7 @@
 
 angular.module('bahmni.registration')
     .service('natVerifyPopup', ['spinner', 'ngDialog', 'patientService', function (spinner, ngDialog, patientService) {
-        var confirmBox = async function (config) {
+        var confirmBox = function (config) {
             var dialog;
             var DateUtil = Bahmni.Common.Util.DateUtil;
             var scope = config.scope;
@@ -12,8 +12,7 @@ angular.module('bahmni.registration')
             scope.noPatient = false;
             scope.scannedTextError = false;
 
-            scope.close = async function () {
-                await scope.port.close();
+            scope.close = function () {
                 ngDialog.close(dialog.id);
             };
 
@@ -90,21 +89,6 @@ angular.module('bahmni.registration')
                 scope: scope,
                 className: config.className || 'ngdialog-theme-default'
             });
-
-            const textDecoder = new TextDecoder('ascii'); // Use UTF-8 encoding for Arabic characters
-            var accumulatedData = '';
-            const reader = scope.port.readable.getReader();
-            while (true) {
-                const { value, done } = await reader.read();
-                if (done) {
-                    reader.releaseLock();
-                    break;
-                }
-                const decodedData = textDecoder.decode(value);
-                accumulatedData += decodedData; // Append the decoded data to the accumulated data
-                scope.natTextTemp = accumulatedData;
-            }
-            reader.cancel();
         };
         return confirmBox;
     }]);
