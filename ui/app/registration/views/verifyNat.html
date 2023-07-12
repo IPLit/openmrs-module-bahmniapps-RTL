@@ -5,7 +5,7 @@
     <br>
     <p>
         <b>{{::'VERIFY_NAT_TEXT' | translate}}:</b><sup class="asterick">*</sup>
-        <input type="text" ng-blur="getNatText(this);" ng-model="natTextTemp" required focus-me="true"/>
+        <input type="text" ng-blur="getNatText(this);" ng-model="natTextTemp" required focus-me="true" readonly/>
     </p>
     <br>
     <p id="notExisting" class="message" ng-show="scannedTextError">{{::'INVALID_SCANNED_NAT_TEXT' | translate}}</p>

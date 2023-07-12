@@ -415,11 +415,22 @@ angular.module('bahmni.registration')
                 return ($scope.patient.causeOfDeath || $scope.patient.deathDate) && $scope.patient.dead;
             };
 
-            $scope.openNatVerifyPopup = function () {
-                natVerifyPopup({
-                    scope: $scope,
-                    className: "ngdialog-theme-default app-dialog-container"
-                });
+            $scope.openNatVerifyPopup = async function () {
+                try {
+                    const serialPort = 'COM3'; // Replace with the appropriate serial port name
+                    const baudRate = 9600; // Replace with the baud rate used by your USB CDC scanner
+
+                    const port = await navigator.serial.requestPort();
+                    port.open({ baudRate }).then(function () {
+                        $scope.port = port;
+                        natVerifyPopup({
+                            scope: $scope,
+                            className: "ngdialog-theme-default app-dialog-container"
+                        });
+                    });
+                } catch (error) {
+                    console.log(error);
+                }
             };
 
             $scope.getToday = function () {
