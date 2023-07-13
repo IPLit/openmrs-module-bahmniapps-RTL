@@ -418,9 +418,7 @@ angular.module('bahmni.registration')
 
             $scope.openNatVerifyPopup = async function () {
                 const storedPermission = localStorage.getItem('serialPermission');
-                if (storedPermission === 'granted') {
-                    await getSerialPorts();
-                } else {
+                if (storedPermission !== 'granted') {
                     await requestSerialPermission();
                 }
                 if ($scope.portOpen) {
@@ -444,31 +442,12 @@ angular.module('bahmni.registration')
                 try {
                     const baudRate = 9600; // Replace with the baud rate used by your USB CDC scanner
                     const port = await navigator.serial.requestPort();
-                    const permission = await navigator.serial.requestPermission({ baudRate });
-
-                    if (permission === 'granted') {
+                    if (ports.length > 0) {
                         localStorage.setItem('serialPermission', 'granted');
-                        await getSerialPorts();
-                    } else {
-                        console.log("Permission denied");
+                        $scope.selectedPort = ports[0];
                     }
                 } catch (error) {
                     console.log('Error requesting serial permission:', error);
-                }
-            }
-
-            async function getSerialPorts () {
-                try {
-                    console.log('Getting available serial ports...');
-                    const ports = await navigator.serial.getPorts();
-                    if (ports.length > 0) {
-                        $scope.selectedPort = ports[0];
-                        console.log('Serial port selected:', selectedPort);
-                    } else {
-                        console.log('No available serial ports');
-                    }
-                } catch (error) {
-                    console.log('Error getting serial ports:', error);
                 }
             }
 

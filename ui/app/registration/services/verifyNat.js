@@ -8,6 +8,7 @@ angular.module('bahmni.registration')
             var scope = config.scope;
             scope.natData = {};
             scope.natText = '';
+            scope.natTextTemp = '';
             scope.patientExist = false;
             scope.noPatient = false;
             scope.scannedTextError = false;
