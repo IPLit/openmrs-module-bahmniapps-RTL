@@ -417,30 +417,26 @@ angular.module('bahmni.registration')
             };
 
             $scope.openNatVerifyPopup = async function () {
-                const baudRate = 9600; // Replace with the baud rate used by your USB CDC scanner
                 const storedPermission = localStorage.getItem('serialPermission');
-                if (storedPermission !== 'granted') {
+                if (storedPermission === 'granted') {
+                    await getSerialPorts();
+                } else {
                     await requestSerialPermission();
                 }
-                try {
-                    if (!$scope.portOpen) {
-                        if (!('serial' in navigator) || !(await navigator.serial.getPorts()).length) {
-                            await requestSerialPermission();
-                        } else {
-                            const ports = await navigator.serial.getPorts();
-                            $scope.port = ports[0];
-                        }
-                    }
-
-                    $scope.port.open({ baudRate }).then(function () {
-                        $scope.portOpen = true; // Set portOpen flag to true
+                if ($scope.portOpen) {
+                    natVerifyPopup({
+                        scope: $scope,
+                        className: "ngdialog-theme-default app-dialog-container"
+                    });
+                }
+                if ($scope.selectedPort !== undefined) {
+                    $scope.selectedPort.open({ baudRate }).then(function () {
+                        $scope.portOpen = true;
                         natVerifyPopup({
                             scope: $scope,
                             className: "ngdialog-theme-default app-dialog-container"
                         });
                     });
-                } catch (error) {
-                    console.log(error);
                 }
             };
 
@@ -451,17 +447,29 @@ angular.module('bahmni.registration')
                     const permission = await navigator.serial.requestPermission({ baudRate });
 
                     if (permission === 'granted') {
-                        handlePermissionGranted();
+                        localStorage.setItem('serialPermission', 'granted');
+                        await getSerialPorts();
                     } else {
-                        messagingService.showMessage('error', 'Unable to connect to a scanner');
+                        console.log("Permission denied");
                     }
                 } catch (error) {
-                    console.error('Error requesting serial permission:', error);
+                    console.log('Error requesting serial permission:', error);
                 }
             }
 
-            function handlePermissionGranted () {
-                localStorage.setItem('serialPermission', 'granted');
+            async function getSerialPorts () {
+                try {
+                    console.log('Getting available serial ports...');
+                    const ports = await navigator.serial.getPorts();
+                    if (ports.length > 0) {
+                        $scope.selectedPort = ports[0];
+                        console.log('Serial port selected:', selectedPort);
+                    } else {
+                        console.log('No available serial ports');
+                    }
+                } catch (error) {
+                    console.log('Error getting serial ports:', error);
+                }
             }
 
             $scope.getToday = function () {
