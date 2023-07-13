@@ -2,14 +2,15 @@
 
 angular.module('bahmni.registration')
     .controller('PatientCommonController', ['$scope', '$rootScope', '$http', 'patientAttributeService', 'appService',
-        'patientService', 'spinner', '$location', 'ngDialog', '$window', '$state', '$document', '$translate', 'natVerifyPopup',
+        'patientService', 'spinner', '$location', 'ngDialog', '$window', '$state', '$document', '$translate', 'natVerifyPopup', 'messagingService',
         function ($scope, $rootScope, $http, patientAttributeService, appService, patientService, spinner, $location,
-                ngDialog, $window, $state, $document, $translate, natVerifyPopup) {
+                ngDialog, $window, $state, $document, $translate, natVerifyPopup, messagingService) {
             var autoCompleteFields = appService.getAppDescriptor().getConfigValue("autoCompleteFields", []);
             var showCasteSameAsLastNameCheckbox = appService.getAppDescriptor().getConfigValue("showCasteSameAsLastNameCheckbox");
             var personAttributes = [];
             var caste;
             var contactAttribute;
+            $scope.portOpen = false;
             $scope.showMiddleName = appService.getAppDescriptor().getConfigValue("showMiddleName");
             $scope.showLastName = appService.getAppDescriptor().getConfigValue("showLastName");
             $scope.isLastNameMandatory = $scope.showLastName && appService.getAppDescriptor().getConfigValue("isLastNameMandatory");
@@ -26,7 +27,7 @@ angular.module('bahmni.registration')
             var identifierExtnMap = new Map();
             $scope.attributesToBeDisabled = [];
             $scope.extensionButtons = ($scope.regExtPoints[0] != null && $scope.regExtPoints[0].extensionButtons != null) ? $scope.regExtPoints[0].extensionButtons : null;
-
+            localStorage.removeItem('serialPermission');
             function isExtButtonDefined (id) {
                 for (var i = 0; i < $scope.extensionButtons.length; i++) {
                     if ($scope.extensionButtons[i].id === id) {
@@ -416,13 +417,23 @@ angular.module('bahmni.registration')
             };
 
             $scope.openNatVerifyPopup = async function () {
+                const baudRate = 9600; // Replace with the baud rate used by your USB CDC scanner
+                const storedPermission = localStorage.getItem('serialPermission');
+                if (storedPermission !== 'granted') {
+                    await requestSerialPermission();
+                }
                 try {
-                    const serialPort = 'COM3'; // Replace with the appropriate serial port name
-                    const baudRate = 9600; // Replace with the baud rate used by your USB CDC scanner
+                    if (!$scope.portOpen) {
+                        if (!('serial' in navigator) || !(await navigator.serial.getPorts()).length) {
+                            await requestSerialPermission();
+                        } else {
+                            const ports = await navigator.serial.getPorts();
+                            $scope.port = ports[0];
+                        }
+                    }
 
-                    const port = await navigator.serial.requestPort();
-                    port.open({ baudRate }).then(function () {
-                        $scope.port = port;
+                    $scope.port.open({ baudRate }).then(function () {
+                        $scope.portOpen = true; // Set portOpen flag to true
                         natVerifyPopup({
                             scope: $scope,
                             className: "ngdialog-theme-default app-dialog-container"
@@ -432,6 +443,26 @@ angular.module('bahmni.registration')
                     console.log(error);
                 }
             };
+
+            async function requestSerialPermission () {
+                try {
+                    const baudRate = 9600; // Replace with the baud rate used by your USB CDC scanner
+                    const port = await navigator.serial.requestPort();
+                    const permission = await navigator.serial.requestPermission({ baudRate });
+
+                    if (permission === 'granted') {
+                        handlePermissionGranted();
+                    } else {
+                        messagingService.showMessage('error', 'Unable to connect to a scanner');
+                    }
+                } catch (error) {
+                    console.error('Error requesting serial permission:', error);
+                }
+            }
+
+            function handlePermissionGranted () {
+                localStorage.setItem('serialPermission', 'granted');
+            }
 
             $scope.getToday = function () {
                 return new Date().toISOString().split('T')[0];
