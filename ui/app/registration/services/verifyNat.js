@@ -13,8 +13,7 @@ angular.module('bahmni.registration')
             scope.noPatient = false;
             scope.scannedTextError = false;
 
-            scope.close = async function () {
-                await scope.port.close();
+            scope.close = function () {
                 ngDialog.close(dialog.id);
             };
 
@@ -94,18 +93,16 @@ angular.module('bahmni.registration')
 
             const textDecoder = new TextDecoder('ascii'); // Use UTF-8 encoding for Arabic characters
             var accumulatedData = '';
-            const reader = scope.port.readable.getReader();
+            const reader = scope.selectedPort.readable.getReader();
             while (true) {
                 const { value, done } = await reader.read();
                 if (done) {
-                    reader.releaseLock();
                     break;
                 }
                 const decodedData = textDecoder.decode(value);
                 accumulatedData += decodedData; // Append the decoded data to the accumulated data
                 scope.natTextTemp = accumulatedData;
             }
-            reader.cancel();
         };
         return confirmBox;
     }]);

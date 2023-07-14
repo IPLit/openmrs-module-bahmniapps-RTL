@@ -27,7 +27,6 @@ angular.module('bahmni.registration')
             var identifierExtnMap = new Map();
             $scope.attributesToBeDisabled = [];
             $scope.extensionButtons = ($scope.regExtPoints[0] != null && $scope.regExtPoints[0].extensionButtons != null) ? $scope.regExtPoints[0].extensionButtons : null;
-            localStorage.removeItem('serialPermission');
             function isExtButtonDefined (id) {
                 for (var i = 0; i < $scope.extensionButtons.length; i++) {
                     if ($scope.extensionButtons[i].id === id) {
@@ -417,38 +416,55 @@ angular.module('bahmni.registration')
             };
 
             $scope.openNatVerifyPopup = async function () {
+                const baudRate = 9600; // Replace with the baud rate used by your USB CDC scanner
                 const storedPermission = localStorage.getItem('serialPermission');
-                if (storedPermission !== 'granted') {
+                if (storedPermission === 'granted') {
+                    console.log('Serial permission is granted');
+                    handlePermissionGranted();
+                    const ports = await navigator.serial.getPorts();
+                    if (ports.length === 0) {
+                        await requestSerialPermission();
+                    } else {
+                        $scope.selectedPort = ports[0];
+                    }
+                } else {
+                    console.log('Serial permission is not granted');
                     await requestSerialPermission();
                 }
+
                 if ($scope.portOpen) {
                     natVerifyPopup({
                         scope: $scope,
                         className: "ngdialog-theme-default app-dialog-container"
                     });
-                }
-                if ($scope.selectedPort !== undefined) {
-                    $scope.selectedPort.open({ baudRate }).then(function () {
-                        $scope.portOpen = true;
-                        natVerifyPopup({
-                            scope: $scope,
-                            className: "ngdialog-theme-default app-dialog-container"
+                } else {
+                    if ($scope.selectedPort !== undefined) {
+                        $scope.selectedPort.open({ baudRate }).then(function () {
+                            $scope.portOpen = true;
+                            natVerifyPopup({
+                                scope: $scope,
+                                className: "ngdialog-theme-default app-dialog-container"
+                            });
                         });
-                    });
+                    }
                 }
             };
 
             async function requestSerialPermission () {
                 try {
-                    const baudRate = 9600; // Replace with the baud rate used by your USB CDC scanner
                     const port = await navigator.serial.requestPort();
-                    if (ports.length > 0) {
+                    if (port !== undefined) {
                         localStorage.setItem('serialPermission', 'granted');
-                        $scope.selectedPort = ports[0];
+                        $scope.selectedPort = port;
+                        $rootScope.selectedPort = port;
                     }
                 } catch (error) {
                     console.log('Error requesting serial permission:', error);
                 }
+            }
+
+            function handlePermissionGranted () {
+                localStorage.setItem('serialPermission', 'granted');
             }
 
             $scope.getToday = function () {
