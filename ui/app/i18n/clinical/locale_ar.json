@@ -469,5 +469,6 @@
     "DISPOSITION_ADMIT_PATIENT":"قبول المريض في المستشفى",
     "since":"  منذ ",
     "obstime": "وقت المشاهدة",
-    "Other Active DrugOrders": "طلبات الأدوية النشطة الأخرى" 
+    "Other Active DrugOrders": "طلبات الأدوية النشطة الأخرى",
+    "Program_State_Info": "معلومات عن حالة البرنامج العلاجي"
 }
