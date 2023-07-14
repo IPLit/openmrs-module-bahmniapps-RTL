@@ -9,6 +9,7 @@ angular.module('bahmni.ipd')
                   $stateParams, ngDialog, $filter, $state, $translate) {
             var actionConfigs = {};
             var encounterConfig = $rootScope.encounterConfig;
+            var encounterConfig = $rootScope.encounterConfig;
             var locationUuid = sessionService.getLoginLocationUuid();
             var visitTypes = encounterConfig.getVisitTypes();
             var customVisitParams = Bahmni.IPD.Constants.visitRepresentation;
@@ -268,7 +269,7 @@ angular.module('bahmni.ipd')
                 return false;
             };
             $scope.disableDischargeButton = function () {
-                return !$location.search().patientToDischarge || (!($rootScope.patient && $rootScope.bedDetails && isCurrentPatientPresentOnSelectedBed())) || $scope.buttonClicked;
+                return ($rootScope.currentSearchType && $rootScope.currentSearchType.name !== 'To Discharge') || (!($rootScope.patient && $rootScope.bedDetails && isCurrentPatientPresentOnSelectedBed())) || $scope.buttonClicked;
             };
 
             $scope.transfer = function () {
