@@ -479,7 +479,7 @@ angular.module('bahmni.registration')
                     $scope.patient.primaryRelative = $translate.instant(Bahmni.Registration.Constants.emergencyMotherDummyText);
                     $scope.patient.address.cityVillage = 'دمشق';
                     $scope.patient.address.stateProvince = 'دمشق';
-                    $scope.patient.birthdate = moment('01-01-1999').toDate();
+                    $scope.patient.birthdate = moment('01-01-1999', 'DD-MM-YYYY').locale('ar').toDate();
                     $scope.patient.calculateAge();
                 }
                 else {
