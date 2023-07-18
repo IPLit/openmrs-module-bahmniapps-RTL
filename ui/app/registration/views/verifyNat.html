@@ -3,19 +3,30 @@
     <span class="ngdialog-close"></span>
     <p class="message">{{::'VERIFY_NAT_POPUP_MESSAGE' | translate}}</p>
     <br>
-    <p>
-        <b>{{::'VERIFY_NAT_TEXT' | translate}}:</b><sup class="asterick">*</sup>
-        <input type="text" ng-blur="getNatText(this);" ng-model="natTextTemp" required focus-me="true" readonly/>
-    </p>
+    <div ng-if="checkBlankNatText();">
+        {{ ::'BARCODE_SCAN' | translate }}
+    </div>
+    <div ng-show="scanComplete">
+        {{ ::'SCAN_COMPLETE' | translate }}
+    </div>
+
+    <div class="message" ng-show="natData.natId">Scanned Nat ID: {{natData.natId}}</div>
     <br>
     <p id="notExisting" class="message" ng-show="scannedTextError">{{::'INVALID_SCANNED_NAT_TEXT' | translate}}</p>
 	<p id="notExisting" class="message" ng-show="noPatient">{{::'MESSAGE_NAT_NOT_PRE_EXISTS' | translate}}</p>
 	<p id="preExisting" class="message" ng-show="patientExist">{{::'MESSAGE_NAT_PRE_EXISTS' | translate}}</p>
     <br>
     <p id="verifyBtns" class="app-check-in-btn" ng-hide="noPatient">
-        <button style="background: #8BC34A; color: #fff" ng-click="performVerifyNatText();">
-            {{::'VERIFY_KEY' | translate}}
-        </button>
+        <span ng-show="scanComplete">
+            <button style="background: #8BC34A; color: #fff" ng-click="performVerifyNatText();">
+                {{::'VERIFY_KEY' | translate}}
+            </button>
+        </span>
+        <span ng-show="!scanComplete">
+            <button style="background: #8BC34A; color: #fff" ng-click="getNatText(this);">
+                {{::'SCAN_ACK' | translate}}
+            </button>
+        </span>
         <button ng-click="close();">
             {{::'CLOSE_POPUP_KEY' | translate}}
         </button>

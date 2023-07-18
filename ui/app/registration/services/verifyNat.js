@@ -11,6 +11,7 @@ angular.module('bahmni.registration')
             scope.natTextTemp = '';
             scope.patientExist = false;
             scope.noPatient = false;
+            scope.scanComplete = false;
             scope.scannedTextError = false;
 
             scope.close = function () {
@@ -27,6 +28,10 @@ angular.module('bahmni.registration')
                     bufView[i] = str.charCodeAt(i);
                 }
                 return bufView;
+            };
+
+            scope.checkBlankNatText = function () {
+                return scope.natText === undefined || scope.natText === '';
             };
 
             scope.performVerifyNatText = function () {
@@ -102,6 +107,7 @@ angular.module('bahmni.registration')
                 const decodedData = textDecoder.decode(value);
                 accumulatedData += decodedData; // Append the decoded data to the accumulated data
                 scope.natTextTemp = accumulatedData;
+                scope.scanComplete = true;
             }
         };
         return confirmBox;

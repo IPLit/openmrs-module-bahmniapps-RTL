@@ -133,5 +133,8 @@
   "EMERGENCY_DUMMY_TEXT": "Dummy",
   "EMERGENCY_MIDDLE_DUMMY_TEXT": "Dummy",
   "EMERGENCY_LAST_DUMMY_TEXT": "Dummy",
-  "EMERGENCY_MOTHER_DUMMY_TEXT":"Dummy"
+  "EMERGENCY_MOTHER_DUMMY_TEXT":"Dummy",
+  "BARCODE_SCAN": "Please scan the barcode",
+  "SCAN_ACK": "Click After Scan",
+  "SCAN_COMPLETE": "Scan Successful"
 }

@@ -419,8 +419,6 @@ angular.module('bahmni.registration')
                 const baudRate = 9600; // Replace with the baud rate used by your USB CDC scanner
                 const storedPermission = localStorage.getItem('serialPermission');
                 if (storedPermission === 'granted') {
-                    console.log('Serial permission is granted');
-                    handlePermissionGranted();
                     const ports = await navigator.serial.getPorts();
                     if (ports.length === 0) {
                         await requestSerialPermission();
@@ -428,7 +426,6 @@ angular.module('bahmni.registration')
                         $scope.selectedPort = ports[0];
                     }
                 } else {
-                    console.log('Serial permission is not granted');
                     await requestSerialPermission();
                 }
 
@@ -461,10 +458,6 @@ angular.module('bahmni.registration')
                 } catch (error) {
                     console.log('Error requesting serial permission:', error);
                 }
-            }
-
-            function handlePermissionGranted () {
-                localStorage.setItem('serialPermission', 'granted');
             }
 
             $scope.getToday = function () {
