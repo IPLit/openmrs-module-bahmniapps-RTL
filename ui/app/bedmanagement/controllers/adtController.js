@@ -269,7 +269,10 @@ angular.module('bahmni.ipd')
                 return false;
             };
             $scope.disableDischargeButton = function () {
-                return ($rootScope.currentSearchType && $rootScope.currentSearchType.name !== 'To Discharge') || (!($rootScope.patient && $rootScope.bedDetails && isCurrentPatientPresentOnSelectedBed())) || $scope.buttonClicked;
+                var isPresent = $rootScope.patientsToDischarge && $rootScope.patientsToDischarge.some(function (patient) {
+                    return $scope.patient.uuid == patient.uuid;
+                });
+                return !isPresent || (!($rootScope.patient && $rootScope.bedDetails && isCurrentPatientPresentOnSelectedBed())) || $scope.buttonClicked;
             };
 
             $scope.transfer = function () {

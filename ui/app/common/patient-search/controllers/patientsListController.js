@@ -60,6 +60,9 @@ angular.module('bahmni.common.patientSearch')
                 }
                 patientService.findPatients(params).then(function (response) {
                     searchType.patientCount = response.data.length;
+                    if (searchType.name === "To Discharge") {
+                        $rootScope.patientsToDischarge = response.data;
+                    }
                     if ($scope.search.isSelectedSearch(searchType)) {
                         $scope.search.updatePatientList(response.data);
                     }
