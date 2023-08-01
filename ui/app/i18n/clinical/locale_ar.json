@@ -470,5 +470,7 @@
     "since":"  منذ ",
     "obstime": "وقت المشاهدة",
     "Other Active DrugOrders": "طلبات الأدوية النشطة الأخرى",
-    "Program_State_Info": "معلومات عن حالة البرنامج العلاجي"
+    "Program_State_Info": "معلومات عن حالة البرنامج العلاجي",
+    "VISIT_TITLE_LAB_ORDERS_KEY": "طلبات الأدوية النشطة الأخرى",
+    "DASHBOARD_TITLE_PRESCRIPTIONS_KEY": "الوصفات الطبية"
 }
