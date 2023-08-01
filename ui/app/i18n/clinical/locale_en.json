@@ -371,5 +371,7 @@
     "CHIEF_COMPLAINT_DATA_OTHER_CONCEPT_TEMPLATE_KEY": "{{chiefComplaint}} ({{chiefComplaintText}}) since {{duration}} {{unit}}",
     "CHIEF_COMPLAINT_DATA_WITHOUT_OTHER_CONCEPT_TEMPLATE_KEY": "{{chiefComplaint}} since {{duration}} {{unit}}",
     "you_want_to_delete_program": "You want to delete a program",
-    "Are_you_sure?": ", are you sure?"
+    "Are_you_sure?": ", are you sure?",
+    "VISIT_TITLE_LAB_ORDERS_KEY": "Lab Results",
+    "DASHBOARD_TITLE_PRESCRIPTIONS_KEY": "Prescriptions"
 }
