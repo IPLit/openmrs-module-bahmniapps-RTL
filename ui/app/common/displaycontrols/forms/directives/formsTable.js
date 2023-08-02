@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('bahmni.common.displaycontrol.forms')
-    .directive('formsTable', ['conceptSetService', 'spinner', '$q', 'visitFormService', 'appService', '$state', '$rootScope',
-        function (conceptSetService, spinner, $q, visitFormService, appService, $state, $rootScope) {
+    .directive('formsTable', ['conceptSetService', 'spinner', '$q', 'visitFormService', 'appService', '$state', '$rootScope', 'printer', 'encounterService', 'conceptSetUiConfigService',
+        function (conceptSetService, spinner, $q, visitFormService, appService, $state, $rootScope, printer, encounterService, conceptSetUiConfigService) {
             var defaultController = function ($scope) {
                 $scope.shouldPromptBrowserReload = true;
                 $scope.showFormsDate = appService.getAppDescriptor().getConfigValue("showFormsDate");
@@ -119,6 +119,23 @@ angular.module('bahmni.common.displaycontrol.forms')
                     };
                 };
 
+                $scope.printPage = async function (data) {
+                    var getFormNameAndVersion = Bahmni.Common.Util.FormFieldPathUtil.getFormNameAndVersion;
+                    encounterService.findByEncounterUuid(data.encounterUuid, {includeAll: false}).then(function (response) {
+                        var encounterTransaction = response.data;
+                        var allObservations = _.filter(encounterTransaction.observations, function (obs) {
+                            if (obs.formFieldPath) {
+                                var obsFormNameAndVersion = getFormNameAndVersion(obs.formFieldPath);
+                                return obsFormNameAndVersion.formName === data.formName;
+                            } else {
+                                return data.uuid === obs.uuid;
+                            }
+                        });
+                        var observations = new Bahmni.Clinical.ObsGroupingHelper(conceptSetUiConfigService).groupObservations(allObservations);
+                        var printTemplateUrl = '../common/displaycontrols/forms/views/formDisplayPrint.html';
+                        printer.print(printTemplateUrl, {observationsForSelectedForm: observations, title: data.formName});
+                    });
+                };
                 $scope.dialogData = {
                     "patient": $scope.patient,
                     "section": $scope.section

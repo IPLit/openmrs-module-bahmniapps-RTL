@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('bahmni.common.displaycontrol.forms')
-    .controller('versionedFormController', ['$scope', 'formService', 'appService', '$q', '$state', '$rootScope',
-        function ($scope, formService, appService, $q, $state, $rootScope) {
+    .controller('versionedFormController', ['$scope', 'formService', 'appService', '$q', '$state', '$rootScope', 'printer', 'encounterService', 'conceptSetUiConfigService',
+        function ($scope, formService, appService, $q, $state, $rootScope, printer, encounterService, conceptSetUiConfigService) {
             $scope.shouldPromptBrowserReload = true;
             $scope.showFormsDate = appService.getAppDescriptor().getConfigValue("showFormsDate");
 
@@ -148,6 +148,22 @@ angular.module('bahmni.common.displaycontrol.forms')
                         formDisplayName: $scope.getDisplayName(data)
                     }
                 };
+            };
+
+            $scope.printPage = async function (data) {
+                var getFormNameAndVersion = Bahmni.Common.Util.FormFieldPathUtil.getFormNameAndVersion;
+                encounterService.findByEncounterUuid(data.encounterUuid, {includeAll: false}).then(function (response) {
+                    var encounterTransaction = response.data;
+                    var allObservations = _.filter(encounterTransaction.observations, function (obs) {
+                        if (obs.formFieldPath) {
+                            var obsFormNameAndVersion = getFormNameAndVersion(obs.formFieldPath);
+                            return obsFormNameAndVersion.formName === data.formName;
+                        }
+                    });
+                    var observations = new Bahmni.Clinical.ObsGroupingHelper(conceptSetUiConfigService).groupObservations(allObservations);
+                    var printTemplateUrl = '../common/displaycontrols/forms/views/formDisplayPrint.html';
+                    printer.print(printTemplateUrl, {observationsForSelectedForm: observations, title: data.formName});
+                });
             };
 
             $scope.getEditObsData = function (observation) {
