@@ -284,7 +284,8 @@ angular.module('bahmni.common.uicontrols.programmanagment')
                 }).then(function (response) {
                     if (response.data.results.length > 0 && response.data.results[0].description && response.data.results[0].description.display.includes(".html")) {
                         ngDialog.open({
-                            template: response.data.results[0].description.display
+                            template: response.data.results[0].description.display,
+                            scope: $scope
                         });
                     }
                 });
