@@ -156,7 +156,7 @@
     "Start_LAB_VISIT_visit":"بدء زيارة لمخبر المستشفى",
     "Start_IPD_visit":"بدء زيارة لقسم العيادات الداخلية",
     "Start_Special_OPD_visit":"بدء زيارة لقسم العيادات الخارجية الخاصة",
-    "VERIFY_NAT_POPUP_MESSAGE":"مسح عن طريق الباركود",
+    "VERIFY_NAT_POPUP_MESSAGE":"Connect Scanner for NationalID",
     "VERIFY_NAT_TEXT":"نتيجة مسح الباركود",
     "MESSAGE_NAT_NOT_PRE_EXISTS":"المريض غير موجود مسبقاً",
     "MESSAGE_NAT_PRE_EXISTS":"هناك مريض مسجل مسبقا بهذا الرقم الوطني، يمكنك البحث عن هذا المريض بإدخال الرقم الوطني للهوية الحالية",

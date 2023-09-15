@@ -119,7 +119,7 @@
   "REGISTRATION_TO_CLINICAL": "Save and go to Dashboard",
   "FILE_UPLOAD_MUST_BE_IMAGE": "File uploaded must be an image",
   "FILE_UPLOAD_MUST_BE_LESS_THAN": "File size should be less than",
-  "VERIFY_NAT_POPUP_MESSAGE": "Verify NAT",
+  "VERIFY_NAT_POPUP_MESSAGE": "Connect Scaner for NationalID",
   "VERIFY_NAT_TEXT": "Scanned NAT text",
   "MESSAGE_NAT_NOT_PRE_EXISTS": "The patient was not found!",
   "MESSAGE_NAT_PRE_EXISTS": "Patient found matching this ID",
