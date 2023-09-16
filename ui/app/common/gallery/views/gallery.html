@@ -13,7 +13,7 @@
 <div class="image-container" ng-class="{'shift': showImpression}">
     <div class="container slider">
         <div class="messages" ng-if="!albums.length">
-            <p class="messages null-data-message">No images to display</p>
+            <p class="messages null-data-message">{{'No images to display' | translate}}</p>
         </div>
 
         <div ng-repeat="album in albums">
