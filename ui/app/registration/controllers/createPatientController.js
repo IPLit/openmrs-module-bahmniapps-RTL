@@ -261,12 +261,23 @@ angular.module('bahmni.registration')
                     }
                     const decodedData = textDecoder.decode(value);
                     accumulatedData += decodedData; // Append the decoded data to the accumulated data
-                    $scope.scanComplete = true;
                     $timeout(function () {
-                        performVerifyNatText();
-                        $scope.natText = accumulatedData;
-                        accumulatedData = '';
-                        reader.releaseLock();
+                        performVerifyNatText(accumulatedData);
+                        if ($scope.natData.natId) {
+                            patientService.search(undefined, $scope.natData.natId, undefined, undefined, undefined,
+                               0, undefined, undefined, undefined, undefined,
+                               undefined, true).then(function (data) {
+                                   if (data.pageOfResults.length > 0) {
+                                       messagingService.showMessage('error', "Patient Already Exists");
+                                   } else {
+                                       performAddPatientDetails();
+                                   }
+                                   accumulatedData = '';
+                                   reader.releaseLock();
+                               });
+                        } else {
+                            $scope.scannedTextError = true;
+                        }
                     }, 1000);
                 }
             };
@@ -287,16 +298,16 @@ angular.module('bahmni.registration')
                 $scope.patient.extraIdentifiers[0].hasOldIdentifier = true;
             };
 
-            var performVerifyNatText = function () {
+            var performVerifyNatText = function (accumulatedData) {
                 $scope.natData = {};
-                if (!$scope.natText || $scope.natText.length === 0) {
+                if (!accumulatedData || accumulatedData.length === 0) {
                     $scope.scannedTextError = true;
                     return;
                 }
                 const decoder = new TextDecoder("windows-1256");
-                $scope.natText = str2ab($scope.natText);
-                $scope.natText = $scope.natText && decoder.decode($scope.natText);
-                var splitted = $scope.natText && $scope.natText.split('#');
+                accumulatedData = str2ab(accumulatedData);
+                accumulatedData = accumulatedData && decoder.decode(accumulatedData);
+                var splitted = accumulatedData && accumulatedData.split('#');
                 if (splitted && splitted.length > 0) {
                     if (splitted.length === 1) {
                         $scope.natData.natId = splitted[0].trim();
@@ -307,11 +318,6 @@ angular.module('bahmni.registration')
                         $scope.natData.motherName = splitted.length > 3 && splitted[3].trim();
                         $scope.natData.birth = splitted.length > 4 && splitted[4].trim();
                         $scope.natData.natId = splitted.length > 5 && splitted[5].trim();
-                    }
-                    if ($scope.natData.natId) {
-                        performAddPatientDetails();
-                    } else {
-                        $scope.scannedTextError = true;
                     }
                 }
             };
