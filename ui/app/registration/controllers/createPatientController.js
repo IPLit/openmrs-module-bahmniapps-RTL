@@ -181,26 +181,37 @@ angular.module('bahmni.registration')
             };
 
             $scope.create = function () {
-                addNewRelationships();
-                var errorMessages = Bahmni.Common.Util.ValidationUtil.validate($scope.patient, $scope.patientConfiguration.attributeTypes);
-                if (errorMessages.length > 0) {
-                    errorMessages.forEach(function (errorMessage) {
-                        messagingService.showMessage('error', errorMessage);
-                    });
-                    return $q.when({});
-                }
-                return spinner.forPromise(createPromise()).then(function (response) {
-                    if (errorMessage) {
-                        messagingService.showMessage("error", errorMessage);
-                        errorMessage = undefined;
-                    } else {
-                        if ($rootScope.registrationSMSToggle == "true" && ($scope.patient.phoneNumber != undefined)) {
-                            var name = $scope.patient.givenName + " " + $scope.patient.familyName;
-                            var message = patientService.getRegistrationMessage(patientId, name, $scope.patient.age.years, $scope.patient.gender);
-                            smsService.sendSMS($scope.patient.phoneNumber, message);
-                        }
+                if ($scope.patient.extraIdentifiers && $scope.patient.extraIdentifiers[0]) {
+                    patientService.search(undefined, $scope.patient.extraIdentifiers[0].identifier, undefined, undefined, undefined,
+                        0, undefined, undefined, undefined, undefined, undefined, true).then(function (data) {
+                            if (data.pageOfResults.length > 0) {
+                                var errorMessage = $translate.instant("PATIENT_EXISTS", {natID: $scope.patient.extraIdentifiers[0].identifier});
+                                messagingService.showMessage('error', errorMessage);
+                                return;
+                            }
+                        });
+                } else {
+                    addNewRelationships();
+                    var errorMessages = Bahmni.Common.Util.ValidationUtil.validate($scope.patient, $scope.patientConfiguration.attributeTypes);
+                    if (errorMessages.length > 0) {
+                        errorMessages.forEach(function (errorMessage) {
+                            messagingService.showMessage('error', errorMessage);
+                        });
+                        return $q.when({});
                     }
-                });
+                    return spinner.forPromise(createPromise()).then(function (response) {
+                        if (errorMessage) {
+                            messagingService.showMessage("error", errorMessage);
+                            errorMessage = undefined;
+                        } else {
+                            if ($rootScope.registrationSMSToggle == "true" && ($scope.patient.phoneNumber != undefined)) {
+                                var name = $scope.patient.givenName + " " + $scope.patient.familyName;
+                                var message = patientService.getRegistrationMessage(patientId, name, $scope.patient.age.years, $scope.patient.gender);
+                                smsService.sendSMS($scope.patient.phoneNumber, message);
+                            }
+                        }
+                    });
+                }
             };
 
             $scope.afterSave = function () {
@@ -268,7 +279,8 @@ angular.module('bahmni.registration')
                                0, undefined, undefined, undefined, undefined,
                                undefined, true).then(function (data) {
                                    if (data.pageOfResults.length > 0) {
-                                       messagingService.showMessage('error', "Patient Already Exists");
+                                       var errorMessage = $translate.instant("PATIENT_EXISTS", {natID: $scope.patient.extraIdentifiers[0].identifier});
+                                       messagingService.showMessage('error', errorMessage);
                                    } else {
                                        performAddPatientDetails();
                                    }
