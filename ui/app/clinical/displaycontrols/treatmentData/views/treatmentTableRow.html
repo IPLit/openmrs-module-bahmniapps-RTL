@@ -38,13 +38,46 @@
 <tr ng-if="::drugOrder.additionalInstructions" ng-class="::{'has-test-notes': drugOrder.additionalInstructions}">
     <td colspan="4" class="notes test-notes">
         <i class="fa fa-comments left"></i>
-        <pre class="left">{{::drugOrder.additionalInstructions}}</pre>
+        <pre class="left">{{::drugOrder.additionalInstructions | translate}}</pre>
         <div class="footer-note right">
             <span class="provider" ng-if="::params.showProvider">
                 <provider-directive creator-name="{{::drugOrder.creatorName}}" provider-name="{{::drugOrder.provider.name}}" provider-date="::drugOrder.effectiveStartDate"></provider-directive>
             </span>
         </div>
     </td>
+</tr>
+<tr ng-if="::drugOrder.instructions" ng-class="::{'has-test-notes': drugOrder.instructions}">
+    <td colspan="4" class="notes test-notes">
+        <i class="fa fa-comments left"></i>
+        <pre class="left">{{::drugOrder.instructions | translate}}</pre>
+        <div class="footer-note right">
+            <span class="provider" ng-if="::params.showProvider">
+                <provider-directive creator-name="{{::drugOrder.creatorName}}" provider-name="{{::drugOrder.provider.name}}" provider-date="::drugOrder.effectiveStartDate"></provider-directive>
+            </span>
+        </div>
+    </td>
+</tr>
+<tr ng-if="::drugOrder.orderReasonConcept.shortName" ng-class="::{'has-test-notes': drugOrder.orderReasonConcept.shortName}">
+    <td colspan="4" class="notes test-notes">
+        <i class="fa fa-comments left"></i>
+        <pre class="left">{{::drugOrder.orderReasonConcept.shortName | translate}}</pre>
+        <div class="footer-note right">
+            <span class="provider" ng-if="::params.showProvider">
+                <provider-directive creator-name="{{::drugOrder.creatorName}}" provider-name="{{::drugOrder.provider.name}}" provider-date="::drugOrder.effectiveStartDate"></provider-directive>
+            </span>
+        </div>
+    </td>
+</tr>
+<tr ng-if="::drugOrder.orderReasonText" ng-class="::{'has-test-notes': drugOrder.orderReasonText}">
+    <td colspan="4" class="notes test-notes">
+        <i class="fa fa-comments left"></i>
+        <pre class="left">{{::drugOrder.orderReasonText | translate}}</pre>
+        <div class="footer-note right">
+            <span class="provider" ng-if="::params.showProvider">
+                <provider-directive creator-name="{{::drugOrder.creatorName}}" provider-name="{{::drugOrder.provider.name}}" provider-date="::drugOrder.effectiveStartDate"></provider-directive>
+            </span>
+        </div>
+    </td>    
 </tr>
 <tr bm-show="drugOrder.showDetails" ng-if="::(!drugOrder.additionalInstructions && !params.hideVisitDate)">
     <td colspan="4" class="notes inline-notes">
