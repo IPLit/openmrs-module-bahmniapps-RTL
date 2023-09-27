@@ -474,6 +474,10 @@
     "Other Active DrugOrders" : "طلبات الأدوية النشطة الأخرى",
     "Program_State_Info" : "معلومات عن حالة البرنامج العلاجي",
     "VISIT_TITLE_LAB_ORDERS_KEY" : "طلبات الأدوية النشطة الأخرى",
-    "DASHBOARD_TITLE_PRESCRIPTIONS_KEY" : "الوصفات الطبية"
+    "DASHBOARD_TITLE_PRESCRIPTIONS_KEY" : "الوصفات الطبية",
+    "encounters": "المعاينات",
+    "malaria":"الملاريا",
+    "No images to display": "لا يوجد صور أو ملفات لعرضها",
+    "Allergic Reaction": "رد فعل تحسسي"
 
 }
