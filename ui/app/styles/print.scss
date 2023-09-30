@@ -194,6 +194,16 @@ h3 {
     }
   }
 
+  #printrow #fromPrint {
+    float: right;
+  }
+  #printrow #fromtext {
+    float: left;
+  }
+  #printrow #fromtext h2 {
+    text-align: left;
+  }
+
   .print-header {
     text-align: center;
     color: $black;
