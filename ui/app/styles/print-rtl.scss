@@ -224,6 +224,16 @@ h3 {
     color: $black;
     margin-bottom: 20px;
 
+  #printrow #fromPrint {
+  float: left;
+  }
+  #printrow #fromtext {
+  float: right;
+  }
+  #printrow #fromtext h2 {
+  text-align: right;
+  }
+    
     .logo {
       width: 35px;
       vertical-align: middle;
