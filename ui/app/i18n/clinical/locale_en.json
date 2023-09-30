@@ -373,5 +373,11 @@
     "you_want_to_delete_program": "You want to delete a program",
     "Are_you_sure?": ", are you sure?",
     "VISIT_TITLE_LAB_ORDERS_KEY": "Lab Results",
-    "DASHBOARD_TITLE_PRESCRIPTIONS_KEY": "Prescriptions"
+    "DASHBOARD_TITLE_PRESCRIPTIONS_KEY": "Prescriptions",
+    "HOSPITAL_NAME_ADRESS":"Syrian Arab Republic",
+    "HOSPITAL_NAME_ADRES1":"Ministry of Higher Education and Scientific Research",
+    "HOSPITAL_NAME":"Tishreen University Hospital in Lattakia",
+    "HOSPITAL_NAME_LOCATION":"Latakia, Syria - 0412400250",
+    "HOSPITAL_NAME_WEBSITE":"http://www.tishreen-uhl.edu.sy",
+    "HOSPITAL_NAME_EMAIL":"info@tishreen.edu.sy"
 }
