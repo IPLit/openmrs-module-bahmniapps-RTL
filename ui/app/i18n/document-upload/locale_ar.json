@@ -38,6 +38,7 @@
     "Special OPD" : "قسم العيادات الخارجية الخاصة",
     "EMERGENCY" : "الإسعاف",
     "PHARMACY VISIT" : "زيارة للصيدلية",
-    "LAB VISIT" : "زيارة للمخبر"
+    "LAB VISIT" : "زيارة للمخبر",
+    "Document Upload" : "إضافة الملفات والفحوص"
 
 }
