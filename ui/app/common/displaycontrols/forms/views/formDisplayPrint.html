@@ -4,6 +4,24 @@
     <link rel="stylesheet" href="../styles/clinicalPrint-rtl.css" media="print" ng-if="userLanguageDirRtl"/>
 </head>
 <body>
+    <div class="section">
+     <div class="print-wrapper print-patient-summary" id="printrow">
+        <div class="print-header"   id="fromPrint">
+            <img src="/bahmni_config/openmrs/apps/registration/registrationCardLayout/images/Syrialogo.png" style="width: 40mm; height: 40mm;"/> 
+        </div>
+        <div  class="print-header"  id="fromtext">
+             <h2> 
+                {{"HOSPITAL_NAME_ADRESS" |translate}}<br>{{"HOSPITAL_NAME_ADRES1" |translate}}<br>{{"HOSPITAL_NAME" |translate}}<br>
+                {{"HOSPITAL_NAME_LOCATION" |translate}}<br>{{"HOSPITAL_NAME_WEBSITE" |translate}}<br>{{"HOSPITAL_NAME_EMAIL" |translate}}
+             </h2>      
+        </div>
+    </div>   
+</div>   
+<div class="patientInformation" class="section" style="margin:0px !important;padding:0px 0px !important; clear:both;">
+            <section class="block dashboard-section" >
+             <ng-include src="'common/views/patientInfoPrint.html'"></ng-include>
+            </section>   
+</div>   
 <h2  class="section-title">{{::title | translate}}</h2>
 <div ng-repeat="observationGroup in observationsForSelectedForm">
     <table>
