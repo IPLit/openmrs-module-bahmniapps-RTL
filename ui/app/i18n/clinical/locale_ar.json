@@ -478,6 +478,12 @@
     "encounters": "المعاينات",
     "malaria":"الملاريا",
     "No images to display": "لا يوجد صور أو ملفات لعرضها",
-    "Allergic Reaction": "رد فعل تحسسي"
+    "Allergic Reaction": "رد فعل تحسسي",
+    "HOSPITAL_NAME_ADRESS":"الجمهورية العربية السورية",
+    "HOSPITAL_NAME_ADRES1":"وزارة التعليم العالي والبحث العلمي ",
+    "HOSPITAL_NAME":"مشفى تشرين الجامعي في اللاذقية",
+    "HOSPITAL_NAME_LOCATION":"اللاذقية، سوريا-٠٤١٢٤٠٠٢٥٠" ,
+    "HOSPITAL_NAME_WEBSITE":"http://www.tishreen-uhl.edu.sy",
+    "HOSPITAL_NAME_EMAIL":"info@tishreen.edu.sy"
 
 }
