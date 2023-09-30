@@ -162,7 +162,7 @@ angular.module('bahmni.common.displaycontrol.forms')
                     });
                     var observations = new Bahmni.Clinical.ObsGroupingHelper(conceptSetUiConfigService).groupObservations(allObservations);
                     var printTemplateUrl = '../common/displaycontrols/forms/views/formDisplayPrint.html';
-                    printer.print(printTemplateUrl, {observationsForSelectedForm: observations, title: data.formName});
+                    printer.print(printTemplateUrl, {observationsForSelectedForm: observations, title: data.formName, patient: $scope.patient, visitDate: data.encounterDateTime, currentDate: new Date()});
                 });
             };
 
