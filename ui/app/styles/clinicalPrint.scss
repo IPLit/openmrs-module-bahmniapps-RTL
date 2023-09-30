@@ -6,3 +6,13 @@
 .dashboard-sections-wrapper .dashboard-sections.halfpage-container {
   width: 100%;
 }
+
+#printrow #fromPrint  {
+  float: right;
+}
+#printrow #fromtext {
+  float: left;
+}
+#printrow #fromtext h2{
+  text-align: left;
+}
