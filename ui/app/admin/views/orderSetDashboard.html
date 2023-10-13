@@ -1,14 +1,14 @@
 <section class="block section-grid orderSet-dashboard-container">
     <div class="clearfix section-title-wrapper">
-        <h2 class="section-title fl">Order Set</h2>
-        <button class="fr small-btn grid-row-element orderSet-Create" ng-click="createOrEditOrderSet()"> Create New</button>
+        <h2 class="section-title fl">{{'Order Set' | translate}}</h2>
+        <button class="fr small-btn grid-row-element orderSet-Create" ng-click="createOrEditOrderSet()"> {{'Create New' | translate}}</button>
 
     </div>
 
     <table class="">
         <tr>
-            <th><strong>Name</strong></th>
-            <th><strong>Action</strong></th>
+            <th><strong>{{'Name' | translate}}</strong></th>
+            <th><strong>{{'Action' | translate}}</strong></th>
         </tr>
         <tr ng-repeat="orderSet in orderSets">
            <td><a ng-click="createOrEditOrderSet(orderSet.uuid);">{{orderSet.name}}</a></td>
