@@ -17,5 +17,9 @@
     "FILTER_BUTTON_LABEL": "تصفية",
     "AUDIT_LOG_TABLE_HEADER_LABEL": "فحص سجل الأحداث",
     "NO_NAVIGATION_LINKS_AVAILABLE_MESSAGE": "لا يوجد روابط تنقّل متاحة",
-    "SELECT_VALUE_FROM_AUTOCOMPLETE_DEFAULT_MESSAGE": "من فضلك قم بالاختيار من قائمة الإكمال التلقائي"
+    "SELECT_VALUE_FROM_AUTOCOMPLETE_DEFAULT_MESSAGE": "من فضلك قم بالاختيار من قائمة الإكمال التلقائي",
+    "Order Set":"مجموعة طلبات",
+	"Create New": "إنشاء جديد",
+	"Name": "الاسم",
+	"Action": "إجراء"
 }
