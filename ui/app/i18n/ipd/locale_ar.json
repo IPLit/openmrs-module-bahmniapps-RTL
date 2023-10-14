@@ -92,5 +92,8 @@
     "Diagnosis Order":"ترتيب التشخيص",
     "Diagnosis Status":"حالة التشخيص",
     "Diagnosis Provider":"الطبيب المشخّص",
-    "Diagnosis Datetime":"تاريخ التشخيص"
+    "Diagnosis Datetime":"تاريخ التشخيص",
+    "IPD": "إدارة الجناح",
+    "OCCUPIED": "مشغول",
+    "AVAILABLE": "متاح",
 }
