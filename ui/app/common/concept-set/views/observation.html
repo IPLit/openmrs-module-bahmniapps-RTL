@@ -234,7 +234,7 @@
                                accept=".mkv,.flv,.ogg,video/*,audio/3gpp" capture="camera" ng-model="observation.value" image-upload file-type="'video'"
                                patient-uuid="::patient.uuid" tabindex="1">
                         <label class="placeholder" for="file-browse-{{observation.uniqueId}}"
-                               ng-hide="observation.value">Upload Video</label>
+                               ng-hide="observation.value">{{'Upload Video' | translate}}</label>
 
                         <div ng-if="observation.value" class="fl">
                             <video class="video" controls preload="metadata" ng-class="{'disable': observation.voided}">
