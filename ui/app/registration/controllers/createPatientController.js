@@ -187,10 +187,10 @@ angular.module('bahmni.registration')
                             if (data.pageOfResults.length > 0) {
                                 var errorMessage = $translate.instant("PATIENT_EXISTS", {natID: $scope.patient.extraIdentifiers[0].identifier});
                                 messagingService.showMessage('error', errorMessage);
-                                return;
+                                return $q.when({});
                             }
                         });
-                } else {
+                }
                     addNewRelationships();
                     var errorMessages = Bahmni.Common.Util.ValidationUtil.validate($scope.patient, $scope.patientConfiguration.attributeTypes);
                     if (errorMessages.length > 0) {
@@ -211,7 +211,6 @@ angular.module('bahmni.registration')
                             }
                         }
                     });
-                }
             };
 
             $scope.afterSave = function () {
