@@ -192,15 +192,15 @@ angular.module('bahmni.registration')
                         });
                 }
                 // else {
-                    addNewRelationships();
-                    var errorMessages = Bahmni.Common.Util.ValidationUtil.validate($scope.patient, $scope.patientConfiguration.attributeTypes);
-                    if (errorMessages.length > 0) {
+                addNewRelationships();
+                var errorMessages = Bahmni.Common.Util.ValidationUtil.validate($scope.patient, $scope.patientConfiguration.attributeTypes);
+                if (errorMessages.length > 0) {
                         errorMessages.forEach(function (errorMessage) {
                             messagingService.showMessage('error', errorMessage);
                         });
                         return $q.when({});
                     }
-                    return spinner.forPromise(createPromise()).then(function (response) {
+                return spinner.forPromise(createPromise()).then(function (response) {
                         if (errorMessage) {
                             messagingService.showMessage("error", errorMessage);
                             errorMessage = undefined;
