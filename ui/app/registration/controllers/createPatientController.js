@@ -190,7 +190,8 @@ angular.module('bahmni.registration')
                                 return $q.when({});
                             }
                         });
-                }
+                } 
+                // else {
                     addNewRelationships();
                     var errorMessages = Bahmni.Common.Util.ValidationUtil.validate($scope.patient, $scope.patientConfiguration.attributeTypes);
                     if (errorMessages.length > 0) {
@@ -211,6 +212,7 @@ angular.module('bahmni.registration')
                             }
                         }
                     });
+                // }
             };
 
             $scope.afterSave = function () {
