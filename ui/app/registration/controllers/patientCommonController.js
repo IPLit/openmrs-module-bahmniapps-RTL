@@ -439,9 +439,9 @@ angular.module('bahmni.registration')
                        });
                    }
                }
-           };
+            };
 
-           async function requestSerialPermission () {
+            async function requestSerialPermission () {
                try {
                    const port = await navigator.serial.requestPort();
                    if (port !== undefined) {
@@ -452,13 +452,13 @@ angular.module('bahmni.registration')
                } catch (error) {
                    console.log('Error requesting serial permission:', error);
                }
-           }
+            }
 
-           $scope.getToday = function () {
+            $scope.getToday = function () {
                return new Date().toISOString().split('T')[0];
-           };
+            };
 
-           $scope.onIsEmergency = function () {
+            $scope.onIsEmergency = function () {
                if ($scope.patient.isEmergency) {
                    $scope.patient.givenName = $translate.instant(Bahmni.Registration.Constants.emergencyGivenDummyText);
                    $scope.patient.middleName = $translate.instant(Bahmni.Registration.Constants.emergencyMiddleDummyText);
@@ -468,8 +468,7 @@ angular.module('bahmni.registration')
                    $scope.patient.address.stateProvince = 'حلب';
                    $scope.patient.birthdate = moment('01-01-1999', 'DD-MM-YYYY').locale('ar').toDate();
                    $scope.patient.calculateAge();
-               }
-               else {
+               } else {
                    $scope.patient.givenName = '';
                    $scope.patient.middleName = '';
                    $scope.patient.familyName = '';
@@ -479,9 +478,9 @@ angular.module('bahmni.registration')
                    $scope.patient.birthdate = new Date();
                    $scope.patient.calculateAge();
                }
-           };
+            };
 
-           var verifyNat = async function () {
+            var verifyNat = async function () {
                const textDecoder = new TextDecoder('ascii'); // Use UTF-8 encoding for Arabic characters
                var accumulatedData = '';
                const reader = $scope.selectedPort.readable.getReader();
@@ -493,65 +492,64 @@ angular.module('bahmni.registration')
                    const decodedData = textDecoder.decode(value);
                    accumulatedData += decodedData; // Append the decoded data to the accumulated data
                    $scope.scanComplete = true;
-                   $timeout(function() {
+                   $timeout(function () {
                        performVerifyNatText();
                        $scope.natText = accumulatedData;
                        accumulatedData = '';
                    }, 1000);
                }
-           };
+            };
 
-           var performAddPatientDetails = function () {
-               var DateUtil = Bahmni.Common.Util.DateUtil;
-               $scope.patient.givenName = $scope.natData.firstName;
-               $scope.patient.familyName = $scope.natData.lastName;
-               $scope.patient.middleName = $scope.natData.middleName;
-               $scope.patient.primaryRelative = $scope.natData.motherName;
-               $scope.patient.birthdate = moment($scope.natData.birth, "DD-MM-YYYY").toDate();
-               var age = DateUtil.diffInYearsMonthsDays($scope.patient.birthdate, DateUtil.now());
-               $scope.patient.age.years = age.years;
-               $scope.patient.age.months = age.months;
-               $scope.patient.age.days = age.days;
-               $scope.patient.extraIdentifiers[0].identifier = $scope.natData.natId;
-               $scope.patient.extraIdentifiers[0].registrationNumber = $scope.natData.natId;
-               $scope.patient.extraIdentifiers[0].hasOldIdentifier = true;
-           };
+            var performAddPatientDetails = function () {
+                var DateUtil = Bahmni.Common.Util.DateUtil;
+                $scope.patient.givenName = $scope.natData.firstName;
+                $scope.patient.familyName = $scope.natData.lastName;
+                $scope.patient.middleName = $scope.natData.middleName;
+                $scope.patient.primaryRelative = $scope.natData.motherName;
+                $scope.patient.birthdate = moment($scope.natData.birth, "DD-MM-YYYY").toDate();
+                var age = DateUtil.diffInYearsMonthsDays($scope.patient.birthdate, DateUtil.now());
+                $scope.patient.age.years = age.years;
+                $scope.patient.age.months = age.months;
+                $scope.patient.age.days = age.days;
+                $scope.patient.extraIdentifiers[0].identifier = $scope.natData.natId;
+                $scope.patient.extraIdentifiers[0].registrationNumber = $scope.natData.natId;
+                $scope.patient.extraIdentifiers[0].hasOldIdentifier = true;
+            };
 
             var performVerifyNatText = function () {
-               $scope.natData = {};
-               if (!$scope.natText || $scope.natText.length === 0) {
+                $scope.natData = {};
+                if (!$scope.natText || $scope.natText.length === 0) {
                    $scope.scannedTextError = true;
                    return;
-               }
-               const decoder = new TextDecoder("windows-1256");
-               $scope.natText = str2ab($scope.natText);
-               $scope.natText = $scope.natText && decoder.decode($scope.natText);
-               var splitted = $scope.natText && $scope.natText.split('#');
-               if (splitted && splitted.length > 0) {
-                   if (splitted.length === 1) {
-                       $scope.natData.natId = splitted[0].trim();
-                   } else {
-                       $scope.natData.firstName = splitted.length > 0 && splitted[0].trim();
-                       $scope.natData.lastName = splitted.length > 1 && splitted[1].trim();
-                       $scope.natData.middleName = splitted.length > 2 && splitted[2].trim();
-                       $scope.natData.motherName = splitted.length > 3 && splitted[3].trim();
-                       $scope.natData.birth = splitted.length > 4 && splitted[4].trim();
-                       $scope.natData.natId = splitted.length > 5 && splitted[5].trim();
-                   }
-                   if ($scope.natData.natId) {
-                       performAddPatientDetails();
-                   } else {
-                       $scope.scannedTextError = true;
-                   }
-               }
-           };
+                }
+                const decoder = new TextDecoder("windows-1256");
+                $scope.natText = str2ab($scope.natText);
+                $scope.natText = $scope.natText && decoder.decode($scope.natText);
+                var splitted = $scope.natText && $scope.natText.split('#');
+                if (splitted && splitted.length > 0) {
+                    if (splitted.length === 1) {
+                        $scope.natData.natId = splitted[0].trim();
+                    } else {
+                        $scope.natData.firstName = splitted.length > 0 && splitted[0].trim();
+                        $scope.natData.lastName = splitted.length > 1 && splitted[1].trim();
+                        $scope.natData.middleName = splitted.length > 2 && splitted[2].trim();
+                        $scope.natData.motherName = splitted.length > 3 && splitted[3].trim();
+                        $scope.natData.birth = splitted.length > 4 && splitted[4].trim();
+                        $scope.natData.natId = splitted.length > 5 && splitted[5].trim();
+                    }
+                    if ($scope.natData.natId) {
+                        performAddPatientDetails();
+                    } else {
+                        $scope.scannedTextError = true;
+                    }
+                }
+            };
 
-           var str2ab = function (str) {
-               var bufView = new Uint8Array(str.length);
-               for (var i = str.length; i >= 0; i--) {
-                   bufView[i] = str.charCodeAt(i);
-               }
-               return bufView;
-           };
-
+            var str2ab = function (str) {
+                var bufView = new Uint8Array(str.length);
+                for (var i = str.length; i >= 0; i--) {
+                    bufView[i] = str.charCodeAt(i);
+                }
+                return bufView;
+            };
         }]);
