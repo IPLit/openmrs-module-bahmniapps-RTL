@@ -191,26 +191,26 @@ angular.module('bahmni.registration')
                             }
                         });
                 }
-                    addNewRelationships();
-                    var errorMessages = Bahmni.Common.Util.ValidationUtil.validate($scope.patient, $scope.patientConfiguration.attributeTypes);
-                    if (errorMessages.length > 0) {
-                        errorMessages.forEach(function (errorMessage) {
-                            messagingService.showMessage('error', errorMessage);
-                        });
-                        return $q.when({});
-                    }
-                    return spinner.forPromise(createPromise()).then(function (response) {
-                        if (errorMessage) {
-                            messagingService.showMessage("error", errorMessage);
-                            errorMessage = undefined;
-                        } else {
-                            if ($rootScope.registrationSMSToggle == "true" && ($scope.patient.phoneNumber != undefined)) {
-                                var name = $scope.patient.givenName + " " + $scope.patient.familyName;
-                                var message = patientService.getRegistrationMessage(patientId, name, $scope.patient.age.years, $scope.patient.gender);
-                                smsService.sendSMS($scope.patient.phoneNumber, message);
-                            }
-                        }
+                addNewRelationships();
+                var errorMessages = Bahmni.Common.Util.ValidationUtil.validate($scope.patient, $scope.patientConfiguration.attributeTypes);
+                if (errorMessages.length > 0) {
+                    errorMessages.forEach(function (errorMessage) {
+                        messagingService.showMessage('error', errorMessage);
                     });
+                    return $q.when({});
+                }
+                return spinner.forPromise(createPromise()).then(function (response) {
+                    if (errorMessage) {
+                        messagingService.showMessage("error", errorMessage);
+                        errorMessage = undefined;
+                    } else {
+                        if ($rootScope.registrationSMSToggle == "true" && ($scope.patient.phoneNumber != undefined)) {
+                            var name = $scope.patient.givenName + " " + $scope.patient.familyName;
+                            var message = patientService.getRegistrationMessage(patientId, name, $scope.patient.age.years, $scope.patient.gender);
+                            smsService.sendSMS($scope.patient.phoneNumber, message);
+                        }
+                    }
+                });
             };
 
             $scope.afterSave = function () {
