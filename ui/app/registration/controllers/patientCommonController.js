@@ -415,89 +415,89 @@ angular.module('bahmni.registration')
                 return ($scope.patient.causeOfDeath || $scope.patient.deathDate) && $scope.patient.dead;
             };
 
-           $scope.openNatVerifyPopup = async function () {
-               const baudRate = 9600; // Replace with the baud rate used by your USB CDC scanner
-               const storedPermission = localStorage.getItem('serialPermission');
-               if (storedPermission === 'granted') {
-                   const ports = await navigator.serial.getPorts();
-                   if (ports.length === 0) {
-                       await requestSerialPermission();
-                   } else {
-                       $scope.selectedPort = ports[0];
-                   }
-               } else {
-                   await requestSerialPermission();
-               }
+            $scope.openNatVerifyPopup = async function () {
+                const baudRate = 9600; // Replace with the baud rate used by your USB CDC scanner
+                const storedPermission = localStorage.getItem('serialPermission');
+                if (storedPermission === 'granted') {
+                    const ports = await navigator.serial.getPorts();
+                    if (ports.length === 0) {
+                        await requestSerialPermission();
+                    } else {
+                        $scope.selectedPort = ports[0];
+                    }
+                } else {
+                    await requestSerialPermission();
+                }
 
-               if ($scope.portOpen) {
-                   verifyNat();
-               } else {
-                   if ($scope.selectedPort !== undefined) {
-                       $scope.selectedPort.open({ baudRate }).then(function () {
-                           $scope.portOpen = true;
-                           verifyNat();
-                       });
-                   }
-               }
+                if ($scope.portOpen) {
+                    verifyNat();
+                } else {
+                    if ($scope.selectedPort !== undefined) {
+                        $scope.selectedPort.open({ baudRate }).then(function () {
+                            $scope.portOpen = true;
+                            verifyNat();
+                        });
+                    }
+                }
             };
 
             async function requestSerialPermission () {
-               try {
-                   const port = await navigator.serial.requestPort();
-                   if (port !== undefined) {
-                       localStorage.setItem('serialPermission', 'granted');
-                       $scope.selectedPort = port;
-                       $rootScope.selectedPort = port;
-                   }
-               } catch (error) {
-                   console.log('Error requesting serial permission:', error);
-               }
+                try {
+                    const port = await navigator.serial.requestPort();
+                    if (port !== undefined) {
+                        localStorage.setItem('serialPermission', 'granted');
+                        $scope.selectedPort = port;
+                        $rootScope.selectedPort = port;
+                    }
+                } catch (error) {
+                    console.log('Error requesting serial permission:', error);
+                }
             }
 
             $scope.getToday = function () {
-               return new Date().toISOString().split('T')[0];
+                return new Date().toISOString().split('T')[0];
             };
 
             $scope.onIsEmergency = function () {
-               if ($scope.patient.isEmergency) {
-                   $scope.patient.givenName = $translate.instant(Bahmni.Registration.Constants.emergencyGivenDummyText);
-                   $scope.patient.middleName = $translate.instant(Bahmni.Registration.Constants.emergencyMiddleDummyText);
-                   $scope.patient.familyName = $translate.instant(Bahmni.Registration.Constants.emergencyLastDummyText);
-                   $scope.patient.primaryRelative = $translate.instant(Bahmni.Registration.Constants.emergencyMotherDummyText);
-                   $scope.patient.address.cityVillage = 'حلب';
-                   $scope.patient.address.stateProvince = 'حلب';
-                   $scope.patient.birthdate = moment('01-01-1999', 'DD-MM-YYYY').locale('ar').toDate();
-                   $scope.patient.calculateAge();
-               } else {
-                   $scope.patient.givenName = '';
-                   $scope.patient.middleName = '';
-                   $scope.patient.familyName = '';
-                   $scope.patient.primaryRelative = '';
-                   $scope.patient.address.cityVillage = '';
-                   $scope.patient.address.stateProvince = '';
-                   $scope.patient.birthdate = new Date();
-                   $scope.patient.calculateAge();
-               }
+                if ($scope.patient.isEmergency) {
+                    $scope.patient.givenName = $translate.instant(Bahmni.Registration.Constants.emergencyGivenDummyText);
+                    $scope.patient.middleName = $translate.instant(Bahmni.Registration.Constants.emergencyMiddleDummyText);
+                    $scope.patient.familyName = $translate.instant(Bahmni.Registration.Constants.emergencyLastDummyText);
+                    $scope.patient.primaryRelative = $translate.instant(Bahmni.Registration.Constants.emergencyMotherDummyText);
+                    $scope.patient.address.cityVillage = 'حلب';
+                    $scope.patient.address.stateProvince = 'حلب';
+                    $scope.patient.birthdate = moment('01-01-1999', 'DD-MM-YYYY').locale('ar').toDate();
+                    $scope.patient.calculateAge();
+                } else {
+                    $scope.patient.givenName = '';
+                    $scope.patient.middleName = '';
+                    $scope.patient.familyName = '';
+                    $scope.patient.primaryRelative = '';
+                    $scope.patient.address.cityVillage = '';
+                    $scope.patient.address.stateProvince = '';
+                    $scope.patient.birthdate = new Date();
+                    $scope.patient.calculateAge();
+                }
             };
 
             var verifyNat = async function () {
-               const textDecoder = new TextDecoder('ascii'); // Use UTF-8 encoding for Arabic characters
-               var accumulatedData = '';
-               const reader = $scope.selectedPort.readable.getReader();
-               while (true) {
-                   const { value, done } = await reader.read();
-                   if (done) {
-                       break;
-                   }
-                   const decodedData = textDecoder.decode(value);
-                   accumulatedData += decodedData; // Append the decoded data to the accumulated data
-                   $scope.scanComplete = true;
-                   $timeout(function () {
-                       performVerifyNatText();
-                       $scope.natText = accumulatedData;
-                       accumulatedData = '';
-                   }, 1000);
-               }
+                const textDecoder = new TextDecoder('ascii'); // Use UTF-8 encoding for Arabic characters
+                var accumulatedData = '';
+                const reader = $scope.selectedPort.readable.getReader();
+                while (true) {
+                    const { value, done } = await reader.read();
+                    if (done) {
+                        break;
+                    }
+                    const decodedData = textDecoder.decode(value);
+                    accumulatedData += decodedData; // Append the decoded data to the accumulated data
+                    $scope.scanComplete = true;
+                    $timeout(function () {
+                        performVerifyNatText();
+                        $scope.natText = accumulatedData;
+                        accumulatedData = '';
+                    }, 1000);
+                }
             };
 
             var performAddPatientDetails = function () {
@@ -519,8 +519,8 @@ angular.module('bahmni.registration')
             var performVerifyNatText = function () {
                 $scope.natData = {};
                 if (!$scope.natText || $scope.natText.length === 0) {
-                   $scope.scannedTextError = true;
-                   return;
+                    $scope.scannedTextError = true;
+                    return;
                 }
                 const decoder = new TextDecoder("windows-1256");
                 $scope.natText = str2ab($scope.natText);
