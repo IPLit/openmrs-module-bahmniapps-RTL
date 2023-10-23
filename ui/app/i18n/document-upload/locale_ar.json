@@ -39,6 +39,8 @@
     "EMERGENCY" : "الإسعاف",
     "PHARMACY VISIT" : "زيارة للصيدلية",
     "LAB VISIT" : "زيارة للمخبر",
-    "Document Upload" : "إضافة الملفات والفحوص"
+    "Document Upload" : "إضافة الملفات والفحوص",
+    "Male": "ذكر",
+    "Female": "أنثى"
 
 }
