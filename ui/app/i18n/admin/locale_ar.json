@@ -19,7 +19,9 @@
     "NO_NAVIGATION_LINKS_AVAILABLE_MESSAGE": "لا يوجد روابط تنقّل متاحة",
     "SELECT_VALUE_FROM_AUTOCOMPLETE_DEFAULT_MESSAGE": "من فضلك قم بالاختيار من قائمة الإكمال التلقائي",
     "Order Set":"مجموعة طلبات",
-	"Create New": "إنشاء جديد",
-	"Name": "الاسم",
-	"Action": "إجراء"
+    "Create New": "إنشاء جديد",
+    "Name": "الاسم",
+    "Action": "إجراء",
+    "Bahmni Admin": "إدارة بامني"
+	
 }
