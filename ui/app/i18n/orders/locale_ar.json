@@ -34,5 +34,6 @@
     "SAVE_KEY":"حفظ",
     "CLINICAL_ADD_NOTES":"أضف ملاحظات",
     "SECTION_ADDED_KEY":"تمت إضافة قسم",
-    "Images":"الصور"
+    "Images":"الصور",
+    "Orders": "الطلبات"
 }
