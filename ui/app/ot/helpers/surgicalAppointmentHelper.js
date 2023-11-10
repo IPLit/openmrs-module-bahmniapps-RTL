@@ -4,6 +4,19 @@ angular.module('bahmni.ot')
     .service('surgicalAppointmentHelper', [function () {
         var stringCompressionUtil = Bahmni.Common.Util.stringCompressionUtil;
 
+        this.filterSurgeons = function (providers) {
+            return _.filter(providers, function (provider) {
+                if (provider.attributes.length > 0) {
+                    var surgeonAttr = _.find(provider.attributes, function (attr) {
+                        return attr.attributeType.display === "Surgeon";
+                    });
+                    if (surgeonAttr) {
+                        return surgeonAttr.value;
+                    }
+                }
+            });
+        };
+
         this.filterProvidersByName = function (providerNames, providers) {
             var validProviderNames = _.filter(providerNames, function (providerName) {
                 return _.find(providers, function (provider) {

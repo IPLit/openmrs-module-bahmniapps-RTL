@@ -1,19 +1,18 @@
 'use strict';
 
 angular.module('bahmni.ot')
-    .controller('surgicalBlockController', ['$scope', '$q', '$state', '$stateParams', 'spinner', 'surgicalAppointmentService', 'locationService', 'appService', 'messagingService', 'surgicalAppointmentHelper', 'surgicalBlockHelper', 'ngDialog', '$translate',
-        function ($scope, $q, $state, $stateParams, spinner, surgicalAppointmentService, locationService, appService, messagingService, surgicalAppointmentHelper, surgicalBlockHelper, ngDialog, $translate) {
+    .controller('surgicalBlockController', ['$scope', '$q', '$state', '$stateParams', 'spinner', 'surgicalAppointmentService', 'locationService', 'appService', 'messagingService', 'surgicalAppointmentHelper', 'surgicalBlockHelper', 'ngDialog', '$translate', '$rootScope',
+        function ($scope, $q, $state, $stateParams, spinner, surgicalAppointmentService, locationService, appService, messagingService, surgicalAppointmentHelper, surgicalBlockHelper, ngDialog, $translate, $rootScope) {
             var init = function () {
                 $scope.surgicalForm = {
                     surgicalAppointments: []
                 };
                 $scope.configuredSurgeryAttributeNames = appService.getAppDescriptor().getConfigValue("surgeryAttributes");
                 $scope.defaultAttributeTranslations = surgicalAppointmentHelper.getDefaultAttributeTranslations();
-                var providerNamesFromConfig = appService.getAppDescriptor().getConfigValue("primarySurgeonsForOT");
-                return $q.all([surgicalAppointmentService.getSurgeons(), locationService.getAllByTag("Operation Theater"), surgicalAppointmentService.getSurgicalAppointmentAttributeTypes()]).then(function (response) {
-                    $scope.surgeons = surgicalAppointmentHelper.filterProvidersByName(providerNamesFromConfig, response[0].data.results);
-                    $scope.locations = response[1].data.results;
-                    $scope.attributeTypes = response[2].data.results;
+                return $q.all([locationService.getAllByTag("Operation Theater"), surgicalAppointmentService.getSurgicalAppointmentAttributeTypes()]).then(function (response) {
+                    $scope.locations = response[0].data.results;
+                    $scope.attributeTypes = response[1].data.results;
+                    $scope.surgeons = _.cloneDeep($rootScope.surgeons);
                     if ($stateParams.surgicalBlockUuid) {
                         return surgicalAppointmentService.getSurgicalBlockFor($stateParams.surgicalBlockUuid).then(function (response) {
                             $scope.surgicalForm = new Bahmni.OT.SurgicalBlockMapper().map(response.data, $scope.attributeTypes, $scope.surgeons);
