@@ -107,10 +107,11 @@ html {
   line-height: 1;
 }
 
-.form-builder-canvas .Select-control, .form-builder-row .Select-control {
-  width: 197px;
-  height: 25px;
-  left: 290px;
+.form-builder-canvas .obs-control-select-wrapper, .form-builder-row .obs-control-select-wrapper {
+  display: inline-block !important;
+  box-sizing: border-box;
+  float: none !important;
+  margin-right: 10px;
 }
 
 .complex-component .image-upload .placeholder {
