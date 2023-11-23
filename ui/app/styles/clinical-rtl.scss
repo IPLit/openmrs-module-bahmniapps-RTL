@@ -68,3 +68,81 @@ html {
 
 @import "bedmanagement-rtl/bedmanagement";
 @import "bedmanagement-rtl/wardLayout";
+
+.form-builder-row .form-builder-column-wrapper .form-builder-column .form-field-wrap .form-builder-comment-toggle {
+  right: initial !important;
+  left: 0 !important;
+} 
+
+.form-control-buttons {
+  float: none !important;
+  margin-right: 10px;
+}
+
+.form-builder-row .form-builder-column-wrapper .form-builder-column .form-field-wrap input[type="date"], .form-builder-row .form-builder-column-wrapper .form-builder-column .form-field-wrap input[type="time"] {
+  float: none !important;
+}
+
+.form-builder-row .form-builder-column-wrapper .form-builder-column .form-field-wrap .obs-control-field textarea {
+  width: 70%;
+  float: none !important;
+}
+
+.form-builder-row .form-builder-column-wrapper .form-builder-column legend {
+  padding: 2px 10px;
+  color: #666;
+  border: 1px solid #999;
+  border-radius: 20px;
+  text-transform: none;
+  font-size: 12px;
+  background: #FFF;
+  position: absolute;
+  top: -11px;
+  right: 10px;
+  left: initial !important;
+}
+
+.form-builder-fieldset > .form-builder-clone {
+  left: 10px;
+  right: initial !important;
+  top: -14px;
+}
+
+.form-builder-row .form-builder-column-wrapper .form-builder-column .abnormal-button {
+  margin-right: 10px;
+  float: none !important;
+  line-height: 1;
+}
+
+.form-builder-canvas .obs-control-select-wrapper, .form-builder-row .obs-control-select-wrapper {
+  display: inline-block !important;
+  box-sizing: border-box;
+  float: none !important;
+  margin-right: 10px;
+}
+
+.complex-component .image-upload .placeholder {
+  width: 160px;
+  height: 160px;
+  float: right !important;
+  margin: 0;
+  text-align: center;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  padding: 0;
+  position: relative;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.video-upload .video-placeholder {
+  width: auto;
+  margin-right: 20px;
+  padding: 6px 15px;
+  background: #eee;
+  cursor: pointer;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  float: none !important;
+}
