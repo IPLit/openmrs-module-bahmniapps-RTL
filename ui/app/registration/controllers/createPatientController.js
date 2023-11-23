@@ -278,7 +278,7 @@ angular.module('bahmni.registration')
                                0, undefined, undefined, undefined, undefined,
                                undefined, true).then(function (data) {
                                    if (data.pageOfResults.length > 0) {
-                                       var errorMessage = $translate.instant("PATIENT_EXISTS", {natID: $scope.patient.extraIdentifiers[0].identifier});
+                                       var errorMessage = $translate.instant("PATIENT_EXISTS", {natID: $scope.natData.natId});
                                        messagingService.showMessage('error', errorMessage);
                                    } else {
                                        performAddPatientDetails();
