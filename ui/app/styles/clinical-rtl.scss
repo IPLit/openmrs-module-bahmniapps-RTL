@@ -99,6 +99,13 @@ html {
   position: absolute;
   top: -11px;
   right: 10px;
+  left: initial !important;
+}
+
+.form-builder-fieldset > .form-builder-clone {
+  left: 10px;
+  right: initial !important;
+  top: -14px;
 }
 
 .form-builder-row .form-builder-column-wrapper .form-builder-column .abnormal-button {
