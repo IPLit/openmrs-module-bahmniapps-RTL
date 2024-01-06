@@ -7,7 +7,7 @@
                 <label>{{'PATIENT_ID_KEY' | translate}}</label>
                 <a ng-click="goToAdtPatientDashboard()">{{ patient.identifier }}</a>
             </p>
-            <p class="patient-attributes">
+                <p class="patient-attributes">
                 <label>{{'PATIENT_NAME_KEY' | translate}}</label>
                 <a ng-click="goToAdtPatientDashboard()">{{ patient.name }}</a>
             </p>
@@ -56,15 +56,25 @@
 </div>
 <div class="right-pane">
     <div class="bed-management-header clearfix">
-        <h6>{{'ADMISSION_MASTER' | translate}}</h6>
-        <div class="bed-type-selection">
-           <button ng-repeat="option in wards"
-                    ng-click="onSelectDepartment(option.ward)"
-                    ng-class="{'selected': option.ward.isSelected}"
-            >{{ option.ward.name }}
-            </button>
-        </div>
-    </div>
-    <ward ward="ward" ng-if="departmentSelected"></ward>
+        <h6 style=" display: inline-block;">{{'ADMISSION_MASTER' | translate}}</h6>
+        <select ng-options="option.ward.name +' [ Occupied('+ option.occupiedBeds + ') Available('+ (option.totalBeds - option.occupiedBeds)+ ') ]' for option in wards"
+        ng-change="onSelectDepartment(selectedward.ward);"
+        ng-disabled="ngDisabled"
+        ng-class="{'selected': option.ward.isSelected}"
+        ng-model="selectedward">
+</select>&emsp; &emsp; &emsp; &emsp;
+<div style=" display: inline-block;" class="room" ng-if="departmentSelected">
+            <h6 style=" display: inline-block;">{{'Room_View' | translate}}</h6>
+            <select ng-options="room.name + '[ Occupied(' + (room.totalBeds - room.availableBeds) + ') Available('+ (room.availableBeds) + ') ]' for room in ward.rooms"
+            ng-change="onSelectRoom(selectedroom.name)"
+            ng-disabled="ngDisabled"
+            ng-class="{'room-selected': activeRoom == room.name}"
+            ng-model="selectedroom">
+    </select>   
+</div>
+<div id="bedLayout" ng-if="roomSelected">
+        <room room="room"></room>
+</div>
+
 </div>
 </div>
