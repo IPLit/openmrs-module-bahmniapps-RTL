@@ -342,6 +342,9 @@ angular.module('bahmni.registration')
                     });
                 }
             }
+            $rootScope.$on('$stateChangeStart', function() {
+                closeSerialPort();
+            });
 
             var str2ab = function (str) {
                 var bufView = new Uint8Array(str.length);
@@ -356,6 +359,7 @@ angular.module('bahmni.registration')
                 prepopulateDefaultsInFields();
                 expandSectionsWithDefaultValue();
                 $scope.patientLoaded = true;
+                closeSerialPort();
             };
 
             init();

@@ -2,8 +2,8 @@
 
 angular.module('bahmni.registration')
     .controller('SearchPatientController', ['$rootScope', '$scope', '$location', '$window', 'spinner', 'patientService', 'appService',
-        'messagingService', '$translate', '$filter',
-        function ($rootScope, $scope, $location, $window, spinner, patientService, appService, messagingService, $translate, $filter) {
+        'messagingService', '$translate', '$filter', '$timeout',
+        function ($rootScope, $scope, $location, $window, spinner, patientService, appService, messagingService, $translate, $filter, $timeout) {
             $scope.results = [];
             $scope.extraIdentifierTypes = _.filter($rootScope.patientConfiguration.identifierTypes, function (identifierType) {
                 return !identifierType.primary;
@@ -214,6 +214,7 @@ angular.module('bahmni.registration')
                 setCustomAttributesSearchConfig();
                 setProgramAttributesSearchConfig();
                 setSearchResultsConfig();
+                closeSerialPort();
             };
 
             var identifyParams = function (querystring) {
@@ -387,5 +388,126 @@ angular.module('bahmni.registration')
 
             $scope.isExtraIdentifierConfigured = function () {
                 return !_.isEmpty($scope.extraIdentifierTypes);
+            };
+
+
+            $scope.openNatVerifyPopup = async function () {
+                const baudRate = 9600; // Replace with the baud rate used by your USB CDC scanner
+                const storedPermission = localStorage.getItem('serialPermission');
+                if (storedPermission === 'granted') {
+                    const ports = await navigator.serial.getPorts();
+                    if (ports.length === 0) {
+                        await requestSerialPermission();
+                    } else {
+                        $scope.selectedPort = ports[0];
+                    }
+                } else {
+                    await requestSerialPermission();
+                }
+
+                if ($scope.portOpen) {
+                    verifyNat();
+                } else {
+                    if ($scope.selectedPort !== undefined) {
+                        $scope.selectedPort.open({ baudRate }).then(function () {
+                            $scope.portOpen = true;
+                            verifyNat();
+                        });
+                    }
+                }
+            };
+
+            async function requestSerialPermission () {
+                try {
+                    const port = await navigator.serial.requestPort();
+                    if (port !== undefined) {
+                        localStorage.setItem('serialPermission', 'granted');
+                        $scope.selectedPort = port;
+                        $rootScope.selectedPort = port;
+                    }
+                } catch (error) {
+                    console.log('Error requesting serial permission:', error);
+                }
+            }
+
+            var verifyNat = async function () {
+                const textDecoder = new TextDecoder('ascii'); // Use UTF-8 encoding for Arabic characters
+                var accumulatedData = '';
+                const reader = $scope.selectedPort.readable.getReader();
+                while (true) {
+                    const { value, done } = await reader.read();
+                    if (done) {
+                        break;
+                    }
+                    const decodedData = textDecoder.decode(value);
+                    accumulatedData += decodedData; // Append the decoded data to the accumulated data
+                    $timeout(function () {
+                        performVerifyNatText(accumulatedData);
+                        if ($scope.natData.natId) {
+                            patientService.search(undefined, $scope.natData.natId, undefined, undefined, undefined,
+                               0, undefined, undefined, undefined, undefined,
+                               undefined, true).then(function (data) {
+                                   if (data.pageOfResults.length > 0) {
+                                      var patient = data.pageOfResults[0];
+                                      var forwardUrl = appService.getAppDescriptor().getConfigValue("searchByIdForwardUrl") || "/patient/{{patientUuid}}";
+                                      $location.url(appService.getAppDescriptor().formatUrl(forwardUrl, {'patientUuid': patient.uuid}));
+                                   } else {
+                                       var errorMessage = $translate.instant("PATIENT_NOT_EXISTS", {natID: $scope.natData.natId});
+                                       messagingService.showMessage('error', errorMessage);
+                                   }
+                                   accumulatedData = '';
+                                   reader.releaseLock();
+                               });
+                        } else {
+                            $scope.scannedTextError = true;
+                        }
+                    }, 1000);
+                }
+            };
+
+            var performVerifyNatText = function (accumulatedData) {
+                $scope.natData = {};
+                if (!accumulatedData || accumulatedData.length === 0) {
+                    $scope.scannedTextError = true;
+                    return;
+                }
+                const decoder = new TextDecoder("windows-1256");
+                accumulatedData = str2ab(accumulatedData);
+                accumulatedData = accumulatedData && decoder.decode(accumulatedData);
+                var splitted = accumulatedData && accumulatedData.split('#');
+                if (splitted && splitted.length > 0) {
+                    if (splitted.length === 1) {
+                        $scope.natData.natId = splitted[0].trim();
+                    } else {
+                        $scope.natData.firstName = splitted.length > 0 && splitted[0].trim();
+                        $scope.natData.lastName = splitted.length > 1 && splitted[1].trim();
+                        $scope.natData.middleName = splitted.length > 2 && splitted[2].trim();
+                        $scope.natData.motherName = splitted.length > 3 && splitted[3].trim();
+                        $scope.natData.birth = splitted.length > 4 && splitted[4].trim();
+                        $scope.natData.natId = splitted.length > 5 && splitted[5].trim();
+                    }
+                }
+            };
+
+            function closeSerialPort () {
+                if ($scope.selectedPort && $scope.selectedPort.readable) {
+                    $scope.selectedPort.close().then(() => {
+                        console.log("Serial port closed.");
+                    }).catch((error) => {
+                        console.error("Error closing serial port:", error);
+                    });
+                }
+            }
+
+            $rootScope.$on('$stateChangeStart', function() {
+                closeSerialPort();
+            });
+
+            var str2ab = function (str) {
+                var bufView = new Uint8Array(str.length);
+                for (var i = str.length; i >= 0; i--) {
+                    bufView[i] = str.charCodeAt(i);
+                }
+                return bufView;
             };
         }]);

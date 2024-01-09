@@ -10,6 +10,10 @@
                         <div class="reg-srch-btn fl">
                             <button tabindex="3" type="submit" ng-disabled="!searchParameters.registrationNumber" >{{ ::'REGISTRATION_LABEL_SEARCH' | translate}}</button>
                         </div>
+                        <span>
+                            <button id="openNatPopup" class="reg-srch-btn" ng-click="openNatVerifyPopup();">{{'VERIFY_NAT_POPUP_MESSAGE' |translate}}
+                            </button>
+                        </span>
                     </div>
 
             </form>
@@ -41,6 +45,7 @@
                     </div>
                 </article>
             </form>
+
 
         </article>
     </section>
