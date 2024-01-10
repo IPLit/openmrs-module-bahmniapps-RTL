@@ -342,7 +342,7 @@ angular.module('bahmni.registration')
                     });
                 }
             }
-            $rootScope.$on('$stateChangeStart', function() {
+            $rootScope.$on('$stateChangeStart', function () {
                 closeSerialPort();
             });
 

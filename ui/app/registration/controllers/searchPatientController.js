@@ -390,7 +390,6 @@ angular.module('bahmni.registration')
                 return !_.isEmpty($scope.extraIdentifierTypes);
             };
 
-
             $scope.openNatVerifyPopup = async function () {
                 const baudRate = 9600; // Replace with the baud rate used by your USB CDC scanner
                 const storedPermission = localStorage.getItem('serialPermission');
@@ -445,12 +444,11 @@ angular.module('bahmni.registration')
                         performVerifyNatText(accumulatedData);
                         if ($scope.natData.natId) {
                             patientService.search(undefined, $scope.natData.natId, undefined, undefined, undefined,
-                               0, undefined, undefined, undefined, undefined,
-                               undefined, true).then(function (data) {
+                               0, undefined, undefined, undefined, undefined, undefined, true).then(function (data) {
                                    if (data.pageOfResults.length > 0) {
-                                      var patient = data.pageOfResults[0];
-                                      var forwardUrl = appService.getAppDescriptor().getConfigValue("searchByIdForwardUrl") || "/patient/{{patientUuid}}";
-                                      $location.url(appService.getAppDescriptor().formatUrl(forwardUrl, {'patientUuid': patient.uuid}));
+                                       var patient = data.pageOfResults[0];
+                                       var forwardUrl = appService.getAppDescriptor().getConfigValue("searchByIdForwardUrl") || "/patient/{{patientUuid}}";
+                                       $location.url(appService.getAppDescriptor().formatUrl(forwardUrl, {'patientUuid': patient.uuid}));
                                    } else {
                                        var errorMessage = $translate.instant("PATIENT_NOT_EXISTS", {natID: $scope.natData.natId});
                                        messagingService.showMessage('error', errorMessage);
@@ -499,7 +497,7 @@ angular.module('bahmni.registration')
                 }
             }
 
-            $rootScope.$on('$stateChangeStart', function() {
+            $rootScope.$on('$stateChangeStart', function () {
                 closeSerialPort();
             });
 
