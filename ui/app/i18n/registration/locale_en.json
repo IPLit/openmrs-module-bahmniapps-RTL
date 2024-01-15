@@ -137,5 +137,6 @@
   "BARCODE_SCAN": "Please scan the barcode",
   "SCAN_ACK": "Click After Scan",
   "SCAN_COMPLETE": "Scan Successful",
-  "PATIENT_EXISTS": " Patient with National ID {{natID}} is Already Exist"
+  "PATIENT_EXISTS": " Patient with National ID {{natID}} is Already Exist",
+  "PATIENT_NOT_EXISTS": " Patient with National ID {{natID}} does not exist"
 }
