@@ -72,6 +72,7 @@ angular.module('bahmni.ipd')
                     if (wardElement.ward.uuid === department.uuid) {
                         wardElement.ward.isSelected = true;
                         wardElement.ward.selected = true;
+                        $scope.selectedward = wardElement;
                     }
                 });
             };
@@ -92,6 +93,7 @@ angular.module('bahmni.ipd')
                     $rootScope.selectedBedInfo.wardUuid = department.uuid;
                     selectCurrentDepartment(department);
                     $scope.$broadcast("event:departmentChanged");
+                    wardinit();
                 });
             };
 
@@ -195,6 +197,14 @@ angular.module('bahmni.ipd')
                 });
             };
             // ward controller code
+            var wardinit = function () {
+                if ($stateParams.context && $stateParams.context.roomName) {
+                    expandAdmissionMasterForRoom($stateParams.context.roomName);
+                } else if ($rootScope.bedDetails) {
+                    expandAdmissionMasterForRoom($rootScope.bedDetails.physicalLocationName);
+                }
+            };
+
             var getSelectedRoom = function (roomName) {
                 var admissionRoom = _.filter($scope.ward.rooms, function (room) {
                     return room.name === roomName;
@@ -202,6 +212,7 @@ angular.module('bahmni.ipd')
                 $scope.room = admissionRoom[0];
                 $scope.activeRoom = $scope.room.name;
                 $scope.roomSelected = true;
+                $scope.selectedroom = $scope.room;
             };
             $scope.$on("event:deselectWards", function (event, ward) {
                 $scope.activeRoom = null;
@@ -227,7 +238,7 @@ angular.module('bahmni.ipd')
             };
 
             var expandAdmissionMasterForRoom = function (roomName) {
-                if (roomName == null) {
+                if (roomName != null) {
                     updateSelectedBedInfo(roomName);
                     getSelectedRoom(roomName);
                 }
