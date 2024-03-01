@@ -209,10 +209,12 @@ angular.module('bahmni.ipd')
                 var admissionRoom = _.filter($scope.ward.rooms, function (room) {
                     return room.name === roomName;
                 });
-                $scope.room = admissionRoom[0];
-                $scope.activeRoom = $scope.room.name;
-                $scope.roomSelected = true;
-                $scope.selectedroom = $scope.room;
+                if (admissionRoom != undefined && admissionRoom.length > 0) {
+                    $scope.room = admissionRoom[0];
+                    $scope.activeRoom = $scope.room.name;
+                    $scope.roomSelected = true;
+                    $scope.selectedroom = $scope.room;
+                }
             };
             $scope.$on("event:deselectWards", function (event, ward) {
                 $scope.activeRoom = null;
